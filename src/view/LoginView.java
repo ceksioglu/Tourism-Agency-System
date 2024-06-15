@@ -26,7 +26,7 @@ public class LoginView extends Layout {
 
     private void login() {
         if (!Helper.checkAndShowEmptyFields(this, field_username, field_password)) {
-            return;
+            return ;
         }
 
         String username = field_username.getText();
@@ -34,9 +34,8 @@ public class LoginView extends Layout {
 
         if (userManager.validateUser(username, password)) {
             Helper.showMessage(this, "Login successful!");
-            // Giriş başarılı, ana panele yönlendir
-            // Örneğin, Admin veya Personel panelini başlatabilirsiniz
-            // new AdminView();  // Örnek
+            // Giriş başarılı, admin panele yönlendir
+            new AdminView();
             dispose();  // Mevcut pencereyi kapat
         } else {
             Helper.showMessage(this, "Invalid username or password. Please try again.");

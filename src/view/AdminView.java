@@ -32,14 +32,16 @@ public class AdminView extends Layout {
      * AdminView sınıfı, kullanıcı yönetimi arayüzünü başlatır ve gerekli bileşenleri ayarlar.
      */
     public AdminView() {
-        userManager = new UserManager();
-        Helper.setupWindow(this, container, "Admin Panel", 600, 500);
+        this.userManager = new UserManager();
+        Helper.setupWindow(this, container, "Admin Panel", 500, 400);
 
-        tableModel = new DefaultTableModel();
-        table_user.setModel(tableModel);
-        tableModel.addColumn("ID");
-        tableModel.addColumn("Username");
-        tableModel.addColumn("Role");
+        this.tableModel = new DefaultTableModel();
+        this.table_user.setModel(tableModel);
+        this.tableModel.addColumn("ID");
+        this.tableModel.addColumn("Username");
+        this.tableModel.addColumn("Role");
+
+        this.table_user.getTableHeader().setReorderingAllowed(false);
 
         loadUsers();
 
@@ -105,10 +107,10 @@ public class AdminView extends Layout {
             String role = (String) roleBox.getSelectedItem();
 
             if (username.isEmpty() || password.isEmpty()) {
-                Helper.showMessage(this, "Lütfen tüm alanları doldurun.");
+                Helper.showMessage(this, "Please fill all fields.");
             } else {
                 userManager.addUser(new User(0, username, password, role));
-                Helper.showMessage(this, "Kullanıcı başarıyla oluşturuldu!");
+                Helper.showMessage(this, "User created successfully!");
                 loadUsers();
             }
         }
@@ -120,7 +122,7 @@ public class AdminView extends Layout {
     private void updateUser() {
         int selectedRow = table_user.getSelectedRow();
         if (selectedRow == -1) {
-            Helper.showMessage(this, "Lütfen güncellemek için bir kullanıcı seçin.");
+            Helper.showMessage(this, "Please select a user from the table.");
             return;
         }
 
@@ -135,19 +137,19 @@ public class AdminView extends Layout {
         roleBox.setSelectedItem(role);
 
         Object[] message = {
-                "Kullanıcı Adı:", usernameField,
-                "Şifre (Mevcut şifreyi korumak için boş bırakın):", passwordField,
-                "Rol:", roleBox
+                "User Name:", usernameField,
+                "Password (Leave the field empty to keep the old password):", passwordField,
+                "Role:", roleBox
         };
 
-        int option = JOptionPane.showConfirmDialog(this, message, "Kullanıcıyı Güncelle", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(this, message, "Update User", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             String newUsername = usernameField.getText();
             String newPassword = passwordField.getText();
             String newRole = (String) roleBox.getSelectedItem();
 
             if (newUsername.isEmpty()) {
-                Helper.showMessage(this, "Kullanıcı adı boş olamaz.");
+                Helper.showMessage(this, "Username can't be empty.");
             } else {
                 User user = userManager.getUserById(userId);
                 user.setUsername(newUsername);
@@ -156,7 +158,7 @@ public class AdminView extends Layout {
                 }
                 user.setRole(newRole);
                 userManager.updateUser(user);
-                Helper.showMessage(this, "Kullanıcı başarıyla güncellendi!");
+                Helper.showMessage(this, "User updated successfully!");
                 loadUsers();
             }
         }

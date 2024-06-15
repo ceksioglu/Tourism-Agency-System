@@ -1,0 +1,1608 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "17.0.2" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		auxiliary() {
+			"JavaCodeGenerator.defaultVariableLocal": true
+		}
+		add( new FormContainer( "com.formdev.flatlaf.testing.FlatTestPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+			"$layoutConstraints": "ltr,insets dialog,hidemode 3"
+			"$columnConstraints": "[][][][][][][left]"
+			"$rowConstraints": "[][][][][][][][][][][][][][][][][][][][][][][][]"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelLabel"
+				"text": "JLabel:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Enabled"
+				"displayedMnemonic": 69
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Disabled"
+				"displayedMnemonic": 68
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 0"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.testing.FlatComponentsTest$TestMultiLineLabel" ) {
+				name: "testMultiLineLabel1"
+				"text": "Multi-line label based on JTextArea\n2nd line"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 0 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "buttonLabel"
+				"text": "JButton:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Enabled"
+				"displayedMnemonicIndex": 0
+				"toolTipText": "This button is enabled."
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+				name: "button17"
+				"text": "Sq"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+				"minimumWidth": 0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+				name: "button22"
+				"text": "Rd"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+				"minimumWidth": 0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Disabled"
+				"displayedMnemonicIndex": 0
+				"enabled": false
+				"toolTipText": "This button is disabled."
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+				name: "button18"
+				"text": "Sq"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+				"enabled": false
+				"minimumWidth": 0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+				name: "button23"
+				"text": "Rd"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+				"enabled": false
+				"minimumWidth": 0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.testing.FlatComponentsTest$TestDefaultButton" ) {
+				name: "button5"
+				"text": "Default"
+				"displayedMnemonicIndex": 0
+				"toolTipText": "Tool tip with\nmultiple\nlines."
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+				name: "button3"
+				"text": "Help"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType help
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+				name: "button12"
+				"text": "Help"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType help
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button13"
+				"icon": new com.jformdesigner.model.SwingIcon( 2, "Tree.closedIcon" )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button14"
+				"text": "..."
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button15"
+				"text": "…"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button16"
+				"text": "#"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button24"
+				"text": "A"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button20"
+				"text": "Empty border"
+				"border": &EmptyBorder0 new javax.swing.border.EmptyBorder( 0, 0, 0, 0 )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1 2 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+				name: "button25"
+				"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 2, "Tree.closedIcon" )
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType borderless
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 1 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "toggleButtonLabel"
+				"text": "JToggleButton:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 2"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton1"
+				"text": "Enabled"
+				"toolTipText": "LOOOOOOOOOOOOOONG TEXT"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 2"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+				name: "toggleButton9"
+				"text": "Sq"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 2"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+				name: "toggleButton19"
+				"text": "Rd"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 2"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton2"
+				"text": "Disabled"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 2"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+				name: "toggleButton10"
+				"text": "Sq"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 2"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+				name: "toggleButton20"
+				"text": "Rd"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 2"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton3"
+				"text": "Selected"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 2"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton4"
+				"text": "Selected disabled"
+				"enabled": false
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 2"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton11"
+				"icon": #SwingIcon0
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 2 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton12"
+				"text": "..."
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 2 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton13"
+				"text": "…"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 2 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton14"
+				"text": "#"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 2 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton21"
+				"text": "A"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 2 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton18"
+				"text": "Empty border"
+				"border": #EmptyBorder0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 2 2 1"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+				name: "toggleButton22"
+				"icon": new com.jformdesigner.model.SwingIcon( 2, "Tree.closedIcon" )
+				"selected": true
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType borderless
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 2 2 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "checkBoxLabel"
+				"text": "JCheckBox"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 3"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox1"
+				"text": "Enabled"
+				"mnemonic": 65
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 3"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox2"
+				"text": "Disabled"
+				"enabled": false
+				"mnemonic": 68
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 3"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox3"
+				"text": "Selected"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 3"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox4"
+				"text": "Selected disabled"
+				"selected": true
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 3"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+				name: "toggleButton5"
+				"text": "Tab"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType tab
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 3"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+				name: "toggleButton8"
+				"text": "Tab"
+				"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType tab
+				"enabled": false
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 3"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "radioButtonLabel"
+				"text": "JRadioButton:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 4"
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton1"
+				"text": "Enabled"
+				"mnemonic": 78
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 4"
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton2"
+				"text": "Disabled"
+				"enabled": false
+				"mnemonic": 83
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 4"
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton3"
+				"text": "Selected"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 4"
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton4"
+				"text": "Selected disabled"
+				"selected": true
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 4"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "comboBoxLabel"
+				"text": "JComboBox:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 5"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"editable": true
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Editable"
+					addElement( "Editable" )
+					addElement( "a" )
+					addElement( "bb" )
+					addElement( "ccc" )
+					addElement( "dd" )
+					addElement( "e" )
+					addElement( "ff" )
+					addElement( "ggg" )
+					addElement( "hh" )
+					addElement( "i" )
+					addElement( "jj" )
+					addElement( "kkk" )
+				}
+				"maximumRowCount": 6
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 5,growx"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox2"
+				"editable": true
+				"enabled": false
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Disabled"
+					addElement( "Disabled" )
+					addElement( "a" )
+					addElement( "bb" )
+					addElement( "ccc" )
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 5,growx"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox3"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Not editable"
+					addElement( "Not editable" )
+					addElement( "a" )
+					addElement( "bb" )
+					addElement( "ccc" )
+					addElement( "dd" )
+					addElement( "e" )
+					addElement( "ff" )
+					addElement( "ggg" )
+					addElement( "hh" )
+					addElement( "i" )
+					addElement( "jj" )
+					addElement( "kkk" )
+				}
+				"maximumRowCount": 6
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 5,growx"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox4"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Not editable disabled"
+					addElement( "Not editable disabled" )
+					addElement( "a" )
+					addElement( "bb" )
+					addElement( "ccc" )
+				}
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 5,growx"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox5"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Wide popup if text is longer"
+					addElement( "Wide popup if text is longer" )
+					addElement( "aa" )
+					addElement( "bbb" )
+					addElement( "cccc" )
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 5,growx,wmax 100"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox6"
+				"border": #EmptyBorder0
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Empty border"
+					addElement( "Empty border" )
+					addElement( "a" )
+					addElement( "b" )
+					addElement( "c" )
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 5"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "spinnerLabel"
+				"text": "JSpinner:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 6"
+			} )
+			add( new FormComponent( "javax.swing.JSpinner" ) {
+				name: "spinner1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 6,growx"
+			} )
+			add( new FormComponent( "javax.swing.JSpinner" ) {
+				name: "spinner2"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 6,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.testing.FlatComponentsTest$ButtonlessSpinner" ) {
+				name: "buttonlessSpinner1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 6,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.testing.FlatComponentsTest$ButtonlessSpinner" ) {
+				name: "buttonlessSpinner2"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 6,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatComboBox" ) {
+				name: "comboBox7"
+				"editable": true
+				"placeholderText": "Placeholder"
+				auxiliary() {
+					"JavaCodeGenerator.typeParameters": "String"
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 6,growx"
+			} )
+			add( new FormComponent( "javax.swing.JSpinner" ) {
+				name: "spinner3"
+				"border": new javax.swing.border.EmptyBorder( 0, 0, 0, 0 )
+				"model": new javax.swing.SpinnerNumberModel {
+					value: 12345
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 6"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "textFieldLabel"
+				"text": "JTextField:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 7"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+				"text": "Editable"
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 7,growx"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+				"text": "Disabled"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 7,growx"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+				"text": "Not editable"
+				"editable": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 7,growx"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField4"
+				"text": "Not editable disabled"
+				"enabled": false
+				"editable": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 7,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatTextField" ) {
+				name: "textField6"
+				"placeholderText": "Placeholder"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 7,growx"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField5"
+				"text": "Empty border"
+				"border": #EmptyBorder0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 7"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "formattedTextFieldLabel"
+				"text": "JFormattedTextField:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 8"
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "formattedTextField1"
+				"text": "Editable"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 8,growx"
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "formattedTextField2"
+				"text": "Disabled"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 8,growx"
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "formattedTextField3"
+				"text": "Not editable"
+				"editable": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 8,growx"
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "formattedTextField4"
+				"text": "Not editable disabled"
+				"enabled": false
+				"editable": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 8,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatFormattedTextField" ) {
+				name: "formattedTextField5"
+				"placeholderText": "Placeholder"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 8,growx"
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "formattedTextField6"
+				"text": "Empty border"
+				"border": #EmptyBorder0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 8"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "passwordFieldLabel"
+				"text": "JPasswordField:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 9"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField1"
+				"text": "Editable"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 9,growx"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField2"
+				"text": "Disabled"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 9,growx"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField3"
+				"text": "Not editable"
+				"editable": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 9,growx"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField4"
+				"text": "Not editable disabled"
+				"enabled": false
+				"editable": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 9,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatPasswordField" ) {
+				name: "passwordField5"
+				"placeholderText": "Placeholder"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 9,growx"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField6"
+				"text": "empty border"
+				"border": #EmptyBorder0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 9"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "textAreaLabel"
+				"text": "JTextArea:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 10"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+					"text": "Editable"
+					"rows": 2
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 10,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea2"
+					"text": "Disabled"
+					"rows": 2
+					"enabled": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 10,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane3"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea3"
+					"text": "Not editable"
+					"rows": 2
+					"editable": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 10,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane4"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea4"
+					"text": "Not editable disabled"
+					"rows": 2
+					"editable": false
+					"enabled": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 10,growx"
+			} )
+			add( new FormComponent( "javax.swing.JTextArea" ) {
+				name: "textArea5"
+				"rows": 2
+				"text": "No scroll pane"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 10,growx"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "editorPaneLabel"
+				"text": "JEditorPane"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 11"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane5"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JEditorPane" ) {
+					name: "editorPane1"
+					"text": "Editable"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 11,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane6"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JEditorPane" ) {
+					name: "editorPane2"
+					"text": "Disabled"
+					"enabled": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 11,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane7"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JEditorPane" ) {
+					name: "editorPane3"
+					"text": "Not editable"
+					"editable": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 11,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane8"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JEditorPane" ) {
+					name: "editorPane4"
+					"text": "Not editable disabled"
+					"editable": false
+					"enabled": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 11,growx"
+			} )
+			add( new FormComponent( "javax.swing.JEditorPane" ) {
+				name: "editorPane5"
+				"text": "No scroll pane"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 11,growx"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "textPaneLabel"
+				"text": "JTextPane:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 12"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane9"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextPane" ) {
+					name: "textPane1"
+					"text": "Editable"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 12,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane10"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextPane" ) {
+					name: "textPane2"
+					"text": "Disabled"
+					"enabled": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 12,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane11"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextPane" ) {
+					name: "textPane3"
+					"text": "Not editable"
+					"editable": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 12,growx"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane12"
+				"verticalScrollBarPolicy": 21
+				"horizontalScrollBarPolicy": 31
+				add( new FormComponent( "javax.swing.JTextPane" ) {
+					name: "textPane4"
+					"text": "Not editable disabled"
+					"editable": false
+					"enabled": false
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 12,growx"
+			} )
+			add( new FormComponent( "javax.swing.JTextPane" ) {
+				name: "textPane5"
+				"text": "No scroll pane"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 12,growx"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "scrollPaneLabel"
+				"text": "JScrollPane:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 13"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane13"
+				"horizontalScrollBarPolicy": 32
+				"verticalScrollBarPolicy": 22
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "panel1"
+					"preferredSize": new java.awt.Dimension( 800, 400 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button19"
+						"text": "I'm a large button"
+						"verticalAlignment": 1
+						"horizontalAlignment": 2
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 13,grow,width 70,height 70"
+			} )
+			add( new FormComponent( "javax.swing.JScrollBar" ) {
+				name: "scrollBar2"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 13 1 6,growy"
+			} )
+			add( new FormComponent( "javax.swing.JScrollBar" ) {
+				name: "scrollBar3"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 13 1 6,growy"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatScrollBar" ) {
+				name: "scrollBar7"
+				"showButtons": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 13 1 6,growy"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatScrollBar" ) {
+				name: "scrollBar8"
+				"enabled": false
+				"showButtons": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 13 1 6,growy"
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator2"
+				"orientation": 1
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 13 1 6,growy"
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider2"
+				"orientation": 1
+				"value": 30
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 13 1 6,growy"
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider4"
+				"minorTickSpacing": 10
+				"paintTicks": true
+				"majorTickSpacing": 50
+				"paintLabels": true
+				"orientation": 1
+				"value": 30
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 13 1 6,growy"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane14"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 13,grow"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatProgressBar" ) {
+				name: "progressBar3"
+				"orientation": 1
+				"value": 60
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 13 1 6,growy"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatProgressBar" ) {
+				name: "progressBar4"
+				"orientation": 1
+				"value": 60
+				"stringPainted": true
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 13 1 6,growy"
+			} )
+			add( new FormContainer( "com.formdev.flatlaf.testing.FlatComponentsTest$TestToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar2"
+				"orientation": 1
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button9"
+					"icon": &SwingIcon1 new com.jformdesigner.model.SwingIcon( 2, "Tree.closedIcon" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button10"
+					"icon": &SwingIcon2 new com.jformdesigner.model.SwingIcon( 2, "Tree.openIcon" )
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator5"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button11"
+					"icon": &SwingIcon3 new com.jformdesigner.model.SwingIcon( 2, "Tree.leafIcon" )
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleButton7"
+					"icon": new com.jformdesigner.model.SwingIcon( 2, "Tree.closedIcon" )
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 13 1 6,growy"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane15"
+				"border": new javax.swing.border.EmptyBorder( 0, 0, 0, 0 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "panel3"
+					"preferredSize": new java.awt.Dimension( 800, 400 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button21"
+						"text": "I'm a large button in a scrollpane with empty border"
+						"verticalAlignment": 1
+						"horizontalAlignment": 2
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 10 1 3,growy,width 100,height 50"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+				"$columnConstraints": "[][]"
+				"$rowConstraints": "[][][][]"
+				"$layoutConstraints": "ltr,insets dialog,hidemode 3"
+			} ) {
+				name: "panel5"
+				"border": new javax.swing.border.TitledBorder( "Control" )
+				"$client.FlatLaf.internal.testing.ignore": true
+				add( new FormComponent( "com.formdev.flatlaf.testing.FlatTestEnumComboBox" ) {
+					name: "buttonTypeComboBox"
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": false
+						"JavaCodeGenerator.typeParameters": "ButtonType"
+					}
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonTypeChanged", false ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 0"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "borderPaintedCheckBox"
+					"text": "borderPainted"
+					"selected": true
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": false
+					}
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "borderPaintedChanged", false ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 1 0"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "roundRectCheckBox"
+					"text": "roundRect"
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": false
+					}
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "roundRectChanged", false ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 1"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "contentAreaFilledCheckBox"
+					"text": "contentAreaFilled"
+					"selected": true
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": false
+					}
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "contentAreaFilledChanged", false ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 1 1"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+					"axis": 1
+				} ) {
+					name: "panel4"
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "noOutlineRadioButton"
+						"text": "no outline"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						"selected": true
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "outlineChanged", false ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "errorOutlineRadioButton"
+						"text": "error"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "outlineChanged", false ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "warningOutlineRadioButton"
+						"text": "warning"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "outlineChanged", false ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "magentaOutlineRadioButton"
+						"text": "magenta"
+						"$buttonGroup": &FormReference0 new FormReference( "buttonGroup1" )
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "outlineChanged", false ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "magentaCyanOutlineRadioButton"
+						"text": "magenta / cyan"
+						"$buttonGroup": #FormReference0
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "outlineChanged", false ) )
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 2 1 2"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "focusPaintedCheckBox"
+					"text": "focusPainted"
+					"selected": true
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": false
+					}
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "focusPaintedChanged", false ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 1 2"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 5 13 2 10,grow"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "scrollBarLabel"
+				"text": "JScrollBar:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 14"
+			} )
+			add( new FormComponent( "javax.swing.JScrollBar" ) {
+				name: "scrollBar1"
+				"orientation": 0
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 14,growx"
+			} )
+			add( new FormComponent( "javax.swing.JScrollBar" ) {
+				name: "scrollBar4"
+				"orientation": 0
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 15,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatScrollBar" ) {
+				name: "scrollBar5"
+				"orientation": 0
+				"showButtons": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 16,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatScrollBar" ) {
+				name: "scrollBar6"
+				"orientation": 0
+				"enabled": false
+				"showButtons": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 17,growx"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "separatorLabel"
+				"text": "JSeparator:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 18"
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 18,growx"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+				name: "panel2"
+				"border": new javax.swing.border.TitledBorder( "TitledBorder" )
+				"opaque": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 3 18,grow"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "sliderLabel"
+				"text": "JSlider:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 19"
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider1"
+				"value": 30
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 19 3 1,growx"
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider6"
+				"enabled": false
+				"value": 30
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 19 3 1"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+				"$columnConstraints": "[]"
+				"$rowConstraints": "[][][][]"
+				"$layoutConstraints": "ltr,insets 0,hidemode 3"
+			} ) {
+				name: "panel8"
+				"$client.FlatLaf.internal.testing.ignore": true
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+					"$columnConstraints": "[]"
+					"$rowConstraints": "[]0[]0[]0[]"
+					"$layoutConstraints": "ltr,insets 0,hidemode 3"
+				} ) {
+					name: "panel6"
+					"border": new javax.swing.border.TitledBorder( "JSlider Control" )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "sliderPaintTrackCheckBox"
+						"text": "track"
+						"selected": true
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sliderPaintTrackChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 0"
+					} )
+					add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatTriStateCheckBox" ) {
+						name: "sliderPaintTicksCheckBox"
+						"text": "ticks"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sliderPaintTicksChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 0"
+					} )
+					add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatTriStateCheckBox" ) {
+						name: "sliderPaintLabelsCheckBox"
+						"text": "labels"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sliderPaintLabelsChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 0"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "sliderInvertedCheckBox"
+						"text": "inverted"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sliderInvertedChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 1"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "sliderSnapToTicksCheckBox"
+						"text": "snap to ticks"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sliderSnapToTicksChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 1"
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "majorTickSpacingSpinner"
+						"model": new javax.swing.SpinnerNumberModel( 50, 0, 100, 5 )
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "majorThickSpacingChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 2"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "sliderBorderCheckBox"
+						"text": "border"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sliderBorderChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 2"
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "minorTickSpacingSpinner"
+						"model": new javax.swing.SpinnerNumberModel( 10, 0, 100, 5 )
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "minorThickSpacingChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 3"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "sliderValueLabel"
+						"text": "slider value"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 3"
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 0 1 2,grow"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+					"$columnConstraints": "[][fill]"
+					"$rowConstraints": "[]0[]"
+					"$layoutConstraints": "ltr,insets 0,hidemode 3"
+				} ) {
+					name: "panel7"
+					"border": new javax.swing.border.TitledBorder( "JProgressBar Control" )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "indeterminateCheckBox"
+						"text": "indeterminate"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "indeterminateProgress", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 0"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "squareCheckBox"
+						"text": "square"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "squareChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 1 0"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "largeHeightCheckBox"
+						"text": "large height"
+						auxiliary() {
+							"JavaCodeGenerator.variableLocal": false
+						}
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "largeHeightChanged", false ) )
+					}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+						"value": "cell 0 1,aligny top,growy 0"
+					} )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 0 2 1 2,grow"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 19 1 4"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "sliderLabel2"
+				"text": "baseline"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 20,alignx right,growx 0"
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider3"
+				"minorTickSpacing": 10
+				"paintTicks": true
+				"majorTickSpacing": 50
+				"paintLabels": true
+				"value": 30
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "changeProgress", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 20 3 1,growx"
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider5"
+				"minorTickSpacing": 10
+				"paintTicks": true
+				"majorTickSpacing": 50
+				"paintLabels": true
+				"enabled": false
+				"value": 30
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 20 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "progressBarLabel"
+				"text": "JProgressBar:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 21"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatProgressBar" ) {
+				name: "progressBar1"
+				"value": 60
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 21 3 1,growx"
+			} )
+			add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatProgressBar" ) {
+				name: "progressBar2"
+				"stringPainted": true
+				"value": 60
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 21 3 1,growx"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "toolTipLabel"
+				"text": "JToolTip:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 22"
+			} )
+			add( new FormComponent( "javax.swing.JToolTip" ) {
+				name: "toolTip1"
+				"tipText": "Some text in tool tip."
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 22 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JToolTip" ) {
+				name: "toolTip2"
+				"tipText": "Tool tip with\nmultiple\nlines."
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 22 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "toolBarLabel"
+				"text": "JToolBar:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 23"
+			} )
+			add( new FormContainer( "com.formdev.flatlaf.testing.FlatComponentsTest$TestToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar1"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button4"
+					"icon": #SwingIcon1
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button6"
+					"icon": #SwingIcon2
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator3"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button7"
+					"icon": #SwingIcon3
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator4"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button8"
+					"text": "Text"
+					"icon": new com.jformdesigner.model.SwingIcon( 2, "Tree.expandedIcon" )
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleButton6"
+					"text": "Toggle"
+					"icon": new com.jformdesigner.model.SwingIcon( 2, "Tree.leafIcon" )
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleButton15"
+					"icon": &SwingIcon4 new com.jformdesigner.model.SwingIcon( 2, "FileView.computerIcon" )
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleButton16"
+					"icon": &SwingIcon5 new com.jformdesigner.model.SwingIcon( 2, "FileView.floppyDriveIcon" )
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleButton17"
+					"icon": new com.jformdesigner.model.SwingIcon( 2, "FileView.hardDriveIcon" )
+					"selected": true
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 23 6 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Square:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 23 6 1"
+			} )
+			add( new FormContainer( "com.formdev.flatlaf.testing.FlatComponentsTest$TestToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar3"
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+					name: "button26"
+					"icon": #SwingIcon1
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+					name: "button27"
+					"icon": #SwingIcon2
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton23"
+					"icon": #SwingIcon4
+					"selected": true
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton24"
+					"icon": #SwingIcon5
+					"selected": true
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType square
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 23 6 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Round:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 23 6 1"
+			} )
+			add( new FormContainer( "com.formdev.flatlaf.testing.FlatComponentsTest$TestToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar4"
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+					name: "button28"
+					"icon": #SwingIcon1
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatButton" ) {
+					name: "button29"
+					"icon": #SwingIcon2
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton25"
+					"icon": #SwingIcon4
+					"selected": true
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton26"
+					"icon": #SwingIcon5
+					"selected": true
+					"buttonType": enum com.formdev.flatlaf.extras.components.FlatButton$ButtonType roundRect
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 23 6 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Group:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 23 6 1"
+			} )
+			add( new FormContainer( "com.formdev.flatlaf.testing.FlatComponentsTest$TestToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar5"
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton27"
+					"icon": #SwingIcon4
+					"selected": true
+					"$buttonGroup": new FormReference( "buttonGroup2" )
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton28"
+					"icon": #SwingIcon4
+					"$buttonGroup": new FormReference( "buttonGroup2" )
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator6"
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton29"
+					"icon": #SwingIcon4
+					"$buttonGroup": new FormReference( "buttonGroup2" )
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator8"
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton30"
+					"icon": #SwingIcon5
+					"$buttonGroup": new FormReference( "buttonGroup3" )
+					"selected": true
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton31"
+					"icon": #SwingIcon5
+					"$buttonGroup": new FormReference( "buttonGroup3" )
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator7"
+				} )
+				add( new FormComponent( "com.formdev.flatlaf.extras.components.FlatToggleButton" ) {
+					name: "toggleButton32"
+					"icon": #SwingIcon4
+					"$buttonGroup": new FormReference( "buttonGroup2" )
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 23 6 1"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1135, 800 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 810 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup2"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 862 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup3"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 914 )
+		} )
+	}
+}

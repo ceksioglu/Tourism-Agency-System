@@ -1,0 +1,936 @@
+Class  com.sun.java.swing.plaf.windows.WindowsLookAndFeel
+ID     Windows
+Name   Windows
+Java   12.0.2
+OS     Windows 10
+
+
+#---- Application ----
+
+Application.useSystemFontSettings true
+
+
+#---- AuditoryCues ----
+
+AuditoryCues.allAuditoryCues   length=13    [Ljava.lang.Object;
+    [0] CheckBoxMenuItem.commandSound
+    [1] InternalFrame.closeSound
+    [2] InternalFrame.maximizeSound
+    [3] InternalFrame.minimizeSound
+    [4] InternalFrame.restoreDownSound
+    [5] InternalFrame.restoreUpSound
+    [6] MenuItem.commandSound
+    [7] OptionPane.errorSound
+    [8] OptionPane.informationSound
+    [9] OptionPane.questionSound
+    [10] OptionPane.warningSound
+    [11] PopupMenu.popupSound
+    [12] RadioButtonMenuItem.commandSound
+AuditoryCues.cueList           length=13    [Ljava.lang.Object;
+    [0] CheckBoxMenuItem.commandSound
+    [1] InternalFrame.closeSound
+    [2] InternalFrame.maximizeSound
+    [3] InternalFrame.minimizeSound
+    [4] InternalFrame.restoreDownSound
+    [5] InternalFrame.restoreUpSound
+    [6] MenuItem.commandSound
+    [7] OptionPane.errorSound
+    [8] OptionPane.informationSound
+    [9] OptionPane.questionSound
+    [10] OptionPane.warningSound
+    [11] PopupMenu.popupSound
+    [12] RadioButtonMenuItem.commandSound
+AuditoryCues.noAuditoryCues    length=1    [Ljava.lang.Object;
+    [0] mute
+
+
+#---- Button ----
+
+Button.background              [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Button.border                  [active] 7,8,7,8  false    com.sun.java.swing.plaf.windows.XPStyle$XPEmptyBorder [UI]
+Button.darkShadow              [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+Button.dashedRectGapHeight     [active] 6
+Button.dashedRectGapWidth      [active] 6
+Button.dashedRectGapX          [active] 3
+Button.dashedRectGapY          [active] 3
+Button.defaultButtonFollowsFocus true
+Button.disabledForeground      [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+Button.disabledShadow          [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Button.focus                   [active] #000000    java.awt.Color
+Button.font                    [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Button.foreground              [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Button.highlight               [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Button.light                   [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+Button.margin                  2,14,2,14    javax.swing.plaf.InsetsUIResource [UI]
+Button.shadow                  [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Button.showMnemonics           [active] false
+Button.textIconGap             4
+Button.textShiftOffset         [active] 0
+ButtonUI                       com.sun.java.swing.plaf.windows.WindowsButtonUI
+
+
+#---- Caret ----
+
+Caret.width                    [active] 1
+
+
+#---- CheckBox ----
+
+CheckBox.background            [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+CheckBox.border                [lazy] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    2,2,2,2  false    javax.swing.plaf.basic.BasicBorders$RadioButtonBorder [UI]
+    0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+CheckBox.darkShadow            [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+CheckBox.focus                 [active] #000000    java.awt.Color
+CheckBox.font                  [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+CheckBox.foreground            [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+CheckBox.highlight             [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+CheckBox.icon                  [lazy] 13,13    com.sun.java.swing.plaf.windows.WindowsIconFactory$CheckBoxIcon
+CheckBox.interiorBackground    [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+CheckBox.light                 [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+CheckBox.margin                2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+CheckBox.shadow                [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+CheckBox.textIconGap           4
+CheckBox.textShiftOffset       0
+CheckBox.totalInsets           4,4,4,4    java.awt.Insets
+
+
+#---- CheckBoxMenuItem ----
+
+CheckBoxMenuItem.acceleratorFont [lazy] Dialog plain 12    javax.swing.plaf.FontUIResource [UI]
+CheckBoxMenuItem.acceleratorForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+CheckBoxMenuItem.acceleratorSelectionForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+CheckBoxMenuItem.afterCheckIconGap [active] 9
+CheckBoxMenuItem.arrowIcon     [lazy] 4,8    javax.swing.plaf.basic.BasicIconFactory$MenuItemArrowIcon [UI]
+CheckBoxMenuItem.background    [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+CheckBoxMenuItem.border        [lazy] 0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+CheckBoxMenuItem.borderPainted false
+CheckBoxMenuItem.checkIcon     [active] 22,22    com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory$VistaMenuItemCheckIcon [UI]
+CheckBoxMenuItem.checkIconFactory [active] [unknown type] com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory
+CheckBoxMenuItem.commandSound  win.sound.menuCommand
+CheckBoxMenuItem.evenHeight    [active] true
+CheckBoxMenuItem.font          [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+CheckBoxMenuItem.foreground    [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+CheckBoxMenuItem.margin        2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+CheckBoxMenuItem.minimumTextOffset [active] 31
+CheckBoxMenuItem.opaque        [active] false
+CheckBoxMenuItem.selectionBackground [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+CheckBoxMenuItem.selectionForeground [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+CheckBoxMenuItemUI             com.sun.java.swing.plaf.windows.WindowsCheckBoxMenuItemUI
+
+
+#---- CheckBox ----
+
+CheckBoxUI                     com.sun.java.swing.plaf.windows.WindowsCheckBoxUI
+
+
+#---- ColorChooser ----
+
+ColorChooser.background        #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ColorChooser.font              [lazy] Dialog plain 12    javax.swing.plaf.FontUIResource [UI]
+ColorChooser.foreground        #000000    javax.swing.plaf.ColorUIResource [UI]
+ColorChooser.swatchesDefaultRecentColor #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ColorChooser.swatchesRecentSwatchSize 10,10    java.awt.Dimension
+ColorChooser.swatchesSwatchSize 10,10    java.awt.Dimension
+ColorChooserUI                 javax.swing.plaf.basic.BasicColorChooserUI
+
+
+#---- ComboBox ----
+
+ComboBox.background            [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.border                [active] line: #abadb3    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+ComboBox.buttonBackground      [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.buttonDarkShadow      [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.buttonHighlight       [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.buttonShadow          [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.disabledBackground    [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.disabledForeground    [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.editorBorder          [active] 1,3,1,1  false    javax.swing.border.EmptyBorder
+ComboBox.font                  [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+ComboBox.foreground            [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.isEnterSelectablePopup false
+ComboBox.noActionOnKeyNavigation false
+ComboBox.selectionBackground   [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.selectionForeground   [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ComboBox.timeFactor            1000
+ComboBoxUI                     com.sun.java.swing.plaf.windows.WindowsComboBoxUI
+
+
+#---- Desktop ----
+
+Desktop.background             [active] #ababab    javax.swing.plaf.ColorUIResource [UI]
+Desktop.minOnScreenInsets      3,3,3,3    javax.swing.plaf.InsetsUIResource [UI]
+
+
+#---- DesktopIcon ----
+
+DesktopIcon.border             [lazy] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    2,2,2,2  true    javax.swing.border.BevelBorder
+    line: #b4b4b4    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.WindowsBorders$InternalFrameLineBorder [UI]
+DesktopIcon.width              160
+DesktopIconUI                  com.sun.java.swing.plaf.windows.WindowsDesktopIconUI
+
+
+#---- DesktopPane ----
+
+DesktopPaneUI                  com.sun.java.swing.plaf.windows.WindowsDesktopPaneUI
+
+
+#---- EditorPane ----
+
+EditorPane.background          [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+EditorPane.border              [lazy] 0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+EditorPane.caretBlinkRate      500
+EditorPane.caretForeground     [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+EditorPane.disabledBackground  [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+EditorPane.font                [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+EditorPane.foreground          [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+EditorPane.inactiveBackground  [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+EditorPane.inactiveForeground  [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+EditorPane.margin              3,3,3,3    javax.swing.plaf.InsetsUIResource [UI]
+EditorPane.selectionBackground [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+EditorPane.selectionForeground [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+EditorPaneUI                   com.sun.java.swing.plaf.windows.WindowsEditorPaneUI
+
+
+#---- FileChooser ----
+
+FileChooser.detailsViewIcon    [lazy] 16,16    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+FileChooser.homeFolderIcon     [lazy] [lazy] 18,18    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+FileChooser.listFont           [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+FileChooser.listViewBackground [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+FileChooser.listViewBorder     [active] line: #828790    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+FileChooser.listViewIcon       [lazy] 16,16    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+FileChooser.listViewWindowsStyle true
+FileChooser.newFolderIcon      [lazy] 16,16    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+FileChooser.noPlacesBar        [active] false
+FileChooser.readOnly           false
+FileChooser.upFolderIcon       [lazy] 16,16    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+FileChooser.useSystemExtensionHiding true
+FileChooser.usesSingleFilePane true
+FileChooser.viewMenuIcon       [lazy] 16,16    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+FileChooserUI                  com.sun.java.swing.plaf.windows.WindowsFileChooserUI
+
+
+#---- FileView ----
+
+FileView.computerIcon          [lazy] 16,16    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+FileView.directoryIcon         [lazy] 16,18    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+FileView.fileIcon              [lazy] 16,20    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+FileView.floppyDriveIcon       [lazy] 16,16    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+FileView.hardDriveIcon         [lazy] 16,16    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+
+
+#---- FormattedTextField ----
+
+FormattedTextField.background  [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextField.border      [active] line: #abadb3    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+FormattedTextField.caretBlinkRate 500
+FormattedTextField.caretForeground #000000    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextField.disabledBackground [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextField.font        [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+FormattedTextField.foreground  [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextField.inactiveBackground [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextField.inactiveForeground #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextField.margin      [active] 2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+FormattedTextField.selectionBackground #0078d7    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextField.selectionForeground #ffffff    javax.swing.plaf.ColorUIResource [UI]
+FormattedTextFieldUI           javax.swing.plaf.basic.BasicFormattedTextFieldUI
+
+
+#---- InternalFrame ----
+
+InternalFrame.activeBorderColor [active] #b4b4b4    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.activeTitleBackground [active] #99b4d1    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.activeTitleForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.activeTitleGradient [active] #b9d1ea    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.border           [lazy] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    2,2,2,2  true    javax.swing.border.BevelBorder
+    line: #b4b4b4    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.WindowsBorders$InternalFrameLineBorder [UI]
+InternalFrame.borderColor      [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.borderDarkShadow [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.borderHighlight  [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.borderLight      [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.borderShadow     [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.borderWidth      [active] 1
+InternalFrame.closeIcon        30,18    com.sun.java.swing.plaf.windows.WindowsIconFactory$FrameButtonIcon
+InternalFrame.closeSound       win.sound.close
+InternalFrame.icon             [lazy] 16,16    com.sun.java.swing.plaf.windows.WindowsInternalFrameTitlePane$ScalableIconUIResource [UI]
+InternalFrame.iconifyIcon      30,18    com.sun.java.swing.plaf.windows.WindowsIconFactory$FrameButtonIcon
+InternalFrame.inactiveBorderColor [active] #f4f7fc    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.inactiveTitleBackground [active] #bfcddb    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.inactiveTitleForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.inactiveTitleGradient [active] #d7e4f2    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.layoutTitlePaneAtOrigin [active] true
+InternalFrame.maximizeIcon     30,18    com.sun.java.swing.plaf.windows.WindowsIconFactory$FrameButtonIcon
+InternalFrame.maximizeSound    win.sound.maximize
+InternalFrame.minimizeIcon     30,18    com.sun.java.swing.plaf.windows.WindowsIconFactory$FrameButtonIcon
+InternalFrame.minimizeIconBackground [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.minimizeSound    win.sound.minimize
+InternalFrame.resizeIconHighlight [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.resizeIconShadow [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+InternalFrame.restoreDownSound win.sound.restoreDown
+InternalFrame.restoreUpSound   win.sound.restoreUp
+InternalFrame.titleButtonHeight [active] 22
+InternalFrame.titleButtonToolTipsOn [active] true
+InternalFrame.titleButtonWidth [active] 36
+InternalFrame.titleFont        [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+InternalFrame.titlePaneHeight  [active] 22
+InternalFrame.windowBindings   length=6    [Ljava.lang.Object;
+    [0] shift ESCAPE
+    [1] showSystemMenu
+    [2] ctrl SPACE
+    [3] showSystemMenu
+    [4] ESCAPE
+    [5] hideSystemMenu
+
+
+#---- InternalFrameTitlePane ----
+
+InternalFrameTitlePane.closeButtonOpacity true
+InternalFrameTitlePane.iconifyButtonOpacity true
+InternalFrameTitlePane.maximizeButtonOpacity true
+
+
+#---- InternalFrame ----
+
+InternalFrameUI                com.sun.java.swing.plaf.windows.WindowsInternalFrameUI
+
+
+#---- Label ----
+
+Label.background               [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Label.disabledForeground       [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+Label.disabledShadow           [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Label.font                     [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Label.foreground               [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+LabelUI                        com.sun.java.swing.plaf.windows.WindowsLabelUI
+
+
+#---- List ----
+
+List.background                [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+List.cellRenderer              [active] javax.swing.DefaultListCellRenderer$UIResource [UI]
+List.dropLineColor             #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+List.focusCellHighlightBorder  [lazy] line: null 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.WindowsBorders$ComplementDashedBorder [UI]
+List.font                      [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+List.foreground                [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+List.lockToPositionOnScroll    true
+List.noFocusBorder             1,1,1,1  false    javax.swing.plaf.BorderUIResource$EmptyBorderUIResource [UI]
+List.selectionBackground       [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+List.selectionForeground       [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+List.timeFactor                1000
+ListUI                         javax.swing.plaf.basic.BasicListUI
+
+
+#---- Menu ----
+
+Menu.acceleratorFont           [lazy] Dialog plain 12    javax.swing.plaf.FontUIResource [UI]
+Menu.acceleratorForeground     [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Menu.acceleratorSelectionForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Menu.afterCheckIconGap         [active] 9
+Menu.arrowIcon                 [lazy] 9,9    com.sun.java.swing.plaf.windows.WindowsIconFactory$MenuArrowIcon [UI]
+Menu.background                [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Menu.border                    [lazy] 0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+Menu.borderPainted             false
+Menu.cancelMode                hideLastSubmenu
+Menu.checkIcon                 [active] 22,22    com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory$VistaMenuItemCheckIcon [UI]
+Menu.checkIconFactory          [active] [unknown type] com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory
+Menu.crossMenuMnemonic         false
+Menu.evenHeight                [active] true
+Menu.font                      [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+Menu.foreground                [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Menu.margin                    2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+Menu.menuPopupOffsetX          0
+Menu.menuPopupOffsetY          0
+Menu.minimumTextOffset         [active] 31
+Menu.opaque                    [active] false
+Menu.preserveTopLevelSelection true
+Menu.selectionBackground       [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+Menu.selectionForeground       [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Menu.shortcutKeys              length=2    [I
+    [0] 8
+    [1] 8200
+Menu.submenuPopupOffsetX       -4
+Menu.submenuPopupOffsetY       -3
+Menu.useMenuBarBackgroundForTopLevel true
+
+
+#---- MenuBar ----
+
+MenuBar.background             [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+MenuBar.border                 [lazy] 0,0,2,0  false    javax.swing.plaf.basic.BasicBorders$MenuBarBorder [UI]
+MenuBar.font                   [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+MenuBar.foreground             [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+MenuBar.height                 [active] 19
+MenuBar.highlight              [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+MenuBar.rolloverEnabled        [active] true
+MenuBar.shadow                 [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+MenuBar.windowBindings         length=2    [Ljava.lang.Object;
+    [0] F10
+    [1] takeFocus
+MenuBarUI                      com.sun.java.swing.plaf.windows.WindowsMenuBarUI
+
+
+#---- MenuItem ----
+
+MenuItem.acceleratorDelimiter  +
+MenuItem.acceleratorFont       [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+MenuItem.acceleratorForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+MenuItem.acceleratorSelectionForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+MenuItem.afterCheckIconGap     [active] 9
+MenuItem.arrowIcon             [lazy] 4,8    com.sun.java.swing.plaf.windows.WindowsIconFactory$MenuItemArrowIcon [UI]
+MenuItem.background            [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+MenuItem.border                [lazy] 0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+MenuItem.borderPainted         false
+MenuItem.checkIcon             [active] 22,22    com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory$VistaMenuItemCheckIcon [UI]
+MenuItem.checkIconFactory      [active] [unknown type] com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory
+MenuItem.commandSound          win.sound.menuCommand
+MenuItem.disabledAreNavigable  true
+MenuItem.disabledForeground    [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+MenuItem.evenHeight            [active] true
+MenuItem.font                  [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+MenuItem.foreground            [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+MenuItem.margin                2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+MenuItem.minimumTextOffset     [active] 31
+MenuItem.opaque                [active] false
+MenuItem.selectionBackground   [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+MenuItem.selectionForeground   [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+MenuItemUI                     com.sun.java.swing.plaf.windows.WindowsMenuItemUI
+
+
+#---- Menu ----
+
+MenuUI                         com.sun.java.swing.plaf.windows.WindowsMenuUI
+
+
+#---- OptionPane ----
+
+OptionPane.background          [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+OptionPane.border              [lazy] 10,10,12,10  false    javax.swing.plaf.BorderUIResource$EmptyBorderUIResource [UI]
+OptionPane.buttonAreaBorder    [lazy] 6,0,0,0  false    javax.swing.plaf.BorderUIResource$EmptyBorderUIResource [UI]
+OptionPane.buttonClickThreshhold 500
+OptionPane.buttonFont          [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+OptionPane.buttonMinimumWidth  [active] 75
+OptionPane.errorIcon           [lazy] 32,32    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+OptionPane.errorSound          win.sound.hand
+OptionPane.font                [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+OptionPane.foreground          [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+OptionPane.informationIcon     [lazy] 32,32    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+OptionPane.informationSound    win.sound.asterisk
+OptionPane.messageAreaBorder   [lazy] 0,0,0,0  false    javax.swing.plaf.BorderUIResource$EmptyBorderUIResource [UI]
+OptionPane.messageFont         [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+OptionPane.messageForeground   [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+OptionPane.minimumSize         262,90    javax.swing.plaf.DimensionUIResource [UI]
+OptionPane.questionIcon        [lazy] 32,32    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+OptionPane.questionSound       win.sound.question
+OptionPane.warningIcon         [lazy] 32,32    javax.swing.ImageIcon  (java.awt.image.BufferedImage)
+OptionPane.warningSound        win.sound.exclamation
+OptionPane.windowBindings      length=2    [Ljava.lang.Object;
+    [0] ESCAPE
+    [1] close
+OptionPaneUI                   javax.swing.plaf.basic.BasicOptionPaneUI
+
+
+#---- Panel ----
+
+Panel.background               [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Panel.font                     [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Panel.foreground               [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+PanelUI                        javax.swing.plaf.basic.BasicPanelUI
+
+
+#---- PasswordField ----
+
+PasswordField.background       [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+PasswordField.border           [active] line: #abadb3    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+PasswordField.caretBlinkRate   500
+PasswordField.caretForeground  [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+PasswordField.disabledBackground [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+PasswordField.echoChar         [active] '\u25cf'
+PasswordField.font             [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+PasswordField.foreground       [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+PasswordField.inactiveBackground [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+PasswordField.inactiveForeground [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+PasswordField.margin           [active] 2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+PasswordField.selectionBackground [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+PasswordField.selectionForeground [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+PasswordFieldUI                com.sun.java.swing.plaf.windows.WindowsPasswordFieldUI
+
+
+#---- PopupMenu ----
+
+PopupMenu.background           [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+PopupMenu.border               [active] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    line: #a0a0a0    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+    2,2,2,2  false    javax.swing.border.EmptyBorder
+PopupMenu.consumeEventOnClose  true
+PopupMenu.font                 [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+PopupMenu.foreground           [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+PopupMenu.popupSound           win.sound.menuPopup
+
+
+#---- PopupMenuSeparator ----
+
+PopupMenuSeparatorUI           com.sun.java.swing.plaf.windows.WindowsPopupMenuSeparatorUI
+
+
+#---- PopupMenu ----
+
+PopupMenuUI                    com.sun.java.swing.plaf.windows.WindowsPopupMenuUI
+
+
+#---- ProgressBar ----
+
+ProgressBar.background         [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ProgressBar.border             [lazy] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    1,1,1,1  false    com.sun.java.swing.plaf.windows.WindowsBorders$ProgressBarBorder [UI]
+    1,1,1,1  false    javax.swing.border.EmptyBorder
+ProgressBar.cellLength         7
+ProgressBar.cellSpacing        2
+ProgressBar.cycleTime          3000
+ProgressBar.font               [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+ProgressBar.foreground         [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+ProgressBar.highlight          [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ProgressBar.horizontalSize     146,12    javax.swing.plaf.DimensionUIResource [UI]
+ProgressBar.indeterminateInsets 3,3,3,3    java.awt.Insets
+ProgressBar.repaintInterval    50
+ProgressBar.selectionBackground [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+ProgressBar.selectionForeground [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ProgressBar.shadow             [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+ProgressBar.verticalSize       12,146    javax.swing.plaf.DimensionUIResource [UI]
+ProgressBarUI                  com.sun.java.swing.plaf.windows.WindowsProgressBarUI
+
+
+#---- RadioButton ----
+
+RadioButton.background         [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+RadioButton.border             [lazy] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    2,2,2,2  false    javax.swing.plaf.basic.BasicBorders$RadioButtonBorder [UI]
+    0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+RadioButton.darkShadow         [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+RadioButton.focus              [active] #000000    java.awt.Color
+RadioButton.font               [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+RadioButton.foreground         [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+RadioButton.highlight          [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+RadioButton.icon               [lazy] 13,13    com.sun.java.swing.plaf.windows.WindowsIconFactory$RadioButtonIcon [UI]
+RadioButton.interiorBackground [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+RadioButton.light              [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+RadioButton.margin             2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+RadioButton.shadow             [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+RadioButton.textIconGap        4
+RadioButton.textShiftOffset    0
+RadioButton.totalInsets        4,4,4,4    java.awt.Insets
+
+
+#---- RadioButtonMenuItem ----
+
+RadioButtonMenuItem.acceleratorFont [lazy] Dialog plain 12    javax.swing.plaf.FontUIResource [UI]
+RadioButtonMenuItem.acceleratorForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+RadioButtonMenuItem.acceleratorSelectionForeground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+RadioButtonMenuItem.afterCheckIconGap [active] 9
+RadioButtonMenuItem.arrowIcon  [lazy] 4,8    javax.swing.plaf.basic.BasicIconFactory$MenuItemArrowIcon [UI]
+RadioButtonMenuItem.background [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+RadioButtonMenuItem.border     [lazy] 0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+RadioButtonMenuItem.borderPainted false
+RadioButtonMenuItem.checkIcon  [active] 22,22    com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory$VistaMenuItemCheckIcon [UI]
+RadioButtonMenuItem.checkIconFactory [active] [unknown type] com.sun.java.swing.plaf.windows.WindowsIconFactory$VistaMenuItemCheckIconFactory
+RadioButtonMenuItem.commandSound win.sound.menuCommand
+RadioButtonMenuItem.disabledForeground [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+RadioButtonMenuItem.evenHeight [active] true
+RadioButtonMenuItem.font       [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+RadioButtonMenuItem.foreground [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+RadioButtonMenuItem.margin     2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+RadioButtonMenuItem.minimumTextOffset [active] 31
+RadioButtonMenuItem.opaque     [active] false
+RadioButtonMenuItem.selectionBackground [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+RadioButtonMenuItem.selectionForeground [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+RadioButtonMenuItemUI          com.sun.java.swing.plaf.windows.WindowsRadioButtonMenuItemUI
+
+
+#---- RadioButton ----
+
+RadioButtonUI                  com.sun.java.swing.plaf.windows.WindowsRadioButtonUI
+
+
+#---- RootPane ----
+
+RootPane.defaultButtonWindowKeyBindings length=8    [Ljava.lang.Object;
+    [0] ENTER
+    [1] press
+    [2] released ENTER
+    [3] release
+    [4] ctrl ENTER
+    [5] press
+    [6] ctrl released ENTER
+    [7] release
+RootPaneUI                     com.sun.java.swing.plaf.windows.WindowsRootPaneUI
+
+
+#---- ScrollBar ----
+
+ScrollBar.background           [active] #c8c8c8    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.foreground           [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.maximumThumbSize     4096,4096    javax.swing.plaf.DimensionUIResource [UI]
+ScrollBar.minimumThumbSize     8,8    javax.swing.plaf.DimensionUIResource [UI]
+ScrollBar.thumb                [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.thumbDarkShadow      [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.thumbHighlight       [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.thumbShadow          [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.track                #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.trackForeground      [active] #c8c8c8    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.trackHighlight       #000000    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.trackHighlightForeground #404040    javax.swing.plaf.ColorUIResource [UI]
+ScrollBar.width                [active] 17
+ScrollBarUI                    com.sun.java.swing.plaf.windows.WindowsScrollBarUI
+
+
+#---- ScrollPane ----
+
+ScrollPane.background          [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ScrollPane.border              [active] line: #828790    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+ScrollPane.font                [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+ScrollPane.foreground          [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+ScrollPaneUI                   javax.swing.plaf.basic.BasicScrollPaneUI
+
+
+#---- Separator ----
+
+Separator.background           [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Separator.foreground           [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Separator.highlight            #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Separator.shadow               #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+SeparatorUI                    com.sun.java.swing.plaf.windows.WindowsSeparatorUI
+
+
+#---- Slider ----
+
+Slider.background              [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Slider.focus                   [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+Slider.focusInsets             2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+Slider.font                    [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Slider.foreground              [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Slider.highlight               [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Slider.horizontalSize          200,21    java.awt.Dimension
+Slider.minimumHorizontalSize   36,21    java.awt.Dimension
+Slider.minimumVerticalSize     21,36    java.awt.Dimension
+Slider.onlyLeftMouseButtonDrag true
+Slider.shadow                  [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Slider.tickColor               #000000    java.awt.Color
+Slider.verticalSize            21,200    java.awt.Dimension
+SliderUI                       com.sun.java.swing.plaf.windows.WindowsSliderUI
+
+
+#---- Spinner ----
+
+Spinner.arrowButtonInsets      [active] 1,1,1,1    javax.swing.plaf.InsetsUIResource [UI]
+Spinner.arrowButtonSize        17,9    java.awt.Dimension
+Spinner.background             #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Spinner.border                 [active] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    line: #abadb3    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+    2,2,2,2  false    javax.swing.border.EmptyBorder
+Spinner.editorAlignment        11
+Spinner.editorBorderPainted    false
+Spinner.font                   [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Spinner.foreground             #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+SpinnerUI                      com.sun.java.swing.plaf.windows.WindowsSpinnerUI
+
+
+#---- SplitPane ----
+
+SplitPane.background           [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+SplitPane.border               [lazy] 1,1,1,1  true    javax.swing.plaf.basic.BasicBorders$SplitPaneBorder [UI]
+SplitPane.darkShadow           [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+SplitPane.dividerSize          5
+SplitPane.highlight            [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+SplitPane.shadow               [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+
+
+#---- SplitPaneDivider ----
+
+SplitPaneDivider.border        [lazy] 1,1,1,1  true    javax.swing.plaf.basic.BasicBorders$SplitPaneDividerBorder [UI]
+SplitPaneDivider.draggingColor #404040    javax.swing.plaf.ColorUIResource [UI]
+
+
+#---- SplitPane ----
+
+SplitPaneUI                    com.sun.java.swing.plaf.windows.WindowsSplitPaneUI
+
+
+#---- TabbedPane ----
+
+TabbedPane.background          [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+TabbedPane.contentBorderInsets 2,2,3,3    javax.swing.plaf.InsetsUIResource [UI]
+TabbedPane.contentOpaque       true
+TabbedPane.darkShadow          [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+TabbedPane.focus               [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TabbedPane.font                [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+TabbedPane.foreground          [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TabbedPane.highlight           [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TabbedPane.labelShift          1
+TabbedPane.light               [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+TabbedPane.selectedLabelShift  -1
+TabbedPane.selectedTabPadInsets 2,2,2,1    javax.swing.plaf.InsetsUIResource [UI]
+TabbedPane.selectionFollowsFocus true
+TabbedPane.shadow              [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+TabbedPane.tabAreaInsets       [active] 3,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+TabbedPane.tabInsets           [active] 1,4,1,4    javax.swing.plaf.InsetsUIResource [UI]
+TabbedPane.tabRunOverlay       2
+TabbedPane.tabsOpaque          true
+TabbedPane.tabsOverlapBorder   [active] true
+TabbedPane.textIconGap         4
+TabbedPaneUI                   com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI
+
+
+#---- Table ----
+
+Table.ascendingSortIcon        [active] 13,5    com.sun.java.swing.plaf.windows.WindowsLookAndFeel$SkinIcon [UI]
+Table.background               [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Table.darkShadow               [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+Table.descendingSortIcon       [active] 13,5    com.sun.java.swing.plaf.windows.WindowsLookAndFeel$SkinIcon [UI]
+Table.dropLineColor            #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Table.dropLineShortColor       #000000    javax.swing.plaf.ColorUIResource [UI]
+Table.focusCellBackground      [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Table.focusCellForeground      [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Table.focusCellHighlightBorder [lazy] line: null 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.WindowsBorders$ComplementDashedBorder [UI]
+Table.font                     [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Table.foreground               [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Table.gridColor                #808080    javax.swing.plaf.ColorUIResource [UI]
+Table.highlight                [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Table.light                    [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+Table.scrollPaneBorder         [active] line: #828790    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+Table.selectionBackground      [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+Table.selectionForeground      [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Table.shadow                   [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Table.sortIconColor            #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Table.sortIconHighlight        [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Table.sortIconLight            #ffffff    javax.swing.plaf.ColorUIResource [UI]
+
+
+#---- TableHeader ----
+
+TableHeader.background         [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+TableHeader.cellBorder         [lazy] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    2,3,3,3  false    javax.swing.plaf.basic.BasicBorders$ButtonBorder [UI]
+    0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+TableHeader.focusCellBackground [active] null
+TableHeader.font               [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+TableHeader.foreground         [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TableHeaderUI                  com.sun.java.swing.plaf.windows.WindowsTableHeaderUI
+
+
+#---- Table ----
+
+TableUI                        javax.swing.plaf.basic.BasicTableUI
+
+
+#----  ----
+
+Text-specific LCD contrast key 120
+Text-specific antialiasing enable key [unknown type] sun.awt.SunHints$Value
+
+
+#---- TextArea ----
+
+TextArea.background            [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextArea.border                [lazy] 0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+TextArea.caretBlinkRate        500
+TextArea.caretForeground       [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TextArea.disabledBackground    [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+TextArea.font                  [active] Monospaced plain 13    javax.swing.plaf.FontUIResource [UI]
+TextArea.foreground            [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TextArea.inactiveBackground    [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextArea.inactiveForeground    [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+TextArea.margin                [active] 2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+TextArea.selectionBackground   [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+TextArea.selectionForeground   [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextAreaUI                     com.sun.java.swing.plaf.windows.WindowsTextAreaUI
+
+
+#---- TextField ----
+
+TextField.background           [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextField.border               [active] line: #abadb3    javax.swing.plaf.ColorUIResource [UI] 1 false    1,1,1,1  true    com.sun.java.swing.plaf.windows.XPStyle$XPFillBorder [UI]
+TextField.caretBlinkRate       500
+TextField.caretForeground      [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TextField.darkShadow           [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+TextField.disabledBackground   [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+TextField.font                 [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+TextField.foreground           [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TextField.highlight            [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextField.inactiveBackground   [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+TextField.inactiveForeground   [active] #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+TextField.light                [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+TextField.margin               [active] 2,2,2,2    javax.swing.plaf.InsetsUIResource [UI]
+TextField.selectionBackground  [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+TextField.selectionForeground  [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextField.shadow               [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+TextFieldUI                    com.sun.java.swing.plaf.windows.WindowsTextFieldUI
+
+
+#---- TextPane ----
+
+TextPane.background            [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextPane.border                [lazy] 0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+TextPane.caretBlinkRate        500
+TextPane.caretForeground       [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TextPane.disabledBackground    [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+TextPane.font                  [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+TextPane.foreground            [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+TextPane.inactiveBackground    [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextPane.inactiveForeground    #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+TextPane.margin                3,3,3,3    javax.swing.plaf.InsetsUIResource [UI]
+TextPane.selectionBackground   [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+TextPane.selectionForeground   [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+TextPaneUI                     com.sun.java.swing.plaf.windows.WindowsTextPaneUI
+
+
+#---- TitledBorder ----
+
+TitledBorder.border            [lazy] 2,2,2,2  true    javax.swing.plaf.BorderUIResource$EtchedBorderUIResource [UI]
+TitledBorder.font              [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+TitledBorder.titleColor        [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+
+
+#---- ToggleButton ----
+
+ToggleButton.background        [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ToggleButton.border            [lazy] javax.swing.plaf.BorderUIResource$CompoundBorderUIResource [UI]
+    2,2,2,2  false    javax.swing.plaf.basic.BasicBorders$RadioButtonBorder [UI]
+    0,0,0,0  false    javax.swing.plaf.basic.BasicBorders$MarginBorder [UI]
+ToggleButton.darkShadow        [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+ToggleButton.focus             [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+ToggleButton.font              [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+ToggleButton.foreground        [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+ToggleButton.highlight         [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ToggleButton.light             [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+ToggleButton.margin            2,14,2,14    javax.swing.plaf.InsetsUIResource [UI]
+ToggleButton.shadow            [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+ToggleButton.textIconGap       4
+ToggleButton.textShiftOffset   1
+ToggleButtonUI                 com.sun.java.swing.plaf.windows.WindowsToggleButtonUI
+
+
+#---- ToolBar ----
+
+ToolBar.background             [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.border                 [lazy] 1,1,1,1  false    com.sun.java.swing.plaf.windows.WindowsBorders$ToolBarBorder [UI]
+ToolBar.darkShadow             [active] #696969    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.dockingBackground      [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.dockingForeground      #ff0000    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.floatingBackground     [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.floatingForeground     #404040    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.font                   [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+ToolBar.foreground             [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.highlight              [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.light                  [active] #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+ToolBar.shadow                 [active] #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+
+
+#---- ToolBarSeparator ----
+
+ToolBarSeparatorUI             com.sun.java.swing.plaf.windows.WindowsToolBarSeparatorUI
+
+
+#---- ToolBar ----
+
+ToolBarUI                      com.sun.java.swing.plaf.windows.WindowsToolBarUI
+
+
+#---- ToolTip ----
+
+ToolTip.background             [active] #ffffe1    javax.swing.plaf.ColorUIResource [UI]
+ToolTip.border                 [lazy] line: #000000    java.awt.Color 1 false    1,1,1,1  true    javax.swing.plaf.BorderUIResource$LineBorderUIResource [UI]
+ToolTip.font                   [active] Segoe UI plain 12    javax.swing.plaf.FontUIResource [UI]
+ToolTip.foreground             [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+
+
+#---- ToolTipManager ----
+
+ToolTipManager.enableToolTipMode activeApplication
+
+
+#---- ToolTip ----
+
+ToolTipUI                      javax.swing.plaf.basic.BasicToolTipUI
+
+
+#---- Tree ----
+
+Tree.background                [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Tree.changeSelectionWithFocus  true
+Tree.closedIcon                [active] 16,16    sun.swing.ImageIconUIResource [UI]  (java.awt.image.BufferedImage)
+Tree.collapsedIcon             9,9    com.sun.java.swing.plaf.windows.WindowsTreeUI$CollapsedIcon
+Tree.drawDashedFocusIndicator  true
+Tree.drawsFocusBorderAroundIcon false
+Tree.dropLineColor             #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+Tree.editorBorder              [lazy] line: #000000    java.awt.Color 1 false    1,1,1,1  true    javax.swing.plaf.BorderUIResource$LineBorderUIResource [UI]
+Tree.expandedIcon              9,9    com.sun.java.swing.plaf.windows.WindowsTreeUI$ExpandedIcon
+Tree.font                      [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Tree.foreground                [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Tree.hash                      #808080    javax.swing.plaf.ColorUIResource [UI]
+Tree.leafIcon                  [lazy] 16,13    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+Tree.leftChildIndent           8
+Tree.lineTypeDashed            true
+Tree.openIcon                  [active] 16,16    sun.swing.ImageIconUIResource [UI]  (java.awt.image.BufferedImage)
+Tree.paintLines                true
+Tree.rightChildIndent          11
+Tree.rowHeight                 16
+Tree.scrollsOnExpand           true
+Tree.selectionBackground       [active] #0078d7    javax.swing.plaf.ColorUIResource [UI]
+Tree.selectionBorderColor      #000000    javax.swing.plaf.ColorUIResource [UI]
+Tree.selectionForeground       [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Tree.textBackground            [active] #ffffff    javax.swing.plaf.ColorUIResource [UI]
+Tree.textForeground            [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+Tree.timeFactor                1000
+TreeUI                         com.sun.java.swing.plaf.windows.WindowsTreeUI
+
+
+#---- Viewport ----
+
+Viewport.background            [active] #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+Viewport.font                  [active] Tahoma plain 11    javax.swing.plaf.FontUIResource [UI]
+Viewport.foreground            [active] #000000    javax.swing.plaf.ColorUIResource [UI]
+ViewportUI                     javax.swing.plaf.basic.BasicViewportUI
+
+
+#----  ----
+
+activeCaption                  #99b4d1    javax.swing.plaf.ColorUIResource [UI]
+activeCaptionBorder            #b4b4b4    javax.swing.plaf.ColorUIResource [UI]
+activeCaptionText              #000000    javax.swing.plaf.ColorUIResource [UI]
+control                        #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+controlDkShadow                #696969    javax.swing.plaf.ColorUIResource [UI]
+controlHighlight               #e3e3e3    javax.swing.plaf.ColorUIResource [UI]
+controlLtHighlight             #ffffff    javax.swing.plaf.ColorUIResource [UI]
+controlShadow                  #a0a0a0    javax.swing.plaf.ColorUIResource [UI]
+controlText                    #000000    javax.swing.plaf.ColorUIResource [UI]
+desktop                        #000000    javax.swing.plaf.ColorUIResource [UI]
+
+
+#---- html ----
+
+html.missingImage              [lazy] 38,38    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+html.pendingImage              [lazy] 38,38    sun.swing.ImageIconUIResource [UI]  (sun.awt.image.ToolkitImage)
+
+
+#----  ----
+
+inactiveCaption                #bfcddb    javax.swing.plaf.ColorUIResource [UI]
+inactiveCaptionBorder          #f4f7fc    javax.swing.plaf.ColorUIResource [UI]
+inactiveCaptionText            #000000    javax.swing.plaf.ColorUIResource [UI]
+info                           #ffffe1    javax.swing.plaf.ColorUIResource [UI]
+infoText                       #000000    javax.swing.plaf.ColorUIResource [UI]
+menu                           #f0f0f0    javax.swing.plaf.ColorUIResource [UI]
+menuPressedItemB               #000000    javax.swing.plaf.ColorUIResource [UI]
+menuPressedItemF               #000000    javax.swing.plaf.ColorUIResource [UI]
+menuText                       #000000    javax.swing.plaf.ColorUIResource [UI]
+scrollbar                      #c8c8c8    javax.swing.plaf.ColorUIResource [UI]
+text                           #ffffff    javax.swing.plaf.ColorUIResource [UI]
+textHighlight                  #0078d7    javax.swing.plaf.ColorUIResource [UI]
+textHighlightText              #ffffff    javax.swing.plaf.ColorUIResource [UI]
+textInactiveText               #6d6d6d    javax.swing.plaf.ColorUIResource [UI]
+textText                       #000000    javax.swing.plaf.ColorUIResource [UI]
+window                         #ffffff    javax.swing.plaf.ColorUIResource [UI]
+windowBorder                   #646464    javax.swing.plaf.ColorUIResource [UI]
+windowText                     #000000    javax.swing.plaf.ColorUIResource [UI]

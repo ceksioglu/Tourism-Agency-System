@@ -1,0 +1,456 @@
+JFDML JFormDesigner: "7.0.3.1.342" Java: "15" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		auxiliary() {
+			"JavaCodeGenerator.defaultVariableLocal": true
+		}
+		add( new FormContainer( "com.formdev.flatlaf.testing.FlatTestPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+			"$layoutConstraints": "insets dialog,hidemode 3"
+			"$columnConstraints": "[][left][fill][fill][fill]"
+			"$rowConstraints": "[][][]para[][][][]para[][][][]para[][]"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jidePopupLabel"
+				"text": "JidePopup:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 0"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "showJidePopupButton"
+				"text": "show JidePopup"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showJidePopup", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 0,growx"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jidePopupMenuLabel"
+				"text": "JidePopupMenu:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "showJidePopupMenuButton"
+				"text": "show JidePopupMenu"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showJidePopupMenu", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 1,growx"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "TristateCheckBox:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 2"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.TristateCheckBox" ) {
+				name: "tristateCheckBox1"
+				"text": "three states"
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "tristateCheckBox1Changed", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 2"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "triStateLabel1"
+				"text": "text"
+				"enabled": false
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 2"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jideButtonLabel"
+				"text": "JideButton:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 3"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton1"
+				"text": "TOOLBAR"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 3 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton2"
+				"text": "TOOLBOX"
+				"buttonStyle": 1
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 3 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton3"
+				"text": "FLAT"
+				"buttonStyle": 2
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 3 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton4"
+				"text": "HYPERLINK"
+				"buttonStyle": 3
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 3 3 1"
+			} )
+			add( new FormContainer( "javax.swing.JToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar1"
+				add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+					name: "jideButton9"
+					"text": "JideButton"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "JButton"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 3 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "verticalCheckBox"
+				"text": "vertical"
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "verticalChanged", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 3"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "selected"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 4,alignx right,growx 0"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton5"
+				"text": "TOOLBAR"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 4 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton6"
+				"text": "TOOLBOX"
+				"buttonStyle": 1
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 4 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton7"
+				"text": "FLAT"
+				"buttonStyle": 2
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 4 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+				name: "jideButton8"
+				"text": "HYPERLINK"
+				"buttonStyle": 3
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 4 3 1"
+			} )
+			add( new FormContainer( "javax.swing.JToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar2"
+				add( new FormComponent( "com.jidesoft.swing.JideButton" ) {
+					name: "jideButton10"
+					"text": "JideButton"
+					"selected": true
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 4 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "iconCheckBox"
+				"text": "icon"
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "iconChanged", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 4"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jideToggleButtonLabel"
+				"text": "JideToggleButton:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 5"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton1"
+				"text": "TOOLBAR"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 5 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton2"
+				"text": "TOOLBOX"
+				"buttonStyle": 1
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 5 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton3"
+				"text": "FLAT"
+				"buttonStyle": 2
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 5 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton4"
+				"text": "HYPERLINK"
+				"buttonStyle": 3
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 5 3 1"
+			} )
+			add( new FormContainer( "javax.swing.JToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar3"
+				add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+					name: "jideToggleButton9"
+					"text": "JideToggleButton"
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleButton1"
+					"text": "JToggleButton"
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 5 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "selected"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 6,alignx right,growx 0"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton5"
+				"text": "TOOLBAR"
+				"selected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 6 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton6"
+				"text": "TOOLBOX"
+				"selected": true
+				"buttonStyle": 1
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 6 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton7"
+				"text": "FLAT"
+				"selected": true
+				"buttonStyle": 2
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 6 3 1"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+				name: "jideToggleButton8"
+				"text": "HYPERLINK"
+				"selected": true
+				"buttonStyle": 3
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 6 3 1"
+			} )
+			add( new FormContainer( "javax.swing.JToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar4"
+				add( new FormComponent( "com.jidesoft.swing.JideToggleButton" ) {
+					name: "jideToggleButton10"
+					"text": "JideToggleButton"
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleButton2"
+					"text": "JToggleButton"
+					"selected": true
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 6 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jideSplitButtonLabel"
+				"text": "JideSplitButton:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 7"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideSplitButton1"
+				"text": "TOOLBAR"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 7 3 1"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideSplitButton2"
+				"text": "TOOLBOX"
+				"buttonStyle": 1
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 7 3 1"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideSplitButton3"
+				"text": "FLAT"
+				"buttonStyle": 2
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 7 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "alwaysDropdownCheckBox"
+				"text": "always dropdown"
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "alwaysDropdownChanged", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 7"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "selected"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 8,alignx right,growx 0"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideSplitButton5"
+				"text": "TOOLBAR"
+				"buttonSelected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 8 3 1"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideSplitButton6"
+				"text": "TOOLBOX"
+				"buttonStyle": 1
+				"buttonSelected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 8 3 1"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideSplitButton7"
+				"text": "FLAT"
+				"buttonStyle": 2
+				"buttonSelected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 8 3 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "buttonEnabledCheckBox"
+				"text": "button enabled"
+				"selected": true
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": false
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonEnabledChanged", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 4 8"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jideToggleSplitButtonLabel2"
+				"text": "JideToggleSplitButton:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 9"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideToggleSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideToggleSplitButton1"
+				"text": "TOOLBAR"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 9"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideToggleSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideToggleSplitButton2"
+				"text": "TOOLBOX"
+				"buttonStyle": 1
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 9"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideToggleSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideToggleSplitButton3"
+				"text": "FLAT"
+				"buttonStyle": 2
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 9"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "selected"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 10,alignx right,growx 0"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideToggleSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideToggleSplitButton4"
+				"text": "TOOLBAR"
+				"buttonSelected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 10"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideToggleSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideToggleSplitButton5"
+				"text": "TOOLBOX"
+				"buttonStyle": 1
+				"buttonSelected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 10"
+			} )
+			add( new FormContainer( "com.jidesoft.swing.JideToggleSplitButton", new FormLayoutManager( class javax.swing.JMenu ) ) {
+				name: "jideToggleSplitButton6"
+				"text": "FLAT"
+				"buttonStyle": 2
+				"buttonSelected": true
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 10"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jideLabelLabel"
+				"text": "JideLabel:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 11"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideLabel" ) {
+				name: "jideLabel1"
+				"text": "enabled"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 11"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.JideLabel" ) {
+				name: "jideLabel2"
+				"text": "disabled"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 11"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "styledLabelLabel"
+				"text": "StyledLabel:"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 12"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.StyledLabel" ) {
+				name: "styledLabel1"
+				"text": "enabled"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 12"
+			} )
+			add( new FormComponent( "com.jidesoft.swing.StyledLabel" ) {
+				name: "styledLabel2"
+				"text": "disabled"
+				"enabled": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 12"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 665, 500 )
+		} )
+	}
+}

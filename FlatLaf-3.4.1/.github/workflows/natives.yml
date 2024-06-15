@@ -1,0 +1,53 @@
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+
+name: Native Libraries
+
+on:
+    push:
+        branches:
+            - '*'
+        tags:
+            - '[0-9]*'
+        paths:
+            - 'flatlaf-natives/**'
+            - '.github/workflows/natives.yml'
+            - 'gradle/wrapper/gradle-wrapper.properties'
+            - '!**.md'
+            - '!**/.settings/**'
+
+jobs:
+    Natives:
+        strategy:
+            matrix:
+                os:
+                    - windows
+                    - macos
+                    - ubuntu
+
+        runs-on: ${{ matrix.os }}-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: gradle/wrapper-validation-action@v2
+
+            - name: Setup Java 11
+              uses: actions/setup-java@v4
+              with:
+                  java-version: 11
+                  distribution: temurin
+                  cache: gradle
+
+            - name: Build with Gradle
+              # --no-daemon is necessary on Windows otherwise caching Gradle would fail with:
+              #   tar.exe: Couldn't open ~/.gradle/caches/modules-2/modules-2.lock: Permission denied
+              run: ./gradlew build-natives --no-daemon
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: FlatLaf-natives-build-artifacts-${{ matrix.os }}
+                  path: |
+                      flatlaf-core/src/main/resources/com/formdev/flatlaf/natives
+                      flatlaf-natives/flatlaf-natives-*/build

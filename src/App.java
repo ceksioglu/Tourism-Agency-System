@@ -8,11 +8,9 @@ public class App {
         Helper.setNimbusLookAndFeel();
 
         // LoginView'ı başlat
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new LoginView();
-                //new AdminView();
-            }
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new LoginView();
+            //new AdminView();
         });
     }
 }

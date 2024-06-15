@@ -11,7 +11,7 @@ public class UserDAO {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM users";
+        String query = "SELECT * FROM public.user";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -31,8 +31,29 @@ public class UserDAO {
         return users;
     }
 
+    public User getUserById(int id) {
+        String query = "SELECT * FROM public.user WHERE id = ?";
+        try (Connection conn = DatabaseManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void addUser(User user) {
-        String query = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+        String query = "INSERT INTO public.user (username, password, role) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -46,7 +67,7 @@ public class UserDAO {
     }
 
     public void updateUser(User user) {
-        String query = "UPDATE users SET username = ?, password = ?, role = ? WHERE id = ?";
+        String query = "UPDATE \"user\" SET username = ?, password = ?, role = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -61,7 +82,7 @@ public class UserDAO {
     }
 
     public void deleteUser(int id) {
-        String query = "DELETE FROM users WHERE id = ?";
+        String query = "DELETE FROM \"user\" WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 

@@ -24,26 +24,33 @@ public class AdminView extends Layout {
     private JButton button_create_user;
     private JButton button_delete_user;
     private JLabel label_welcome;
+    private JComboBox<String> combo_role;
 
     private UserManager userManager;
     private DefaultTableModel tableModel;
 
     /**
      * AdminView sınıfı, kullanıcı yönetimi arayüzünü başlatır ve gerekli bileşenleri ayarlar.
+     *
+     * @param username Giriş yapan kullanıcının kullanıcı adı
      */
-    public AdminView() {
-        this.userManager = new UserManager();
-        Helper.setupWindow(this, container, "Admin Panel", 500, 400);
+    public AdminView(String username) {
+        userManager = new UserManager();
+        Helper.setupWindow(this, container, "Admin Panel", 800, 600);
 
-        this.tableModel = new DefaultTableModel();
-        this.table_user.setModel(tableModel);
-        this.tableModel.addColumn("ID");
-        this.tableModel.addColumn("Username");
-        this.tableModel.addColumn("Role");
+        tableModel = new DefaultTableModel();
+        table_user.setModel(tableModel);
+        tableModel.addColumn("ID");
+        tableModel.addColumn("Username");
+        tableModel.addColumn("Role");
 
-        this.table_user.getTableHeader().setReorderingAllowed(false);
+        combo_role.addItem("ALL");
+        combo_role.addItem("ADMIN");
+        combo_role.addItem("PERSONNEL");
 
-        loadUsers();
+        label_welcome.setText("Welcome back, " + username + "!");
+
+        loadUsers(null);
 
         button_create_user.addActionListener(new ActionListener() {
             @Override
@@ -72,13 +79,29 @@ public class AdminView extends Layout {
                 System.exit(0);
             }
         });
+
+        combo_role.addActionListener(e -> {
+            String selectedRole = (String) combo_role.getSelectedItem();
+            if (selectedRole != null && !selectedRole.equals("ALL")) {
+                loadUsers(selectedRole);
+            } else {
+                loadUsers(null);
+            }
+        });
     }
 
     /**
-     * Tüm kullanıcıları yükler ve tabloya ekler.
+     * Kullanıcıları yükler ve tabloya ekler.
+     *
+     * @param role Filtrelemek için kullanıcı rolü (null ise tüm kullanıcılar yüklenir)
      */
-    private void loadUsers() {
-        List<User> users = userManager.getAllUsers();
+    private void loadUsers(String role) {
+        List<User> users;
+        if (role == null) {
+            users = userManager.getAllUsers();
+        } else {
+            users = userManager.getUsersByRole(role);
+        }
         tableModel.setRowCount(0); // Tablodaki mevcut verileri temizle
         for (User user : users) {
             tableModel.addRow(new Object[]{user.getId(), user.getUsername(), user.getRole()});
@@ -95,7 +118,7 @@ public class AdminView extends Layout {
         JComboBox<String> roleBox = new JComboBox<>(roles);
 
         Object[] message = {
-                "User Name:", usernameField,
+                "Username:", usernameField,
                 "Password:", passwordField,
                 "Role:", roleBox
         };
@@ -107,11 +130,11 @@ public class AdminView extends Layout {
             String role = (String) roleBox.getSelectedItem();
 
             if (username.isEmpty() || password.isEmpty()) {
-                Helper.showMessage(this, "Please fill all fields.");
+                Helper.showMessage(this, "Please fill in all fields.");
             } else {
                 userManager.addUser(new User(0, username, password, role));
                 Helper.showMessage(this, "User created successfully!");
-                loadUsers();
+                loadUsers(null);
             }
         }
     }
@@ -122,7 +145,7 @@ public class AdminView extends Layout {
     private void updateUser() {
         int selectedRow = table_user.getSelectedRow();
         if (selectedRow == -1) {
-            Helper.showMessage(this, "Please select a user from the table.");
+            Helper.showMessage(this, "Please select a user to update.");
             return;
         }
 
@@ -137,8 +160,8 @@ public class AdminView extends Layout {
         roleBox.setSelectedItem(role);
 
         Object[] message = {
-                "User Name:", usernameField,
-                "Password (Leave the field empty to keep the old password):", passwordField,
+                "Username:", usernameField,
+                "Password (Leave blank to keep current password):", passwordField,
                 "Role:", roleBox
         };
 
@@ -149,7 +172,7 @@ public class AdminView extends Layout {
             String newRole = (String) roleBox.getSelectedItem();
 
             if (newUsername.isEmpty()) {
-                Helper.showMessage(this, "Username can't be empty.");
+                Helper.showMessage(this, "Username cannot be empty.");
             } else {
                 User user = userManager.getUserById(userId);
                 user.setUsername(newUsername);
@@ -159,7 +182,7 @@ public class AdminView extends Layout {
                 user.setRole(newRole);
                 userManager.updateUser(user);
                 Helper.showMessage(this, "User updated successfully!");
-                loadUsers();
+                loadUsers(null);
             }
         }
     }
@@ -170,26 +193,27 @@ public class AdminView extends Layout {
     private void deleteUser() {
         int selectedRow = table_user.getSelectedRow();
         if (selectedRow == -1) {
-            Helper.showMessage(this, "Lütfen silmek için bir kullanıcı seçin.");
+            Helper.showMessage(this, "Please select a user to delete.");
             return;
         }
 
         int userId = (int) tableModel.getValueAt(selectedRow, 0);
 
-        int option = JOptionPane.showConfirmDialog(this, "Bu kullanıcıyı silmek istediğinizden emin misiniz?", "Kullanıcıyı Sil", JOptionPane.YES_NO_OPTION);
+        int option = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this user?", "Delete User", JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
             userManager.deleteUser(userId);
-            Helper.showMessage(this, "Kullanıcı başarıyla silindi!");
-            loadUsers();
+            Helper.showMessage(this, "User deleted successfully!");
+            loadUsers(null);
         }
     }
 
     /**
      * Uygulamanın giriş noktası. Nimbus görünümünü ayarlayıp AdminView'i başlatır.
+     *
      * @param args Komut satırı argümanları
      */
     public static void main(String[] args) {
         Helper.setNimbusLookAndFeel();
-        new AdminView();
+        new AdminView("Admin");
     }
 }

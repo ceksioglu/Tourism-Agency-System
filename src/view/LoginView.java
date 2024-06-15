@@ -2,6 +2,7 @@ package view;
 
 import business.UserManager;
 import core.Helper;
+import entity.User;
 
 import javax.swing.*;
 
@@ -19,26 +20,35 @@ public class LoginView extends Layout {
 
     public LoginView() {
         userManager = new UserManager();
-        Helper.setupWindow(this, container, "Login", 500, 400);
+        setContentPane(container);
+        setTitle("Login");
+        setSize(500, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
 
         button_login.addActionListener(e -> login());
     }
 
     private void login() {
-        if (!Helper.checkAndShowEmptyFields(this, field_username, field_password)) {
-            return ;
-        }
-
         String username = field_username.getText();
         String password = new String(field_password.getPassword());
 
         if (userManager.validateUser(username, password)) {
-            Helper.showMessage(this, "Login successful!");
-            // Giriş başarılı, admin panele yönlendir
-            new AdminView();
-            dispose();  // Mevcut pencereyi kapat
+            User user = userManager.getUserByUsername(username); // Kullanıcıyı al
+            showMessage("Login successful!");
+
+            // Kullanıcının rolüne göre uygun pencereyi aç
+            if ("ADMIN".equalsIgnoreCase(user.getRole())) {
+                new AdminView(user.getUsername());
+            } else if ("PERSONNEL".equalsIgnoreCase(user.getRole())) {
+                new UserView(user.getUsername());
+            }
+
+            // Giriş penceresini kapat
+            dispose();
         } else {
-            Helper.showMessage(this, "Invalid username or password. Please try again.");
+            showMessage("Invalid username or password. Please try again.");
         }
     }
 

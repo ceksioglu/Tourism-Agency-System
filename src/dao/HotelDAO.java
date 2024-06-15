@@ -11,7 +11,7 @@ public class HotelDAO {
 
     public List<Hotel> getAllHotels() {
         List<Hotel> hotels = new ArrayList<>();
-        String query = "SELECT * FROM hotels";
+        String query = "SELECT * FROM hotel";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -24,7 +24,8 @@ public class HotelDAO {
                         rs.getString("email"),
                         rs.getString("phone"),
                         rs.getInt("stars"),
-                        rs.getString("facilities")
+                        rs.getString("facilities"),
+                        rs.getString("pension_types")
                 );
                 hotels.add(hotel);
             }
@@ -34,8 +35,33 @@ public class HotelDAO {
         return hotels;
     }
 
+    public Hotel getHotelById(int id) {
+        String query = "SELECT * FROM hotel WHERE id = ?";
+        try (Connection conn = DatabaseManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new Hotel(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("address"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getInt("stars"),
+                        rs.getString("facilities"),
+                        rs.getString("pension_types")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void addHotel(Hotel hotel) {
-        String query = "INSERT INTO hotels (name, address, email, phone, stars, facilities) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO hotel (name, address, email, phone, stars, facilities, pension_types) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -45,6 +71,7 @@ public class HotelDAO {
             pstmt.setString(4, hotel.getPhone());
             pstmt.setInt(5, hotel.getStars());
             pstmt.setString(6, hotel.getFacilities());
+            pstmt.setString(7, hotel.getPensionTypes());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,7 +79,7 @@ public class HotelDAO {
     }
 
     public void updateHotel(Hotel hotel) {
-        String query = "UPDATE hotels SET name = ?, address = ?, email = ?, phone = ?, stars = ?, facilities = ? WHERE id = ?";
+        String query = "UPDATE hotel SET name = ?, address = ?, email = ?, phone = ?, stars = ?, facilities = ?, pension_types = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -62,7 +89,8 @@ public class HotelDAO {
             pstmt.setString(4, hotel.getPhone());
             pstmt.setInt(5, hotel.getStars());
             pstmt.setString(6, hotel.getFacilities());
-            pstmt.setInt(7, hotel.getId());
+            pstmt.setString(7, hotel.getPensionTypes());
+            pstmt.setInt(8, hotel.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,7 +98,7 @@ public class HotelDAO {
     }
 
     public void deleteHotel(int id) {
-        String query = "DELETE FROM hotels WHERE id = ?";
+        String query = "DELETE FROM hotel WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 

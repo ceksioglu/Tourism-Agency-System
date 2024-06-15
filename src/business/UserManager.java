@@ -6,29 +6,18 @@ import entity.User;
 import java.util.List;
 
 public class UserManager {
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public UserManager() {
-        this.userDAO = new UserDAO();
+        userDAO = new UserDAO();
     }
 
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
-    public User getUserByUsername(String username) {
-        List<User> users = userDAO.getAllUsers();
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public boolean validateUser(String username, String password) {
-        User user = getUserByUsername(username);
-        return user != null && user.getPassword().equals(password);
+    public User getUserById(int id) {
+        return userDAO.getUserById(id);
     }
 
     public void addUser(User user) {
@@ -41,5 +30,15 @@ public class UserManager {
 
     public void deleteUser(int id) {
         userDAO.deleteUser(id);
+    }
+
+    public boolean validateUser(String username, String password) {
+        List<User> users = getAllUsers();
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

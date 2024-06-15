@@ -12,8 +12,9 @@ public class Reservation {
     private int adultCount;
     private int childCount;
     private BigDecimal totalPrice;
+    private int hotelId;
 
-    public Reservation(int id, int roomId, int userId, Date startDate, Date endDate, int adultCount, int childCount, BigDecimal totalPrice) {
+    public Reservation(int id, int roomId, int userId, Date startDate, Date endDate, int adultCount, int childCount, BigDecimal totalPrice, int hotelId) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;
@@ -22,9 +23,10 @@ public class Reservation {
         this.adultCount = adultCount;
         this.childCount = childCount;
         this.totalPrice = totalPrice;
+        this.hotelId = hotelId;
     }
 
-    // Getters and setters
+    // Getter ve Setter metodları
     public int getId() {
         return id;
     }
@@ -87,5 +89,13 @@ public class Reservation {
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
     }
 }

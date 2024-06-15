@@ -8,10 +8,9 @@ public class Hotel {
     private String phone;
     private int stars;
     private String facilities;
+    private String pensionTypes;
 
-    public Hotel() {}
-
-    public Hotel(int id, String name, String address, String email, String phone, int stars, String facilities) {
+    public Hotel(int id, String name, String address, String email, String phone, int stars, String facilities, String pensionTypes) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -19,8 +18,10 @@ public class Hotel {
         this.phone = phone;
         this.stars = stars;
         this.facilities = facilities;
+        this.pensionTypes = pensionTypes;
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -77,16 +78,11 @@ public class Hotel {
         this.facilities = facilities;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Hotel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", stars=" + stars +
-                ", facilities='" + facilities + '\'' +
-                '}';
+    public String getPensionTypes() {
+        return pensionTypes;
+    }
+
+    public void setPensionTypes(String pensionTypes) {
+        this.pensionTypes = pensionTypes;
     }
 }

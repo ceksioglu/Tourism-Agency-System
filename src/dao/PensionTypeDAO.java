@@ -1,49 +1,47 @@
 package dao;
 
-import entity.User;
+import entity.PensionType;
 import core.DatabaseManager;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class PensionTypeDAO {
 
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM public.user";
+    public List<PensionType> getAllPensionTypes() {
+        List<PensionType> pensionTypes = new ArrayList<>();
+        String query = "SELECT * FROM pension_type";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                User user = new User(
+                PensionType pensionType = new PensionType(
                         rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role")
+                        rs.getInt("hotel_id"),
+                        rs.getString("type")
                 );
-                users.add(user);
+                pensionTypes.add(pensionType);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return pensionTypes;
     }
 
-    public User getUserById(int id) {
-        String query = "SELECT * FROM public.user WHERE id = ?";
+    public PensionType getPensionTypeById(int id) {
+        String query = "SELECT * FROM pension_type WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return new User(
+                return new PensionType(
                         rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role")
+                        rs.getInt("hotel_id"),
+                        rs.getString("type")
                 );
             }
         } catch (SQLException e) {
@@ -52,37 +50,35 @@ public class UserDAO {
         return null;
     }
 
-    public void addUser(User user) {
-        String query = "INSERT INTO public.user (username, password, role) VALUES (?, ?, ?)";
+    public void addPensionType(PensionType pensionType) {
+        String query = "INSERT INTO pension_type (hotel_id, type) VALUES (?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getRole());
+            pstmt.setInt(1, pensionType.getHotelId());
+            pstmt.setString(2, pensionType.getType());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateUser(User user) {
-        String query = "UPDATE \"user\" SET username = ?, password = ?, role = ? WHERE id = ?";
+    public void updatePensionType(PensionType pensionType) {
+        String query = "UPDATE pension_type SET hotel_id = ?, type = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getRole());
-            pstmt.setInt(4, user.getId());
+            pstmt.setInt(1, pensionType.getHotelId());
+            pstmt.setString(2, pensionType.getType());
+            pstmt.setInt(3, pensionType.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteUser(int id) {
-        String query = "DELETE FROM \"user\" WHERE id = ?";
+    public void deletePensionType(int id) {
+        String query = "DELETE FROM pension_type WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 

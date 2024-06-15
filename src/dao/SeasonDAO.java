@@ -1,49 +1,49 @@
 package dao;
 
-import entity.User;
+import entity.Season;
 import core.DatabaseManager;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class SeasonDAO {
 
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM public.user";
+    public List<Season> getAllSeasons() {
+        List<Season> seasons = new ArrayList<>();
+        String query = "SELECT * FROM season";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                User user = new User(
+                Season season = new Season(
                         rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role")
+                        rs.getInt("hotel_id"),
+                        rs.getDate("start_date"),
+                        rs.getDate("end_date")
                 );
-                users.add(user);
+                seasons.add(season);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return seasons;
     }
 
-    public User getUserById(int id) {
-        String query = "SELECT * FROM public.user WHERE id = ?";
+    public Season getSeasonById(int id) {
+        String query = "SELECT * FROM season WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return new User(
+                return new Season(
                         rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role")
+                        rs.getInt("hotel_id"),
+                        rs.getDate("start_date"),
+                        rs.getDate("end_date")
                 );
             }
         } catch (SQLException e) {
@@ -52,37 +52,37 @@ public class UserDAO {
         return null;
     }
 
-    public void addUser(User user) {
-        String query = "INSERT INTO public.user (username, password, role) VALUES (?, ?, ?)";
+    public void addSeason(Season season) {
+        String query = "INSERT INTO season (hotel_id, start_date, end_date) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getRole());
+            pstmt.setInt(1, season.getHotelId());
+            pstmt.setDate(2, season.getStartDate());
+            pstmt.setDate(3, season.getEndDate());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateUser(User user) {
-        String query = "UPDATE \"user\" SET username = ?, password = ?, role = ? WHERE id = ?";
+    public void updateSeason(Season season) {
+        String query = "UPDATE season SET hotel_id = ?, start_date = ?, end_date = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getRole());
-            pstmt.setInt(4, user.getId());
+            pstmt.setInt(1, season.getHotelId());
+            pstmt.setDate(2, season.getStartDate());
+            pstmt.setDate(3, season.getEndDate());
+            pstmt.setInt(4, season.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteUser(int id) {
-        String query = "DELETE FROM \"user\" WHERE id = ?";
+    public void deleteSeason(int id) {
+        String query = "DELETE FROM season WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 

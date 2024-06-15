@@ -37,7 +37,7 @@ public class Helper {
     // TextField'lerin boş olup olmadığını kontrol eden ve mesaj gösteren metot
     public static boolean checkAndShowEmptyFields(Component parent, JTextField... fields) {
         if (areTextFieldsEmpty(fields)) {
-            showMessage(parent, "Lütfen tüm alanları doldurun.");
+            showMessage(parent, "Please fill all fields.");
             return false;
         }
         return true;

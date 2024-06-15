@@ -1,10 +1,9 @@
 package view;
 
 import business.UserManager;
+import core.Helper;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginView extends Layout {
     private JPanel container;
@@ -20,35 +19,32 @@ public class LoginView extends Layout {
 
     public LoginView() {
         userManager = new UserManager();
-        setContentPane(container);
-        setTitle("Login");
-        setSize(400, 300);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        Helper.setupWindow(this, container, "Login", 500, 400);
 
-        button_login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                login();
-            }
-        });
+        button_login.addActionListener(e -> login());
     }
 
     private void login() {
+        if (!Helper.checkAndShowEmptyFields(this, field_username, field_password)) {
+            return;
+        }
+
         String username = field_username.getText();
         String password = new String(field_password.getPassword());
 
         if (userManager.validateUser(username, password)) {
-            showMessage("Login successful!");
+            Helper.showMessage(this, "Login successful!");
             // Giriş başarılı, ana panele yönlendir
-            // new MainPanel(); // Örneğin, ana paneli başlatabilirsiniz
+            // Örneğin, Admin veya Personel panelini başlatabilirsiniz
+            // new AdminView();  // Örnek
+            dispose();  // Mevcut pencereyi kapat
         } else {
-            showMessage("Invalid username or password. Please try again.");
+            Helper.showMessage(this, "Invalid username or password. Please try again.");
         }
     }
 
     public static void main(String[] args) {
+        Helper.setNimbusLookAndFeel();
         new LoginView();
     }
 }

@@ -9,23 +9,22 @@ public class Reservation {
     private int userId;
     private Date startDate;
     private Date endDate;
-    private int guestsAdult;
-    private int guestsChild;
+    private int adultCount;
+    private int childCount;
     private BigDecimal totalPrice;
 
-    public Reservation(int id, int roomId, int userId, Date startDate, Date endDate, int guestsAdult, int guestsChild, BigDecimal totalPrice) {
+    public Reservation(int id, int roomId, int userId, Date startDate, Date endDate, int adultCount, int childCount, BigDecimal totalPrice) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.guestsAdult = guestsAdult;
-        this.guestsChild = guestsChild;
+        this.adultCount = adultCount;
+        this.childCount = childCount;
         this.totalPrice = totalPrice;
     }
 
     // Getters and setters
-
     public int getId() {
         return id;
     }
@@ -66,20 +65,20 @@ public class Reservation {
         this.endDate = endDate;
     }
 
-    public int getGuestsAdult() {
-        return guestsAdult;
+    public int getAdultCount() {
+        return adultCount;
     }
 
-    public void setGuestsAdult(int guestsAdult) {
-        this.guestsAdult = guestsAdult;
+    public void setAdultCount(int adultCount) {
+        this.adultCount = adultCount;
     }
 
-    public int getGuestsChild() {
-        return guestsChild;
+    public int getChildCount() {
+        return childCount;
     }
 
-    public void setGuestsChild(int guestsChild) {
-        this.guestsChild = guestsChild;
+    public void setChildCount(int childCount) {
+        this.childCount = childCount;
     }
 
     public BigDecimal getTotalPrice() {

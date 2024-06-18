@@ -3,11 +3,22 @@ package entity;
 import java.math.BigDecimal;
 
 public class Room {
+
+    public enum RoomType {
+        SINGLE,
+        DOUBLE,
+        JUNIOR_SUITE,
+        SUITE
+    }
+
     private int id;
     private int hotelId;
+    private String hotelName;
     private int seasonId;
+    private String season;
     private int pensionTypeId;
-    private String roomType;
+    private String pensionType;
+    private RoomType roomType;
     private int bedCount;
     private int size;
     private boolean tv;
@@ -19,9 +30,11 @@ public class Room {
     private BigDecimal childPrice;
     private int stock;
 
-    public Room(int id, int hotelId, int seasonId, int pensionTypeId, String roomType, int bedCount, int size,
-                boolean tv, boolean minibar, boolean gameConsole, boolean safe, boolean projector,
-                BigDecimal adultPrice, BigDecimal childPrice, int stock) {
+    public Room() {
+    }
+
+    // Constructor for database interaction (with IDs)
+    public Room(int id, int hotelId, int seasonId, int pensionTypeId, RoomType roomType, int bedCount, int size, boolean tv, boolean minibar, boolean gameConsole, boolean safe, boolean projector, BigDecimal adultPrice, BigDecimal childPrice, int stock) {
         this.id = id;
         this.hotelId = hotelId;
         this.seasonId = seasonId;
@@ -39,7 +52,26 @@ public class Room {
         this.stock = stock;
     }
 
-    // Getters and setters
+    // Constructor for UI interaction (with names)
+    public Room(int id, String hotelName, String season, String pensionType, RoomType roomType, int bedCount, int size, boolean tv, boolean minibar, boolean gameConsole, boolean safe, boolean projector, BigDecimal adultPrice, BigDecimal childPrice, int stock) {
+        this.id = id;
+        this.hotelName = hotelName;
+        this.season = season;
+        this.pensionType = pensionType;
+        this.roomType = roomType;
+        this.bedCount = bedCount;
+        this.size = size;
+        this.tv = tv;
+        this.minibar = minibar;
+        this.gameConsole = gameConsole;
+        this.safe = safe;
+        this.projector = projector;
+        this.adultPrice = adultPrice;
+        this.childPrice = childPrice;
+        this.stock = stock;
+    }
+
+    // Getters and setters for all fields
     public int getId() {
         return id;
     }
@@ -56,12 +88,28 @@ public class Room {
         this.hotelId = hotelId;
     }
 
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
     public int getSeasonId() {
         return seasonId;
     }
 
     public void setSeasonId(int seasonId) {
         this.seasonId = seasonId;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
     }
 
     public int getPensionTypeId() {
@@ -72,11 +120,19 @@ public class Room {
         this.pensionTypeId = pensionTypeId;
     }
 
-    public String getRoomType() {
+    public String getPensionType() {
+        return pensionType;
+    }
+
+    public void setPensionType(String pensionType) {
+        this.pensionType = pensionType;
+    }
+
+    public RoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 

@@ -1,18 +1,45 @@
 package entity;
 
+import java.util.List;
+
 public class Hotel {
     private int id;
     private String name;
+    private String city;
+    private String region;
     private String address;
     private String email;
     private String phone;
     private int stars;
-    private String facilities;
-    private String pensionTypes;
+    private List<Facility> facilities;
+    private List<PensionType> pensionTypes;
 
-    public Hotel(int id, String name, String address, String email, String phone, int stars, String facilities, String pensionTypes) {
+    public enum Facility {
+        FREE_PARKING,
+        FREE_WIFI,
+        SWIMMING_POOL,
+        FITNESS_CENTER,
+        HOTEL_CONCIERGE,
+        SPA,
+        ROOM_SERVICE
+    }
+
+    public enum PensionType {
+        ULTRA_ALL_INCLUSIVE,
+        ALL_INCLUSIVE,
+        ROOM_BREAKFAST,
+        FULL_BOARD,
+        HALF_BOARD,
+        BED_ONLY,
+        NO_ALCOHOL_FULL_CREDIT
+    }
+
+    // Constructors
+    public Hotel(int id, String name, String city, String region, String address, String email, String phone, int stars, List<Facility> facilities, List<PensionType> pensionTypes) {
         this.id = id;
         this.name = name;
+        this.city = city;
+        this.region = region;
         this.address = address;
         this.email = email;
         this.phone = phone;
@@ -36,6 +63,22 @@ public class Hotel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getAddress() {
@@ -70,19 +113,19 @@ public class Hotel {
         this.stars = stars;
     }
 
-    public String getFacilities() {
+    public List<Facility> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(String facilities) {
+    public void setFacilities(List<Facility> facilities) {
         this.facilities = facilities;
     }
 
-    public String getPensionTypes() {
+    public List<PensionType> getPensionTypes() {
         return pensionTypes;
     }
 
-    public void setPensionTypes(String pensionTypes) {
+    public void setPensionTypes(List<PensionType> pensionTypes) {
         this.pensionTypes = pensionTypes;
     }
 }

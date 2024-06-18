@@ -11,7 +11,7 @@ public class ReservationDAO {
 
     public List<Reservation> getAllReservations() {
         List<Reservation> reservations = new ArrayList<>();
-        String query = "SELECT * FROM reservation";
+        String query = "SELECT * FROM public.reservation";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -26,6 +26,9 @@ public class ReservationDAO {
                         rs.getInt("adult_count"),
                         rs.getInt("child_count"),
                         rs.getBigDecimal("total_price"),
+                        rs.getString("guest_name"),
+                        rs.getString("guest_surname"),
+                        rs.getString("guest_identity_number"),
                         rs.getInt("hotel_id")
                 );
                 reservations.add(reservation);
@@ -37,7 +40,7 @@ public class ReservationDAO {
     }
 
     public Reservation getReservationById(int id) {
-        String query = "SELECT * FROM reservation WHERE id = ?";
+        String query = "SELECT * FROM public.reservation WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -53,6 +56,9 @@ public class ReservationDAO {
                         rs.getInt("adult_count"),
                         rs.getInt("child_count"),
                         rs.getBigDecimal("total_price"),
+                        rs.getString("guest_name"),
+                        rs.getString("guest_surname"),
+                        rs.getString("guest_identity_number"),
                         rs.getInt("hotel_id")
                 );
             }
@@ -63,7 +69,7 @@ public class ReservationDAO {
     }
 
     public void addReservation(Reservation reservation) {
-        String query = "INSERT INTO reservation (room_id, user_id, start_date, end_date, adult_count, child_count, total_price, hotel_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO public.reservation (room_id, user_id, start_date, end_date, adult_count, child_count, total_price, guest_name, guest_surname, guest_identity_number, hotel_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -74,15 +80,23 @@ public class ReservationDAO {
             pstmt.setInt(5, reservation.getAdultCount());
             pstmt.setInt(6, reservation.getChildCount());
             pstmt.setBigDecimal(7, reservation.getTotalPrice());
-            pstmt.setInt(8, reservation.getHotelId());
+            pstmt.setString(8, reservation.getGuestName());
+            pstmt.setString(9, reservation.getGuestSurname());
+            pstmt.setString(10, reservation.getGuestIdentityNumber());
+            pstmt.setInt(11, reservation.getHotelId());
             pstmt.executeUpdate();
+
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                reservation.setId(rs.getInt(1));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void updateReservation(Reservation reservation) {
-        String query = "UPDATE reservation SET room_id = ?, user_id = ?, start_date = ?, end_date = ?, adult_count = ?, child_count = ?, total_price = ?, hotel_id = ? WHERE id = ?";
+        String query = "UPDATE public.reservation SET room_id = ?, user_id = ?, start_date = ?, end_date = ?, adult_count = ?, child_count = ?, total_price = ?, guest_name = ?, guest_surname = ?, guest_identity_number = ?, hotel_id = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -93,8 +107,11 @@ public class ReservationDAO {
             pstmt.setInt(5, reservation.getAdultCount());
             pstmt.setInt(6, reservation.getChildCount());
             pstmt.setBigDecimal(7, reservation.getTotalPrice());
-            pstmt.setInt(8, reservation.getHotelId());
-            pstmt.setInt(9, reservation.getId());
+            pstmt.setString(8, reservation.getGuestName());
+            pstmt.setString(9, reservation.getGuestSurname());
+            pstmt.setString(10, reservation.getGuestIdentityNumber());
+            pstmt.setInt(11, reservation.getHotelId());
+            pstmt.setInt(12, reservation.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -102,7 +119,7 @@ public class ReservationDAO {
     }
 
     public void deleteReservation(int id) {
-        String query = "DELETE FROM reservation WHERE id = ?";
+        String query = "DELETE FROM public.reservation WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 

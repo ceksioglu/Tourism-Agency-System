@@ -11,7 +11,15 @@ public class RoomDAO {
 
     public List<Room> getAllRooms() {
         List<Room> rooms = new ArrayList<>();
-        String query = "SELECT * FROM room";
+        String query = "SELECT public.room.id, public.hotel.name as hotel_name, " +
+                "public.season.start_date || ' to ' || public.season.end_date as season, " +
+                "public.hotel_pension_type.type as pension_type, public.room.room_type, public.room.bed_count, public.room.size, public.room.tv, public.room.minibar, public.room.game_console, " +
+                "public.room.safe, public.room.projector, public.room.adult_price, public.room.child_price, public.room.stock " +
+                "FROM public.room " +
+                "JOIN public.hotel ON public.room.hotel_id = public.hotel.id " +
+                "JOIN public.season ON public.room.season_id = public.season.id " +
+                "JOIN public.hotel_pension_type ON public.room.pension_type_id = public.hotel_pension_type.id";
+
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -19,10 +27,10 @@ public class RoomDAO {
             while (rs.next()) {
                 Room room = new Room(
                         rs.getInt("id"),
-                        rs.getInt("hotel_id"),
-                        rs.getInt("season_id"),
-                        rs.getInt("pension_type_id"),
-                        rs.getString("room_type"),
+                        rs.getString("hotel_name"),
+                        rs.getString("season"),
+                        rs.getString("pension_type"),
+                        Room.RoomType.valueOf(rs.getString("room_type")),
                         rs.getInt("bed_count"),
                         rs.getInt("size"),
                         rs.getBoolean("tv"),
@@ -43,7 +51,16 @@ public class RoomDAO {
     }
 
     public Room getRoomById(int id) {
-        String query = "SELECT * FROM room WHERE id = ?";
+        String query = "SELECT public.room.id, public.hotel.name as hotel_name, " +
+                "public.season.start_date || ' to ' || public.season.end_date as season, " +
+                "public.hotel_pension_type.type as pension_type, public.room.room_type, public.room.bed_count, public.room.size, public.room.tv, public.room.minibar, public.room.game_console, " +
+                "public.room.safe, public.room.projector, public.room.adult_price, public.room.child_price, public.room.stock " +
+                "FROM public.room " +
+                "JOIN public.hotel ON public.room.hotel_id = public.hotel.id " +
+                "JOIN public.season ON public.room.season_id = public.season.id " +
+                "JOIN public.hotel_pension_type ON public.room.pension_type_id = public.hotel_pension_type.id " +
+                "WHERE public.room.id = ?";
+
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -52,10 +69,10 @@ public class RoomDAO {
             if (rs.next()) {
                 return new Room(
                         rs.getInt("id"),
-                        rs.getInt("hotel_id"),
-                        rs.getInt("season_id"),
-                        rs.getInt("pension_type_id"),
-                        rs.getString("room_type"),
+                        rs.getString("hotel_name"),
+                        rs.getString("season"),
+                        rs.getString("pension_type"),
+                        Room.RoomType.valueOf(rs.getString("room_type")),
                         rs.getInt("bed_count"),
                         rs.getInt("size"),
                         rs.getBoolean("tv"),
@@ -75,14 +92,16 @@ public class RoomDAO {
     }
 
     public void addRoom(Room room) {
-        String query = "INSERT INTO room (hotel_id, season_id, pension_type_id, room_type, bed_count, size, tv, minibar, game_console, safe, projector, adult_price, child_price, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO public.room (hotel_id, season_id, pension_type_id, room_type, bed_count, size, tv, minibar, game_console, safe, projector, adult_price, child_price, stock) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, room.getHotelId());
             pstmt.setInt(2, room.getSeasonId());
             pstmt.setInt(3, room.getPensionTypeId());
-            pstmt.setString(4, room.getRoomType());
+            pstmt.setString(4, room.getRoomType().name());
             pstmt.setInt(5, room.getBedCount());
             pstmt.setInt(6, room.getSize());
             pstmt.setBoolean(7, room.isTv());
@@ -100,14 +119,16 @@ public class RoomDAO {
     }
 
     public void updateRoom(Room room) {
-        String query = "UPDATE room SET hotel_id = ?, season_id = ?, pension_type_id = ?, room_type = ?, bed_count = ?, size = ?, tv = ?, minibar = ?, game_console = ?, safe = ?, projector = ?, adult_price = ?, child_price = ?, stock = ? WHERE id = ?";
+        String query = "UPDATE public.room SET hotel_id = ?, season_id = ?, pension_type_id = ?, room_type = ?, bed_count = ?, size = ?, tv = ?, minibar = ?, game_console = ?, safe = ?, projector = ?, adult_price = ?, child_price = ?, stock = ? " +
+                "WHERE id = ?";
+
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, room.getHotelId());
             pstmt.setInt(2, room.getSeasonId());
             pstmt.setInt(3, room.getPensionTypeId());
-            pstmt.setString(4, room.getRoomType());
+            pstmt.setString(4, room.getRoomType().name());
             pstmt.setInt(5, room.getBedCount());
             pstmt.setInt(6, room.getSize());
             pstmt.setBoolean(7, room.isTv());
@@ -126,7 +147,8 @@ public class RoomDAO {
     }
 
     public void deleteRoom(int id) {
-        String query = "DELETE FROM room WHERE id = ?";
+        String query = "DELETE FROM public.room WHERE id = ?";
+
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 

@@ -10,6 +10,7 @@ public class DatabaseManager {
     private static final String USER = "postgres";
     private static final String PASSWORD = "root";
 
+    //6. Projede veritabanı kullanılmış ve DB bağlantı konfigürasyonu doğru bir şekilde yapılmış mı?
 
     private DatabaseManager() {}
 

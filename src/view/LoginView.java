@@ -42,7 +42,7 @@ public class LoginView extends Layout {
             if ("ADMIN".equalsIgnoreCase(user.getRole())) {
                 new AdminView(user.getUsername());
             } else if ("PERSONNEL".equalsIgnoreCase(user.getRole())) {
-                new UserView(user.getUsername());
+                //new UserView(user.getUsername());
             }
 
             // Giriş penceresini kapat

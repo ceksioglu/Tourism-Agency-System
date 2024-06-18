@@ -6,29 +6,29 @@ import entity.Room;
 import java.util.List;
 
 public class RoomManager {
-    private final RoomDAO roomDAO;
+    private RoomDAO roomDAO;
 
     public RoomManager() {
-        roomDAO = new RoomDAO();
+        this.roomDAO = new RoomDAO();
     }
 
     public List<Room> getAllRooms() {
-        return roomDAO.getAllRooms();
+        return this.roomDAO.getAllRooms();
     }
 
     public Room getRoomById(int id) {
-        return roomDAO.getRoomById(id);
+        return this.roomDAO.getRoomById(id);
     }
 
     public void addRoom(Room room) {
-        roomDAO.addRoom(room);
+        this.roomDAO.addRoom(room);
     }
 
     public void updateRoom(Room room) {
-        roomDAO.updateRoom(room);
+        this.roomDAO.updateRoom(room);
     }
 
     public void deleteRoom(int id) {
-        roomDAO.deleteRoom(id);
+        this.roomDAO.deleteRoom(id);
     }
 }

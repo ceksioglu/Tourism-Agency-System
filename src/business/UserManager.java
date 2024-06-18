@@ -6,39 +6,42 @@ import entity.User;
 import java.util.List;
 
 public class UserManager {
-    private final UserDAO userDAO;
+    private UserDAO userDAO;
 
     public UserManager() {
-        userDAO = new UserDAO();
-    }
-
-    public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
-    }
-
-    public User getUserById(int id) {
-        return userDAO.getUserById(id);
-    }
-
-    public void addUser(User user) {
-        userDAO.addUser(user);
-    }
-
-    public void updateUser(User user) {
-        userDAO.updateUser(user);
-    }
-
-    public void deleteUser(int id) {
-        userDAO.deleteUser(id);
+        this.userDAO = new UserDAO();
     }
 
     public boolean validateUser(String username, String password) {
-        List<User> users = getAllUsers();
-        for (User user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
+        User user = this.userDAO.getUserByUsername(username);
+        return user != null && user.getPassword().equals(password);
+    }
+
+    public User getUserByUsername(String username) {
+        return this.userDAO.getUserByUsername(username);
+    }
+
+    public List<User> getAllUsers() {
+        return this.userDAO.getAllUsers();
+    }
+
+    public List<User> getUsersByRole(String role) {
+        return this.userDAO.getUsersByRole(role);
+    }
+
+    public void addUser(User user) {
+        this.userDAO.addUser(user);
+    }
+
+    public void updateUser(User user) {
+        this.userDAO.updateUser(user);
+    }
+
+    public void deleteUser(int id) {
+        this.userDAO.deleteUser(id);
+    }
+
+    public User getUserById(int id) {
+        return this.userDAO.getUserById(id);
     }
 }

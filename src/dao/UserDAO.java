@@ -67,7 +67,7 @@ public class UserDAO {
     }
 
     public void updateUser(User user) {
-        String query = "UPDATE \"user\" SET username = ?, password = ?, role = ? WHERE id = ?";
+        String query = "UPDATE public.user SET username = ?, password = ?, role = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -82,7 +82,7 @@ public class UserDAO {
     }
 
     public void deleteUser(int id) {
-        String query = "DELETE FROM \"user\" WHERE id = ?";
+        String query = "DELETE FROM public.user WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -92,4 +92,50 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+
+    public User getUserByUsername(String username) {
+        String query = "SELECT * FROM public.user WHERE username = ?";
+        try (Connection conn = DatabaseManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public List<User> getUsersByRole(String role) {
+        String query = "SELECT * FROM public.user WHERE role = ?";
+        List<User> users = new ArrayList<>();
+        try (Connection conn = DatabaseManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, role);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                users.add(new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
 }

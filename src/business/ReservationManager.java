@@ -6,29 +6,29 @@ import entity.Reservation;
 import java.util.List;
 
 public class ReservationManager {
-    private final ReservationDAO reservationDAO;
+    private ReservationDAO reservationDAO;
 
     public ReservationManager() {
-        reservationDAO = new ReservationDAO();
+        this.reservationDAO = new ReservationDAO();
     }
 
     public List<Reservation> getAllReservations() {
-        return reservationDAO.getAllReservations();
+        return this.reservationDAO.getAllReservations();
     }
 
     public Reservation getReservationById(int id) {
-        return reservationDAO.getReservationById(id);
+        return this.reservationDAO.getReservationById(id);
     }
 
     public void addReservation(Reservation reservation) {
-        reservationDAO.addReservation(reservation);
+        this.reservationDAO.addReservation(reservation);
     }
 
     public void updateReservation(Reservation reservation) {
-        reservationDAO.updateReservation(reservation);
+        this.reservationDAO.updateReservation(reservation);
     }
 
     public void deleteReservation(int id) {
-        reservationDAO.deleteReservation(id);
+        this.reservationDAO.deleteReservation(id);
     }
 }

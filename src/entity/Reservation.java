@@ -12,8 +12,14 @@ public class Reservation {
     private int adultCount;
     private int childCount;
     private BigDecimal totalPrice;
+    private String guestName;
+    private String guestSurname;
+    private String guestIdentityNumber;
+    private int hotelId;
 
-    public Reservation(int id, int roomId, int userId, Date startDate, Date endDate, int adultCount, int childCount, BigDecimal totalPrice) {
+    public Reservation() {}
+
+    public Reservation(int id, int roomId, int userId, Date startDate, Date endDate, int adultCount, int childCount, BigDecimal totalPrice, String guestName, String guestSurname, String guestIdentityNumber, int hotelId) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;
@@ -22,9 +28,12 @@ public class Reservation {
         this.adultCount = adultCount;
         this.childCount = childCount;
         this.totalPrice = totalPrice;
+        this.guestName = guestName;
+        this.guestSurname = guestSurname;
+        this.guestIdentityNumber = guestIdentityNumber;
+        this.hotelId = hotelId;
     }
 
-    // Getters and setters
     public int getId() {
         return id;
     }
@@ -87,5 +96,37 @@ public class Reservation {
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getGuestName() {
+        return guestName;
+    }
+
+    public void setGuestName(String guestName) {
+        this.guestName = guestName;
+    }
+
+    public String getGuestSurname() {
+        return guestSurname;
+    }
+
+    public void setGuestSurname(String guestSurname) {
+        this.guestSurname = guestSurname;
+    }
+
+    public String getGuestIdentityNumber() {
+        return guestIdentityNumber;
+    }
+
+    public void setGuestIdentityNumber(String guestIdentityNumber) {
+        this.guestIdentityNumber = guestIdentityNumber;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
     }
 }

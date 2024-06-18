@@ -20,12 +20,7 @@ public class LoginView extends Layout {
 
     public LoginView() {
         userManager = new UserManager();
-        setContentPane(container);
-        setTitle("Login");
-        setSize(500, 400);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        Helper.setupWindow(this, container, "User Panel", 400, 300);
 
         button_login.addActionListener(e -> login());
     }
@@ -36,19 +31,19 @@ public class LoginView extends Layout {
 
         if (userManager.validateUser(username, password)) {
             User user = userManager.getUserByUsername(username); // Kullanıcıyı al
-            showMessage("Login successful!");
+            Helper.showMessage(this,"Login successful!");
 
             // Kullanıcının rolüne göre uygun pencereyi aç
             if ("ADMIN".equalsIgnoreCase(user.getRole())) {
                 new AdminView(user.getUsername());
             } else if ("PERSONNEL".equalsIgnoreCase(user.getRole())) {
-                //new UserView(user.getUsername());
+                new UserView(user.getUsername());
             }
 
             // Giriş penceresini kapat
             dispose();
         } else {
-            showMessage("Invalid username or password. Please try again.");
+            Helper.showMessage(this,"Invalid username or password. Please try again.");
         }
     }
 

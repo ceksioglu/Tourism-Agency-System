@@ -13,7 +13,8 @@ public class SeasonDAO {
         List<Season> seasons = new ArrayList<>();
         String query = "SELECT public.season.id, public.season.hotel_id, public.hotel.name as hotel_name, public.season.start_date, public.season.end_date " +
                 "FROM public.season " +
-                "JOIN public.hotel ON public.season.hotel_id = public.hotel.id";
+                "JOIN public.hotel ON public.season.hotel_id = public.hotel.id " +
+                "ORDER BY public.hotel.name";
 
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              Statement stmt = conn.createStatement();

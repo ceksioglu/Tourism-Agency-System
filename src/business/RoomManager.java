@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class RoomManager {
-    private RoomDAO roomDAO;
+    private final RoomDAO roomDAO;
 
     public RoomManager() {
         this.roomDAO = new RoomDAO();

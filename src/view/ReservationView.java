@@ -3,14 +3,15 @@ package view;
 import business.ReservationManager;
 import business.RoomManager;
 import core.Helper;
+import entity.Reservation;
 import entity.Room;
 import entity.User;
-import view.Layout;
 
 import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,8 +47,9 @@ public class ReservationView extends Layout {
     private JTextField field_phone;
     private JComboBox<String> combo_room_id;
 
-    private ReservationManager reservationManager;
-    private RoomManager roomManager;
+    private final ReservationManager reservationManager;
+    private final RoomManager roomManager;
+    private Reservation reservation;
 
     public ReservationView(User currentUser) {
         this.currentUser = currentUser;
@@ -60,6 +62,35 @@ public class ReservationView extends Layout {
         button_calculate.addActionListener(e -> calculateTotalPrice());
         button_save.addActionListener(e -> saveReservation());
         button_exit.addActionListener(e -> dispose());
+
+        if (reservation != null) {
+            populateFields();
+        }
+    }
+
+    public ReservationView(User currentUser, Reservation reservation) {
+        this(currentUser);
+        this.reservation = reservation;
+
+        if (reservation != null) {
+            populateFields();
+        }
+    }
+
+    private void populateFields() {
+        field_name.setText(reservation.getGuestName());
+        field_surname.setText(reservation.getGuestSurname());
+        field_start_date.setText(reservation.getStartDate().toString());
+        field_end_date.setText(reservation.getEndDate().toString());
+        field_hotel_id.setText(String.valueOf(reservation.getHotelId()));
+        field_children_count.setText(String.valueOf(reservation.getChildCount()));
+        field_adult_count.setText(String.valueOf(reservation.getAdultCount()));
+        field_guest_id.setText(reservation.getGuestIdentityNumber());
+        field_phone.setText(reservation.getGuestPhone());
+        field_total_price.setText(reservation.getTotalPrice().toString());
+
+        loadRooms();
+        combo_room_id.setSelectedItem(String.valueOf(reservation.getRoomId()));
     }
 
     private void loadRooms() {
@@ -76,15 +107,19 @@ public class ReservationView extends Layout {
         Room room = roomManager.getRoomById(roomId);
         int adultCount = Integer.parseInt(field_adult_count.getText());
         int childCount = Integer.parseInt(field_children_count.getText());
-        BigDecimal adultPrice = room.getAdultPrice();
-        BigDecimal childPrice = room.getChildPrice();
+        LocalDate startDate = LocalDate.parse(field_start_date.getText(), DateTimeFormatter.ISO_DATE);
+        LocalDate endDate = LocalDate.parse(field_end_date.getText(), DateTimeFormatter.ISO_DATE);
+        long days = ChronoUnit.DAYS.between(startDate, endDate);
+
+        BigDecimal adultPrice = room.getAdultPrice().multiply(BigDecimal.valueOf(days));
+        BigDecimal childPrice = room.getChildPrice().multiply(BigDecimal.valueOf(days));
         BigDecimal totalPrice = adultPrice.multiply(BigDecimal.valueOf(adultCount)).add(childPrice.multiply(BigDecimal.valueOf(childCount)));
         field_total_price.setText(totalPrice.toString());
     }
 
     private void saveReservation() {
         int roomId = Integer.parseInt((String) Objects.requireNonNull(combo_room_id.getSelectedItem()));
-        int userId = currentUser.getId(); // Use the current user's ID
+        int userId = currentUser.getId(); // Ensure currentUser has a valid ID
         LocalDate startDate = LocalDate.parse(field_start_date.getText(), DateTimeFormatter.ISO_DATE);
         LocalDate endDate = LocalDate.parse(field_end_date.getText(), DateTimeFormatter.ISO_DATE);
         int adultCount = Integer.parseInt(field_adult_count.getText());
@@ -96,8 +131,31 @@ public class ReservationView extends Layout {
         String guestPhone = field_phone.getText();
         BigDecimal totalPrice = new BigDecimal(field_total_price.getText());
 
+        System.out.println("User ID: " + userId); // Debug print to check userId
+
+        Reservation newReservation = new Reservation(
+                reservation != null ? reservation.getId() : 0,
+                roomId,
+                userId,
+                startDate,
+                endDate,
+                adultCount,
+                childCount,
+                totalPrice,
+                guestName,
+                guestSurname,
+                guestIdentityNumber,
+                hotelId,
+                guestPhone,
+                ""
+        );
+
         if (roomManager.checkRoomAvailability(roomId, startDate, endDate)) {
-            reservationManager.addReservation(roomId, userId, startDate, endDate, adultCount, childCount, guestName, guestSurname, guestIdentityNumber, hotelId, guestPhone, totalPrice);
+            if (reservation == null) {
+                reservationManager.addReservation(newReservation);
+            } else {
+                reservationManager.updateReservation(newReservation);
+            }
             roomManager.decreaseRoomStock(roomId, adultCount + childCount);
             JOptionPane.showMessageDialog(this, "Reservation saved successfully!");
             dispose();

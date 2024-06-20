@@ -90,8 +90,6 @@ public class UserView extends Layout {
         loadRooms();
         loadReservations();
         loadSeasons();
-
-
     }
 
     private void initializeTables() {
@@ -107,7 +105,7 @@ public class UserView extends Layout {
         columnModelRoom.getColumn(1).setPreferredWidth(200);
         this.table_room.getTableHeader().setReorderingAllowed(false);
 
-        reservationTableModel = new DefaultTableModel(new String[]{"ID", "Room ID", "User ID", "Start Date", "End Date", "Adult Count", "Child Count", "Total Price", "Guest Name", "Guest Surname", "Guest Identity Number", "Hotel ID", "Guest Phone"}, 0);
+        reservationTableModel = new DefaultTableModel(new String[]{"ID", "Room ID", "User ID", "Start Date", "End Date", "Adult Count", "Child Count", "Total Price", "Guest Name", "Guest Surname", "Guest Identity Number", "Hotel Name", "Guest Phone"}, 0);
         table_reservation.setModel(reservationTableModel);
         this.table_reservation.getTableHeader().setReorderingAllowed(false);
 
@@ -362,6 +360,8 @@ public class UserView extends Layout {
 
     private void loadReservations() {
         List<Reservation> reservations = reservationManager.getAllReservationsWithHotelName();
+        reservationTableModel.setRowCount(0); // Clear existing data
+
         for (Reservation reservation : reservations) {
             reservationTableModel.addRow(new Object[]{
                     reservation.getId(),
@@ -380,7 +380,6 @@ public class UserView extends Layout {
             });
         }
     }
-
 
     private void loadSeasons() {
         List<Season> seasons = seasonManager.getAllSeasons();
@@ -412,8 +411,7 @@ public class UserView extends Layout {
 
     private void openSeasonView(Season season) {
         // Open SeasonView for creating/updating a season
-        // Example:
-        // new SeasonView(season);
+        new SeasonView(season);
     }
 
     // Methods to get selected entities from tables
@@ -468,7 +466,7 @@ public class UserView extends Layout {
     private void deleteSelectedReservation() {
         Reservation reservation = getSelectedReservation();
         if (reservation != null) {
-            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this reservation?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this reservation?", "Confirm Deletion", JOptionPane.YES_OPTION);
             if (confirmation == JOptionPane.YES_OPTION) {
                 reservationManager.deleteReservation(reservation.getId());
                 roomManager.increaseRoomStock(reservation.getRoomId(), reservation.getAdultCount() + reservation.getChildCount());
@@ -480,8 +478,11 @@ public class UserView extends Layout {
     private void deleteSelectedSeason() {
         Season season = getSelectedSeason();
         if (season != null) {
-            seasonManager.deleteSeason(season.getId());
-            loadSeasons();
+            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this season?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+            if (confirmation == JOptionPane.YES_OPTION) {
+                seasonManager.deleteSeason(season.getId());
+                loadSeasons();
+            }
         }
     }
 

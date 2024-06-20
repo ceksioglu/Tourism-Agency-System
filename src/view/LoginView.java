@@ -16,7 +16,7 @@ public class LoginView extends Layout {
     private JLabel label_password;
     private JLabel label_username;
 
-    private UserManager userManager;
+    private final UserManager userManager;
 
     public LoginView() {
         userManager = new UserManager();
@@ -35,9 +35,9 @@ public class LoginView extends Layout {
 
             // Kullanıcının rolüne göre uygun pencereyi aç
             if ("ADMIN".equalsIgnoreCase(user.getRole())) {
-                new AdminView(user.getUsername());
+                new AdminView(user);
             } else if ("PERSONNEL".equalsIgnoreCase(user.getRole())) {
-                new UserView(user.getUsername());
+                new UserView(user);
             }
 
             // Giriş penceresini kapat

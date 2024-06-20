@@ -5,15 +5,11 @@ import business.ReservationManager;
 import business.RoomManager;
 import business.SeasonManager;
 import core.Helper;
-import entity.Hotel;
-import entity.Reservation;
-import entity.Room;
-import entity.Season;
+import entity.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.table.TableColumnModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -60,6 +56,7 @@ public class UserView extends Layout {
     private JButton button_search;
     private JButton button_room_clear;
     private JButton button_room_search;
+    private JButton button_create;
 
     private HotelManager hotelManager;
     private RoomManager roomManager;
@@ -70,15 +67,18 @@ public class UserView extends Layout {
     private DefaultTableModel reservationTableModel;
     private DefaultTableModel seasonTableModel;
     private DefaultTableModel facilityTableModel;
+    private User currentUser;
 
-    public UserView(String username) {
+    public UserView(User user) {
         hotelManager = new HotelManager();
         roomManager = new RoomManager();
         reservationManager = new ReservationManager();
         seasonManager = new SeasonManager();
 
-        Helper.setupWindow(this, container, "User Panel", 1000, 800);
-        label_welcome.setText("Welcome, " + username);
+        this.currentUser = user;
+
+        Helper.setupWindow(this, container, "User Panel", 1500, 800);
+        label_welcome.setText("Welcome, " + currentUser.getUsername());
 
         button_exit.addActionListener(e -> System.exit(0));
 
@@ -90,28 +90,30 @@ public class UserView extends Layout {
         loadRooms();
         loadReservations();
         loadSeasons();
+
+
     }
 
     private void initializeTables() {
         hotelTableModel = new DefaultTableModel(new String[]{"ID", "Name", "City", "Region", "Address", "Email", "Phone", "Stars"}, 0);
         table_hotel.setModel(hotelTableModel);
+        TableColumnModel columnModelHotel = table_hotel.getColumnModel();
+        columnModelHotel.getColumn(0).setPreferredWidth(2);
         this.table_hotel.getTableHeader().setReorderingAllowed(false);
 
-        roomTableModel = new DefaultTableModel(new String[]{"ID", "Hotel Name", "Season", "Pension Type", "Room Type", "Bed Count", "Size", "TV", "Minibar", "Game Console", "Safe", "Projector", "Adult Price", "Child Price", "Stock"}, 0);
+        roomTableModel = new DefaultTableModel(new String[]{"ID", "Hotel Name", "City", "Season", "Pension Type", "Room Type", "Bed Count", "Size", "TV", "Minibar", "Game Console", "Safe", "Projector", "Adult Price", "Child Price", "Stock"}, 0);
         table_room.setModel(roomTableModel);
+        TableColumnModel columnModelRoom = table_room.getColumnModel();
+        columnModelRoom.getColumn(1).setPreferredWidth(200);
         this.table_room.getTableHeader().setReorderingAllowed(false);
 
-        reservationTableModel = new DefaultTableModel(new String[]{"ID", "Room ID", "User ID", "Start Date", "End Date", "Adult Count", "Child Count", "Total Price", "Hotel ID"}, 0);
+        reservationTableModel = new DefaultTableModel(new String[]{"ID", "Room ID", "User ID", "Start Date", "End Date", "Adult Count", "Child Count", "Total Price", "Guest Name", "Guest Surname", "Guest Identity Number", "Hotel ID", "Guest Phone"}, 0);
         table_reservation.setModel(reservationTableModel);
         this.table_reservation.getTableHeader().setReorderingAllowed(false);
 
-        seasonTableModel = new DefaultTableModel(new String[]{"ID", "Hotel ID", "Start Date", "End Date"}, 0);
+        seasonTableModel = new DefaultTableModel(new String[]{"ID", "Hotel Name", "Start Date", "End Date"}, 0);
         table_season.setModel(seasonTableModel);
         this.table_season.getTableHeader().setReorderingAllowed(false);
-
-        facilityTableModel = new DefaultTableModel(new String[]{"Facility"}, 0);
-        table_facility_prop.setModel(facilityTableModel);
-        this.table_facility_prop.getTableHeader().setReorderingAllowed(false);
     }
 
     private void initializeListeners() {
@@ -151,9 +153,8 @@ public class UserView extends Layout {
             }
         });
 
-        // Add action listeners for the search and clear buttons
-        button_room_search.addActionListener(e -> filterRooms());
-        button_room_clear.addActionListener(e -> clearRoomFilters());
+        // Add action listener for create button
+        button_create.addActionListener(e -> openReservationView(null));
     }
 
     private void initializeFilters() {
@@ -164,6 +165,8 @@ public class UserView extends Layout {
 
         button_search.addActionListener(e -> filterHotels());
         button_clear.addActionListener(e -> clearHotelFilters());
+        button_room_search.addActionListener(e -> filterRooms());
+        button_room_clear.addActionListener(e -> clearRoomFilters());
     }
 
     private void filterHotels() {
@@ -201,14 +204,7 @@ public class UserView extends Layout {
 
         List<Room> filteredRooms = roomManager.getAllRooms().stream()
                 .filter(room -> hotelName.isEmpty() || room.getHotelName().equalsIgnoreCase(hotelName))
-                .filter(room -> {
-                    if (city.isEmpty()) {
-                        return true;
-                    } else {
-                        Hotel hotel = hotelManager.getHotelById(room.getHotelId());
-                        return hotel != null && hotel.getCity().equalsIgnoreCase(city);
-                    }
-                })
+                .filter(room -> city.isEmpty() || room.getHotelCity().equalsIgnoreCase(city))
                 .filter(room -> startDate.isEmpty() || room.getSeason().startsWith(startDate))
                 .filter(room -> endDate.isEmpty() || room.getSeason().endsWith(endDate))
                 .collect(Collectors.toList());
@@ -219,6 +215,7 @@ public class UserView extends Layout {
             roomTableModel.addRow(new Object[]{
                     room.getId(),
                     room.getHotelName(),
+                    room.getHotelCity(),
                     room.getSeason(),
                     room.getPensionType(),
                     room.getRoomType(),
@@ -271,7 +268,7 @@ public class UserView extends Layout {
     private void showRoomContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
         JMenuItem createItem = new JMenuItem("Create Room");
-        JMenuItem updateItem = new JMenuItem("Update Room");
+        JMenuItem updateItem = new JMenuItem("View / Edit Room");
         JMenuItem deleteItem = new JMenuItem("Delete Room");
 
         createItem.addActionListener(evt -> openRoomView(null));
@@ -345,6 +342,7 @@ public class UserView extends Layout {
             roomTableModel.addRow(new Object[]{
                     room.getId(),
                     room.getHotelName(),
+                    room.getHotelCity(),
                     room.getSeason(),
                     room.getPensionType(),
                     room.getRoomType(),
@@ -363,9 +361,7 @@ public class UserView extends Layout {
     }
 
     private void loadReservations() {
-        List<Reservation> reservations = reservationManager.getAllReservations();
-        reservationTableModel.setRowCount(0); // Clear existing data
-
+        List<Reservation> reservations = reservationManager.getAllReservationsWithHotelName();
         for (Reservation reservation : reservations) {
             reservationTableModel.addRow(new Object[]{
                     reservation.getId(),
@@ -376,10 +372,15 @@ public class UserView extends Layout {
                     reservation.getAdultCount(),
                     reservation.getChildCount(),
                     reservation.getTotalPrice(),
-                    reservation.getHotelId()
+                    reservation.getGuestName(),
+                    reservation.getGuestSurname(),
+                    reservation.getGuestIdentityNumber(),
+                    reservation.getHotelName(),
+                    reservation.getGuestPhone()
             });
         }
     }
+
 
     private void loadSeasons() {
         List<Season> seasons = seasonManager.getAllSeasons();
@@ -388,7 +389,7 @@ public class UserView extends Layout {
         for (Season season : seasons) {
             seasonTableModel.addRow(new Object[]{
                     season.getId(),
-                    season.getHotelId(),
+                    season.getHotelName(),
                     season.getStartDate(),
                     season.getEndDate()
             });
@@ -397,21 +398,16 @@ public class UserView extends Layout {
 
     // Methods to open respective views for CRUD operations
     private void openHotelView(Hotel hotel) {
-        // Open HotelView for creating/updating a hotel
-        // Example:
-        // new HotelView(hotel);
+        new HotelView(hotel);
     }
 
     private void openRoomView(Room room) {
         // Open RoomView for creating/updating a room
-        // Example:
-        // new RoomView(room);
+        new RoomView(room);
     }
 
     private void openReservationView(Reservation reservation) {
-        // Open ReservationView for creating/updating a reservation
-        // Example:
-        // new ReservationView(reservation);
+        new ReservationView(currentUser);
     }
 
     private void openSeasonView(Season season) {
@@ -453,8 +449,11 @@ public class UserView extends Layout {
     private void deleteSelectedHotel() {
         Hotel hotel = getSelectedHotel();
         if (hotel != null) {
-            hotelManager.deleteHotel(hotel.getId());
-            loadHotels();
+            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this hotel?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+            if (confirmation == JOptionPane.YES_OPTION) {
+                hotelManager.deleteHotel(hotel.getId());
+                loadHotels();
+            }
         }
     }
 
@@ -469,8 +468,12 @@ public class UserView extends Layout {
     private void deleteSelectedReservation() {
         Reservation reservation = getSelectedReservation();
         if (reservation != null) {
-            reservationManager.deleteReservation(reservation.getId());
-            loadReservations();
+            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this reservation?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+            if (confirmation == JOptionPane.YES_OPTION) {
+                reservationManager.deleteReservation(reservation.getId());
+                roomManager.increaseRoomStock(reservation.getRoomId(), reservation.getAdultCount() + reservation.getChildCount());
+                loadReservations();
+            }
         }
     }
 
@@ -485,6 +488,9 @@ public class UserView extends Layout {
     // Main method to launch the UserView
     public static void main(String[] args) {
         Helper.setNimbusLookAndFeel();
-        new UserView("User");
+        User tempUser = new User();
+        tempUser.setUsername("personnel2");
+        tempUser.setRole("PERSONNEL");
+        new UserView(tempUser);
     }
 }

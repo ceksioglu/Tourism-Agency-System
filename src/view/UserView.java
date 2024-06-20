@@ -406,7 +406,7 @@ public class UserView extends Layout {
     }
 
     private void openReservationView(Reservation reservation) {
-        new ReservationView(currentUser);
+        new ReservationView(currentUser, reservation);
     }
 
     private void openSeasonView(Season season) {
@@ -466,7 +466,7 @@ public class UserView extends Layout {
     private void deleteSelectedReservation() {
         Reservation reservation = getSelectedReservation();
         if (reservation != null) {
-            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this reservation?", "Confirm Deletion", JOptionPane.YES_OPTION);
+            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this reservation?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
             if (confirmation == JOptionPane.YES_OPTION) {
                 reservationManager.deleteReservation(reservation.getId());
                 roomManager.increaseRoomStock(reservation.getRoomId(), reservation.getAdultCount() + reservation.getChildCount());

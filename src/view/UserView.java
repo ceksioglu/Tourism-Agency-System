@@ -57,6 +57,9 @@ public class UserView extends Layout {
     private JButton button_room_clear;
     private JButton button_room_search;
     private JButton button_create;
+    private JTextField field_hotel_filter;
+    private JLabel label_hotel_filter;
+    private JButton button_refresh;
 
     private HotelManager hotelManager;
     private RoomManager roomManager;
@@ -96,7 +99,7 @@ public class UserView extends Layout {
         hotelTableModel = new DefaultTableModel(new String[]{"ID", "Name", "City", "Region", "Address", "Email", "Phone", "Stars"}, 0);
         table_hotel.setModel(hotelTableModel);
         TableColumnModel columnModelHotel = table_hotel.getColumnModel();
-        columnModelHotel.getColumn(0).setPreferredWidth(2);
+        columnModelHotel.getColumn(0).setPreferredWidth(5);
         this.table_hotel.getTableHeader().setReorderingAllowed(false);
 
         roomTableModel = new DefaultTableModel(new String[]{"ID", "Hotel Name", "City", "Season", "Pension Type", "Room Type", "Bed Count", "Size", "TV", "Minibar", "Game Console", "Safe", "Projector", "Adult Price", "Child Price", "Stock"}, 0);
@@ -153,6 +156,9 @@ public class UserView extends Layout {
 
         // Add action listener for create button
         button_create.addActionListener(e -> openReservationView(null));
+
+        // Add action listener for refresh button
+        button_refresh.addActionListener(e -> loadReservations());
     }
 
     private void initializeFilters() {
@@ -169,11 +175,13 @@ public class UserView extends Layout {
 
     private void filterHotels() {
         String city = field_city_filter.getText().trim();
+        String hotelName = field_hotel_filter.getText().trim();
         Hotel.PensionType pensionType = (Hotel.PensionType) combo_type_filter.getSelectedItem();
         Hotel.Facility facility = (Hotel.Facility) combo_facility_filter.getSelectedItem();
 
         List<Hotel> filteredHotels = hotelManager.getAllHotels().stream()
                 .filter(hotel -> city.isEmpty() || hotel.getCity().equalsIgnoreCase(city))
+                .filter(hotel -> hotelName.isEmpty() || hotel.getName().equalsIgnoreCase(hotelName))
                 .filter(hotel -> pensionType == null || hotel.getPensionTypes().contains(pensionType))
                 .filter(hotel -> facility == null || hotel.getFacilities().contains(facility))
                 .collect(Collectors.toList());
@@ -233,6 +241,7 @@ public class UserView extends Layout {
 
     private void clearHotelFilters() {
         field_city_filter.setText("");
+        field_hotel_filter.setText("");
         combo_type_filter.setSelectedIndex(0);
         combo_facility_filter.setSelectedIndex(0);
         loadHotels();
@@ -266,18 +275,39 @@ public class UserView extends Layout {
     private void showRoomContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
         JMenuItem createItem = new JMenuItem("Create Room");
+        JMenuItem createReservationItem = new JMenuItem("Create New Reservation");
         JMenuItem updateItem = new JMenuItem("View / Edit Room");
         JMenuItem deleteItem = new JMenuItem("Delete Room");
 
         createItem.addActionListener(evt -> openRoomView(null));
+        createReservationItem.addActionListener(evt -> openReservationViewFromRoom(getSelectedRoom()));
         updateItem.addActionListener(evt -> openRoomView(getSelectedRoom()));
         deleteItem.addActionListener(evt -> deleteSelectedRoom());
 
         contextMenu.add(createItem);
+        contextMenu.add(createReservationItem);
         contextMenu.add(updateItem);
         contextMenu.add(deleteItem);
 
         contextMenu.show(e.getComponent(), e.getX(), e.getY());
+    }
+
+    private void openReservationViewFromRoom(Room room) {
+        if (room != null) {
+            Reservation reservation = new Reservation();
+            reservation.setRoomId(room.getId());
+            reservation.setHotelId(room.getHotelId());
+            reservation.setHotelName(room.getHotelName());
+
+            // Retrieve the season data
+            Season season = seasonManager.getSeasonById(room.getSeasonId());
+            if (season != null) {
+                reservation.setStartDate(season.getStartDate().toLocalDate());
+                reservation.setEndDate(season.getEndDate().toLocalDate());
+            }
+
+            new ReservationView(currentUser, reservation);
+        }
     }
 
     private void showReservationContextMenu(MouseEvent e) {
@@ -302,16 +332,36 @@ public class UserView extends Layout {
         JMenuItem createItem = new JMenuItem("Create Season");
         JMenuItem updateItem = new JMenuItem("Update Season");
         JMenuItem deleteItem = new JMenuItem("Delete Season");
+        JMenuItem createRoomItem = new JMenuItem("Create New Room from Season"); // New menu item
 
         createItem.addActionListener(evt -> openSeasonView(null));
         updateItem.addActionListener(evt -> openSeasonView(getSelectedSeason()));
         deleteItem.addActionListener(evt -> deleteSelectedSeason());
+        createRoomItem.addActionListener(evt -> openRoomViewFromSeason(getSelectedSeason())); // Add action listener
 
         contextMenu.add(createItem);
         contextMenu.add(updateItem);
         contextMenu.add(deleteItem);
+        contextMenu.add(createRoomItem); // Add the new menu item
 
         contextMenu.show(e.getComponent(), e.getX(), e.getY());
+    }
+
+    private void openRoomViewFromSeason(Season season) {
+        if (season != null) {
+            Room room = new Room();
+            room.setHotelId(season.getHotelId());
+            room.setSeasonId(season.getId());
+            room.setHotelName(season.getHotelName());
+            room.setSeason(season.getStartDate().toString() + " to " + season.getEndDate().toString());
+            room.setHotelCity(getHotelCityById(season.getHotelId()));
+            new RoomView(room);
+        }
+    }
+
+    private String getHotelCityById(int hotelId) {
+        Hotel hotel = hotelManager.getHotelById(hotelId);
+        return hotel != null ? hotel.getCity() : "";
     }
 
     private void loadHotels() {
@@ -413,22 +463,12 @@ public class UserView extends Layout {
         // Open SeasonView for creating/updating a season
         new SeasonView(season);
     }
-
-    // Methods to get selected entities from tables
-    private Hotel getSelectedHotel() {
-        int selectedRow = table_hotel.getSelectedRow();
-        if (selectedRow == -1) return null;
-        int hotelId = (int) table_hotel.getValueAt(selectedRow, 0);
-        return hotelManager.getHotelById(hotelId);
-    }
-
     private Room getSelectedRoom() {
         int selectedRow = table_room.getSelectedRow();
         if (selectedRow == -1) return null;
         int roomId = (int) table_room.getValueAt(selectedRow, 0);
         return roomManager.getRoomById(roomId);
     }
-
     private Reservation getSelectedReservation() {
         int selectedRow = table_reservation.getSelectedRow();
         if (selectedRow == -1) return null;
@@ -469,7 +509,7 @@ public class UserView extends Layout {
             int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this reservation?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
             if (confirmation == JOptionPane.YES_OPTION) {
                 reservationManager.deleteReservation(reservation.getId());
-                roomManager.increaseRoomStock(reservation.getRoomId(), reservation.getAdultCount() + reservation.getChildCount());
+                roomManager.increaseRoomStock(reservation.getRoomId(), 1);
                 loadReservations();
             }
         }
@@ -484,6 +524,14 @@ public class UserView extends Layout {
                 loadSeasons();
             }
         }
+    }
+
+    // Methods to get selected entities from tables
+    private Hotel getSelectedHotel() {
+        int selectedRow = table_hotel.getSelectedRow();
+        if (selectedRow == -1) return null;
+        int hotelId = (int) table_hotel.getValueAt(selectedRow, 0);
+        return hotelManager.getHotelById(hotelId);
     }
 
     // Main method to launch the UserView

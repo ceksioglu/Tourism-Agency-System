@@ -61,12 +61,7 @@ public class RoomView extends Layout {
 
         button_exit.addActionListener(e -> dispose());
 
-        button_save.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveRoom();
-            }
-        });
+        button_save.addActionListener(e -> saveRoom());
 
         initializeComboBoxes();
         populateRoomData();
@@ -78,25 +73,17 @@ public class RoomView extends Layout {
     }
 
     private void populateRoomData() {
-        if (room.getId() != 0) {
+        if (room.getId() != 0 || room.getHotelId() != 0) {
             field_hotel_name.setText(room.getHotelName());
-            field_city.setText(room.getHotelCity());
-
-            String[] seasonDates = room.getSeason().split(" to ");
-            if (seasonDates.length == 2) {
-                field_start_date.setText(seasonDates[0]);
-                field_end_date.setText(seasonDates[1]);
-            } else {
-                field_start_date.setText("");
-                field_end_date.setText("");
-            }
-
+            field_city.setText(room.getHotelCity()); // Set the city name
+            field_start_date.setText(room.getSeason().split(" to ")[0]);
+            field_end_date.setText(room.getSeason().split(" to ")[1]);
             combo_pension_type.setSelectedItem(room.getPensionType());
             combo_room_type.setSelectedItem(room.getRoomType());
             field_bed.setText(String.valueOf(room.getBedCount()));
             field_room_size.setText(String.valueOf(room.getSize()));
-            textField1.setText(room.getAdultPrice().toString());
-            textField2.setText(room.getChildPrice().toString());
+            textField1.setText(room.getAdultPrice() != null ? room.getAdultPrice().toString() : "");
+            textField2.setText(room.getChildPrice() != null ? room.getChildPrice().toString() : "");
             field_stock.setText(String.valueOf(room.getStock()));
             checkbox_tv.setSelected(room.isTv());
             checkbox_minibar.setSelected(room.isMinibar());

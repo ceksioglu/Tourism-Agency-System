@@ -14,12 +14,12 @@ The project follows a layered architecture with the following main packages:
 
 ### Directory Structure
 
-/src/
-  /core
-  /dao
-  /entity
-  /business
-  /view
+- /src/
+  - /core
+  - /dao
+  - /entity
+  - /business
+  - /view
 
 ## Features
 

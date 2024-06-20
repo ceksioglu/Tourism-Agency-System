@@ -6,7 +6,7 @@ import entity.Reservation;
 import java.util.List;
 
 public class ReservationManager {
-    private final ReservationDAO reservationDAO;
+    private ReservationDAO reservationDAO;
 
     public ReservationManager() {
         this.reservationDAO = new ReservationDAO();
@@ -20,15 +20,15 @@ public class ReservationManager {
         reservationDAO.updateReservation(reservation);
     }
 
+    public void deleteReservation(int id) {
+        reservationDAO.deleteReservation(id);
+    }
+
     public Reservation getReservationById(int id) {
         return reservationDAO.getReservationById(id);
     }
 
     public List<Reservation> getAllReservationsWithHotelName() {
         return reservationDAO.getAllReservationsWithHotelName();
-    }
-
-    public void deleteReservation(int id) {
-        reservationDAO.deleteReservation(id);
     }
 }

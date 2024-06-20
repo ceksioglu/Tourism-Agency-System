@@ -17,42 +17,10 @@ The project follows a layered architecture with the following main packages:
 src
 │
 ├── core
-│ ├── DatabaseManager.java
-│ ├── Helper.java
-│ └── ... (other core classes)
-│
 ├── dao
-│ ├── HotelDAO.java
-│ ├── RoomDAO.java
-│ ├── SeasonDAO.java
-│ ├── ReservationDAO.java
-│ ├── UserDAO.java
-│ └── ... (other DAO classes)
-│
 ├── entity
-│ ├── Hotel.java
-│ ├── Room.java
-│ ├── Season.java
-│ ├── Reservation.java
-│ ├── User.java
-│ └── ... (other entity classes)
-│
 ├── business
-│ ├── HotelManager.java
-│ ├── RoomManager.java
-│ ├── SeasonManager.java
-│ ├── ReservationManager.java
-│ ├── UserManager.java
-│ └── ... (other business classes)
-│
 └── view
-├── AdminView.java
-├── RoomView.java
-├── SeasonView.java
-├── ReservationView.java
-├── UserView.java
-├── LoginView.java
-└── ... (other view classes)
 
 
 ## Features

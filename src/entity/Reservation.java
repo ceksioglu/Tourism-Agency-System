@@ -1,14 +1,14 @@
 package entity;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Reservation {
     private int id;
     private int roomId;
     private int userId;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int adultCount;
     private int childCount;
     private BigDecimal totalPrice;
@@ -16,10 +16,12 @@ public class Reservation {
     private String guestSurname;
     private String guestIdentityNumber;
     private int hotelId;
+    private String guestPhone;
+    private String hotelName;
 
     public Reservation() {}
 
-    public Reservation(int id, int roomId, int userId, Date startDate, Date endDate, int adultCount, int childCount, BigDecimal totalPrice, String guestName, String guestSurname, String guestIdentityNumber, int hotelId) {
+    public Reservation(int id, int roomId, int userId, LocalDate startDate, LocalDate endDate, int adultCount, int childCount, BigDecimal totalPrice, String guestName, String guestSurname, String guestIdentityNumber, int hotelId, String guestPhone,String hotelName) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;
@@ -32,6 +34,8 @@ public class Reservation {
         this.guestSurname = guestSurname;
         this.guestIdentityNumber = guestIdentityNumber;
         this.hotelId = hotelId;
+        this.guestPhone = guestPhone;
+        this.hotelName = hotelName;
     }
 
     public int getId() {
@@ -58,19 +62,19 @@ public class Reservation {
         this.userId = userId;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -128,5 +132,21 @@ public class Reservation {
 
     public void setHotelId(int hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public String getGuestPhone() {
+        return guestPhone;
+    }
+
+    public void setGuestPhone(String guestPhone) {
+        this.guestPhone = guestPhone;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
     }
 }

@@ -13,10 +13,11 @@ public class Room {
 
     private int id;
     private int hotelId;
-    private String hotelName;
     private int seasonId;
-    private String season;
     private int pensionTypeId;
+    private String hotelName;
+    private String hotelCity;
+    private String season;
     private String pensionType;
     private RoomType roomType;
     private int bedCount;
@@ -30,32 +31,15 @@ public class Room {
     private BigDecimal childPrice;
     private int stock;
 
-    public Room() {
-    }
+    public Room() {}
 
-    // Constructor for database interaction (with IDs)
-    public Room(int id, int hotelId, int seasonId, int pensionTypeId, RoomType roomType, int bedCount, int size, boolean tv, boolean minibar, boolean gameConsole, boolean safe, boolean projector, BigDecimal adultPrice, BigDecimal childPrice, int stock) {
+    public Room(int id, int hotelId, int seasonId, int pensionTypeId, String hotelName, String hotelCity, String season, String pensionType, RoomType roomType, int bedCount, int size, boolean tv, boolean minibar, boolean gameConsole, boolean safe, boolean projector, BigDecimal adultPrice, BigDecimal childPrice, int stock) {
         this.id = id;
         this.hotelId = hotelId;
         this.seasonId = seasonId;
         this.pensionTypeId = pensionTypeId;
-        this.roomType = roomType;
-        this.bedCount = bedCount;
-        this.size = size;
-        this.tv = tv;
-        this.minibar = minibar;
-        this.gameConsole = gameConsole;
-        this.safe = safe;
-        this.projector = projector;
-        this.adultPrice = adultPrice;
-        this.childPrice = childPrice;
-        this.stock = stock;
-    }
-
-    // Constructor for UI interaction (with names)
-    public Room(int id, String hotelName, String season, String pensionType, RoomType roomType, int bedCount, int size, boolean tv, boolean minibar, boolean gameConsole, boolean safe, boolean projector, BigDecimal adultPrice, BigDecimal childPrice, int stock) {
-        this.id = id;
         this.hotelName = hotelName;
+        this.hotelCity = hotelCity;
         this.season = season;
         this.pensionType = pensionType;
         this.roomType = roomType;
@@ -71,7 +55,8 @@ public class Room {
         this.stock = stock;
     }
 
-    // Getters and setters for all fields
+    // Getters and setters
+
     public int getId() {
         return id;
     }
@@ -88,14 +73,6 @@ public class Room {
         this.hotelId = hotelId;
     }
 
-    public String getHotelName() {
-        return hotelName;
-    }
-
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
-    }
-
     public int getSeasonId() {
         return seasonId;
     }
@@ -104,20 +81,36 @@ public class Room {
         this.seasonId = seasonId;
     }
 
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
     public int getPensionTypeId() {
         return pensionTypeId;
     }
 
     public void setPensionTypeId(int pensionTypeId) {
         this.pensionTypeId = pensionTypeId;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public String getHotelCity() {
+        return hotelCity;
+    }
+
+    public void setHotelCity(String hotelCity) {
+        this.hotelCity = hotelCity;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
     }
 
     public String getPensionType() {

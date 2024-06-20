@@ -26,6 +26,10 @@ public class HotelManager {
         this.hotelDAO.addHotel(hotel);
     }
 
+    public Hotel getHotelByName(String hotelName) {
+         return hotelDAO.getHotelByName(hotelName);
+    }
+
     public void updateHotel(Hotel hotel) {
         this.hotelDAO.updateHotel(hotel);
     }

@@ -238,4 +238,31 @@ public class HotelDAO {
             e.printStackTrace();
         }
     }
+
+    public Hotel getHotelByName(String hotelName) {
+        String query = "SELECT * FROM public.hotel WHERE name = ?";
+        try (Connection conn = DatabaseManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, hotelName);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String city = rs.getString("city");
+                String region = rs.getString("region");
+                String address = rs.getString("address");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                int stars = rs.getInt("stars");
+
+                List<Facility> facilities = getFacilitiesByHotelId(id);
+                List<PensionType> pensionTypes = getPensionTypesByHotelId(id);
+
+                return new Hotel(id, name, city, region, address, email, phone, stars, facilities, pensionTypes);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

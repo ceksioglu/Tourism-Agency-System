@@ -27,15 +27,17 @@ public class AdminView extends Layout {
     private JComboBox<String> combo_role;
 
     private UserManager userManager;
+    private User currentUser;
     private DefaultTableModel tableModel;
 
     /**
      * AdminView sınıfı, kullanıcı yönetimi arayüzünü başlatır ve gerekli bileşenleri ayarlar.
      *
-     * @param username Giriş yapan kullanıcının kullanıcı adı
+     * @param user Giriş yapan kullanıcının kullanıcı adı
      */
-    public AdminView(String username) {
+    public AdminView(User user) {
         userManager = new UserManager();
+        this.currentUser = user;
         Helper.setupWindow(this, container, "Admin Panel", 800, 600);
 
         tableModel = new DefaultTableModel();
@@ -48,7 +50,7 @@ public class AdminView extends Layout {
         combo_role.addItem("ADMIN");
         combo_role.addItem("PERSONNEL");
 
-        label_welcome.setText("Welcome back, " + username + "!");
+        label_welcome.setText("Welcome back, " + currentUser.getUsername() + "!");
 
         loadUsers(null);
 
@@ -214,6 +216,9 @@ public class AdminView extends Layout {
      */
     public static void main(String[] args) {
         Helper.setNimbusLookAndFeel();
-        new AdminView("Admin");
+        User tempUser = new User();
+        tempUser.setUsername("admintest");
+        tempUser.setRole("ADMIN");
+        new AdminView(tempUser);
     }
 }

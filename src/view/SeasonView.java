@@ -7,8 +7,6 @@ import entity.Season;
 import entity.Hotel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 
 public class SeasonView extends Layout {
@@ -75,7 +73,7 @@ public class SeasonView extends Layout {
     }
 
     private void saveSeason() {
-        if (!Helper.checkAndShowEmptyFields(this, field_hotel_id, field_start_date, field_end_date)) {
+        if (Helper.checkAndShowEmptyFields(this, field_hotel_id, field_start_date, field_end_date)) {
             return;
         }
 

@@ -8,8 +8,6 @@ import entity.Room;
 import entity.Season;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -105,7 +103,7 @@ public class RoomView extends Layout {
     }
 
     private void saveRoom() {
-        if (!Helper.checkAndShowEmptyFields(this, field_hotel_name, field_city, field_start_date, field_end_date, field_bed, field_room_size, textField1, textField2, field_stock)) {
+        if (Helper.checkAndShowEmptyFields(this, field_hotel_name, field_city, field_start_date, field_end_date, field_bed, field_room_size, textField1, textField2, field_stock)) {
             return;
         }
 

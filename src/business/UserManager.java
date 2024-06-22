@@ -6,7 +6,7 @@ import entity.User;
 import java.util.List;
 
 public class UserManager {
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public UserManager() {
         this.userDAO = new UserDAO();

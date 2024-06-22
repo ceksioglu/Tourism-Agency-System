@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,8 +26,8 @@ public class UserView extends Layout {
     private JScrollPane scroll_hotel;
     private JPanel panel_room;
     private JLabel label_filters;
-    private JComboBox<Hotel.PensionType> combo_type_filter;
-    private JComboBox<Hotel.Facility> combo_facility_filter;
+    private JComboBox<String> combo_type_filter;
+    private JComboBox<String> combo_facility_filter;
     private JLabel label_city;
     private JLabel label_pension_type;
     private JLabel label_facility;
@@ -60,11 +61,12 @@ public class UserView extends Layout {
     private JTextField field_hotel_filter;
     private JLabel label_hotel_filter;
     private JButton button_refresh;
+    private JButton button_refresh_season;
 
-    private HotelManager hotelManager;
-    private RoomManager roomManager;
-    private ReservationManager reservationManager;
-    private SeasonManager seasonManager;
+    private final HotelManager hotelManager;
+    private final RoomManager roomManager;
+    private final ReservationManager reservationManager;
+    private final SeasonManager seasonManager;
     private DefaultTableModel hotelTableModel;
     private DefaultTableModel roomTableModel;
     private DefaultTableModel reservationTableModel;
@@ -159,11 +161,14 @@ public class UserView extends Layout {
 
         // Add action listener for refresh button
         button_refresh.addActionListener(e -> loadReservations());
+
+        // Add action listener for refresh season button
+        button_refresh_season.addActionListener(e -> loadSeasons());
     }
 
     private void initializeFilters() {
-        combo_type_filter.setModel(new DefaultComboBoxModel<>(Hotel.PensionType.values()));
-        combo_facility_filter.setModel(new DefaultComboBoxModel<>(Hotel.Facility.values()));
+        combo_type_filter.setModel(new DefaultComboBoxModel<>(getPensionTypesWithNone()));
+        combo_facility_filter.setModel(new DefaultComboBoxModel<>(getFacilitiesWithNone()));
 
         field_city_filter.setColumns(10); // Limit the size of the city filter text field
 
@@ -173,18 +178,38 @@ public class UserView extends Layout {
         button_room_clear.addActionListener(e -> clearRoomFilters());
     }
 
+    private String[] getPensionTypesWithNone() {
+        Hotel.PensionType[] pensionTypes = Hotel.PensionType.values();
+        List<String> typesWithNone = new ArrayList<>();
+        typesWithNone.add("None");
+        for (Hotel.PensionType type : pensionTypes) {
+            typesWithNone.add(type.name());
+        }
+        return typesWithNone.toArray(new String[0]);
+    }
+
+    private String[] getFacilitiesWithNone() {
+        Hotel.Facility[] facilities = Hotel.Facility.values();
+        List<String> facilitiesWithNone = new ArrayList<>();
+        facilitiesWithNone.add("None");
+        for (Hotel.Facility facility : facilities) {
+            facilitiesWithNone.add(facility.name());
+        }
+        return facilitiesWithNone.toArray(new String[0]);
+    }
+
     private void filterHotels() {
         String city = field_city_filter.getText().trim();
         String hotelName = field_hotel_filter.getText().trim();
-        Hotel.PensionType pensionType = (Hotel.PensionType) combo_type_filter.getSelectedItem();
-        Hotel.Facility facility = (Hotel.Facility) combo_facility_filter.getSelectedItem();
+        String pensionType = (String) combo_type_filter.getSelectedItem();
+        String facility = (String) combo_facility_filter.getSelectedItem();
 
         List<Hotel> filteredHotels = hotelManager.getAllHotels().stream()
                 .filter(hotel -> city.isEmpty() || hotel.getCity().equalsIgnoreCase(city))
                 .filter(hotel -> hotelName.isEmpty() || hotel.getName().equalsIgnoreCase(hotelName))
-                .filter(hotel -> pensionType == null || hotel.getPensionTypes().contains(pensionType))
-                .filter(hotel -> facility == null || hotel.getFacilities().contains(facility))
-                .collect(Collectors.toList());
+                .filter(hotel -> "None".equals(pensionType) || hotel.getPensionTypes().contains(Hotel.PensionType.valueOf(pensionType)))
+                .filter(hotel -> "None".equals(facility) || hotel.getFacilities().contains(Hotel.Facility.valueOf(facility)))
+                .toList();
 
         hotelTableModel.setRowCount(0); // Clear existing data
 
@@ -213,7 +238,7 @@ public class UserView extends Layout {
                 .filter(room -> city.isEmpty() || room.getHotelCity().equalsIgnoreCase(city))
                 .filter(room -> startDate.isEmpty() || room.getSeason().startsWith(startDate))
                 .filter(room -> endDate.isEmpty() || room.getSeason().endsWith(endDate))
-                .collect(Collectors.toList());
+                .toList();
 
         roomTableModel.setRowCount(0); // Clear existing data
 
@@ -275,7 +300,7 @@ public class UserView extends Layout {
     private void showRoomContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
         JMenuItem createItem = new JMenuItem("Create Room");
-        JMenuItem createReservationItem = new JMenuItem("Create New Reservation");
+        JMenuItem createReservationItem = new JMenuItem("Create New Reservation from Selected Room");
         JMenuItem updateItem = new JMenuItem("View / Edit Room");
         JMenuItem deleteItem = new JMenuItem("Delete Room");
 
@@ -299,16 +324,30 @@ public class UserView extends Layout {
             reservation.setHotelId(room.getHotelId());
             reservation.setHotelName(room.getHotelName());
 
+            // Debug: Print room details
+            System.out.println("Room ID: " + room.getId());
+            System.out.println("Hotel ID: " + room.getHotelId());
+            System.out.println("Hotel Name: " + room.getHotelName());
+            System.out.println("Season ID: " + room.getSeasonId());
+
             // Retrieve the season data
             Season season = seasonManager.getSeasonById(room.getSeasonId());
             if (season != null) {
                 reservation.setStartDate(season.getStartDate().toLocalDate());
                 reservation.setEndDate(season.getEndDate().toLocalDate());
+
+                // Debug: Print season details
+                System.out.println("Season Start Date: " + season.getStartDate());
+                System.out.println("Season End Date: " + season.getEndDate());
+            } else {
+                // Debug: Print if no season is found
+                System.out.println("No season found for Season ID: " + room.getSeasonId());
             }
 
             new ReservationView(currentUser, reservation);
         }
     }
+
 
     private void showReservationContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
@@ -332,17 +371,18 @@ public class UserView extends Layout {
         JMenuItem createItem = new JMenuItem("Create Season");
         JMenuItem updateItem = new JMenuItem("Update Season");
         JMenuItem deleteItem = new JMenuItem("Delete Season");
-        JMenuItem createRoomItem = new JMenuItem("Create New Room from Season"); // New menu item
+        JMenuItem createRoomItem = new JMenuItem("Create New Room from Season");
 
         createItem.addActionListener(evt -> openSeasonView(null));
         updateItem.addActionListener(evt -> openSeasonView(getSelectedSeason()));
         deleteItem.addActionListener(evt -> deleteSelectedSeason());
-        createRoomItem.addActionListener(evt -> openRoomViewFromSeason(getSelectedSeason())); // Add action listener
+        createRoomItem.addActionListener(evt -> openRoomViewFromSeason(getSelectedSeason()));
 
         contextMenu.add(createItem);
+        contextMenu.add(createRoomItem);
         contextMenu.add(updateItem);
         contextMenu.add(deleteItem);
-        contextMenu.add(createRoomItem); // Add the new menu item
+
 
         contextMenu.show(e.getComponent(), e.getX(), e.getY());
     }
@@ -463,12 +503,22 @@ public class UserView extends Layout {
         // Open SeasonView for creating/updating a season
         new SeasonView(season);
     }
+
+    // Methods to get selected entities from tables
+    private Hotel getSelectedHotel() {
+        int selectedRow = table_hotel.getSelectedRow();
+        if (selectedRow == -1) return null;
+        int hotelId = (int) table_hotel.getValueAt(selectedRow, 0);
+        return hotelManager.getHotelById(hotelId);
+    }
+
     private Room getSelectedRoom() {
         int selectedRow = table_room.getSelectedRow();
         if (selectedRow == -1) return null;
         int roomId = (int) table_room.getValueAt(selectedRow, 0);
         return roomManager.getRoomById(roomId);
     }
+
     private Reservation getSelectedReservation() {
         int selectedRow = table_reservation.getSelectedRow();
         if (selectedRow == -1) return null;
@@ -526,20 +576,13 @@ public class UserView extends Layout {
         }
     }
 
-    // Methods to get selected entities from tables
-    private Hotel getSelectedHotel() {
-        int selectedRow = table_hotel.getSelectedRow();
-        if (selectedRow == -1) return null;
-        int hotelId = (int) table_hotel.getValueAt(selectedRow, 0);
-        return hotelManager.getHotelById(hotelId);
-    }
-
     // Main method to launch the UserView
     public static void main(String[] args) {
         Helper.setNimbusLookAndFeel();
         User tempUser = new User();
         tempUser.setUsername("personnel2");
         tempUser.setRole("PERSONNEL");
+        tempUser.setId(4);
         new UserView(tempUser);
     }
 }

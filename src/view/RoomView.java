@@ -5,11 +5,13 @@ import business.RoomManager;
 import core.Helper;
 import entity.Hotel;
 import entity.Room;
+import entity.Season;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class RoomView extends Layout {
     private JPanel container;
@@ -25,7 +27,7 @@ public class RoomView extends Layout {
     private JLabel label_pension;
     private JLabel label_room_type;
     private JComboBox<Room.RoomType> combo_room_type;
-    private JComboBox<Hotel.PensionType> combo_pension_type;
+    private JComboBox<String> combo_pension_type;
     private JLabel label_bed;
     private JLabel label_room_size;
     private JTextField field_bed;
@@ -69,7 +71,16 @@ public class RoomView extends Layout {
 
     private void initializeComboBoxes() {
         combo_room_type.setModel(new DefaultComboBoxModel<>(Room.RoomType.values()));
-        combo_pension_type.setModel(new DefaultComboBoxModel<>(Hotel.PensionType.values()));
+        combo_pension_type.setModel(new DefaultComboBoxModel<>(getPensionTypes()));
+    }
+
+    private String[] getPensionTypes() {
+        Hotel.PensionType[] pensionTypes = Hotel.PensionType.values();
+        String[] pensionTypeNames = new String[pensionTypes.length];
+        for (int i = 0; i < pensionTypes.length; i++) {
+            pensionTypeNames[i] = pensionTypes[i].name();
+        }
+        return pensionTypeNames;
     }
 
     private void populateRoomData() {
@@ -106,9 +117,19 @@ public class RoomView extends Layout {
             return;
         }
 
-        room.setHotelId(hotel.getId());
-        room.setSeasonId(1); // Set a valid seasonId, e.g., default to 1 or fetch it from the DB
-        room.setPensionTypeId(1); // Set a valid pensionTypeId, e.g., default to 1 or fetch it from the DB
+        String selectedPensionType = (String) combo_pension_type.getSelectedItem();
+        List<Hotel.PensionType> validPensionTypes = hotelManager.getPensionTypesByHotelId(hotel.getId());
+
+        if (!isValidPensionType(selectedPensionType, validPensionTypes)) {
+            Helper.showMessage(this, "Invalid pension type for the selected hotel. Please select a valid pension type.");
+            return;
+        }
+
+        int hotelId = hotel.getId();
+        room.setHotelId(hotelId);
+        room.setSeasonId(getSeasonIdByDate(field_start_date.getText(), field_end_date.getText(), hotelId));
+        room.setPensionType(selectedPensionType);
+        room.setPensionTypeId(getPensionTypeIdByName(hotelId, selectedPensionType));
 
         room.setRoomType((Room.RoomType) combo_room_type.getSelectedItem());
         room.setBedCount(Integer.parseInt(field_bed.getText()));
@@ -128,5 +149,36 @@ public class RoomView extends Layout {
             roomManager.updateRoom(room);
         }
         dispose();
+    }
+
+    private boolean isValidPensionType(String selectedPensionType, List<Hotel.PensionType> validPensionTypes) {
+        for (Hotel.PensionType type : validPensionTypes) {
+            if (type.name().equals(selectedPensionType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int getSeasonIdByDate(String startDate, String endDate, int hotelId) {
+        List<Season> seasons = hotelManager.getSeasonsByHotelId(hotelId);
+
+        for (Season season : seasons) {
+            if (season.getStartDate().toString().equals(startDate) && season.getEndDate().toString().equals(endDate)) {
+                return season.getId();
+            }
+        }
+        return 1; // Default to 1 or handle as appropriate
+    }
+
+    private int getPensionTypeIdByName(int hotelId, String pensionTypeName) {
+        List<Hotel.PensionType> pensionTypes = hotelManager.getPensionTypesByHotelId(hotelId);
+
+        for (Hotel.PensionType type : pensionTypes) {
+            if (type.name().equals(pensionTypeName)) {
+                return type.ordinal() + 1; // Assume ordinal + 1 maps to actual DB ID
+            }
+        }
+        return 1; // Default to 1 or handle as appropriate
     }
 }

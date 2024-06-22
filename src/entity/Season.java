@@ -9,6 +9,8 @@ public class Season {
     private Date startDate;
     private Date endDate;
 
+    public Season() {}
+
     // Constructor with hotelName
     public Season(int id, int hotelId, String hotelName, Date startDate, Date endDate) {
         this.id = id;

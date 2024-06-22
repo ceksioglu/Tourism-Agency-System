@@ -153,24 +153,24 @@ public class RoomDAO {
     public void addRoom(Room room) {
         String query = "INSERT INTO public.room (hotel_id, season_id, pension_type_id, room_type, bed_count, size, tv, minibar, game_console, safe, projector, adult_price, child_price, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+             PreparedStatement ps = conn.prepareStatement(query)) {
 
-            pstmt.setInt(1, room.getHotelId());
-            pstmt.setInt(2, room.getSeasonId());
-            pstmt.setInt(3, room.getPensionTypeId());
-            pstmt.setString(4, room.getRoomType().name());
-            pstmt.setInt(5, room.getBedCount());
-            pstmt.setInt(6, room.getSize());
-            pstmt.setBoolean(7, room.isTv());
-            pstmt.setBoolean(8, room.isMinibar());
-            pstmt.setBoolean(9, room.isGameConsole());
-            pstmt.setBoolean(10, room.isSafe());
-            pstmt.setBoolean(11, room.isProjector());
-            pstmt.setBigDecimal(12, room.getAdultPrice());
-            pstmt.setBigDecimal(13, room.getChildPrice());
-            pstmt.setInt(14, room.getStock());
+            ps.setInt(1, room.getHotelId());
+            ps.setInt(2, room.getSeasonId());
+            ps.setInt(3, room.getPensionTypeId());
+            ps.setString(4, room.getRoomType().name());
+            ps.setInt(5, room.getBedCount());
+            ps.setInt(6, room.getSize());
+            ps.setBoolean(7, room.isTv());
+            ps.setBoolean(8, room.isMinibar());
+            ps.setBoolean(9, room.isGameConsole());
+            ps.setBoolean(10, room.isSafe());
+            ps.setBoolean(11, room.isProjector());
+            ps.setBigDecimal(12, room.getAdultPrice());
+            ps.setBigDecimal(13, room.getChildPrice());
+            ps.setInt(14, room.getStock());
 
-            pstmt.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -180,25 +180,25 @@ public class RoomDAO {
     public void updateRoom(Room room) {
         String query = "UPDATE public.room SET hotel_id = ?, season_id = ?, pension_type_id = ?, room_type = ?, bed_count = ?, size = ?, tv = ?, minibar = ?, game_console = ?, safe = ?, projector = ?, adult_price = ?, child_price = ?, stock = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+             PreparedStatement ps = conn.prepareStatement(query)) {
 
-            pstmt.setInt(1, room.getHotelId());
-            pstmt.setInt(2, room.getSeasonId());
-            pstmt.setInt(3, room.getPensionTypeId());
-            pstmt.setString(4, room.getRoomType().name());
-            pstmt.setInt(5, room.getBedCount());
-            pstmt.setInt(6, room.getSize());
-            pstmt.setBoolean(7, room.isTv());
-            pstmt.setBoolean(8, room.isMinibar());
-            pstmt.setBoolean(9, room.isGameConsole());
-            pstmt.setBoolean(10, room.isSafe());
-            pstmt.setBoolean(11, room.isProjector());
-            pstmt.setBigDecimal(12, room.getAdultPrice());
-            pstmt.setBigDecimal(13, room.getChildPrice());
-            pstmt.setInt(14, room.getStock());
-            pstmt.setInt(15, room.getId());
+            ps.setInt(1, room.getHotelId());
+            ps.setInt(2, room.getSeasonId());
+            ps.setInt(3, room.getPensionTypeId());
+            ps.setString(4, room.getRoomType().name());
+            ps.setInt(5, room.getBedCount());
+            ps.setInt(6, room.getSize());
+            ps.setBoolean(7, room.isTv());
+            ps.setBoolean(8, room.isMinibar());
+            ps.setBoolean(9, room.isGameConsole());
+            ps.setBoolean(10, room.isSafe());
+            ps.setBoolean(11, room.isProjector());
+            ps.setBigDecimal(12, room.getAdultPrice());
+            ps.setBigDecimal(13, room.getChildPrice());
+            ps.setInt(14, room.getStock());
+            ps.setInt(15, room.getId());
 
-            pstmt.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -208,9 +208,9 @@ public class RoomDAO {
     public void deleteRoom(int id) {
         String query = "DELETE FROM public.room WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -220,11 +220,11 @@ public class RoomDAO {
     public int getBookedRoomCount(int roomId, LocalDate startDate, LocalDate endDate) {
         String query = "SELECT COUNT(*) AS booked_count FROM public.reservation WHERE room_id = ? AND (start_date <= ? AND end_date >= ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, roomId);
-            pstmt.setDate(2, Date.valueOf(endDate));
-            pstmt.setDate(3, Date.valueOf(startDate));
-            ResultSet rs = pstmt.executeQuery();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, roomId);
+            ps.setDate(2, Date.valueOf(endDate));
+            ps.setDate(3, Date.valueOf(startDate));
+            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt("booked_count");
             }

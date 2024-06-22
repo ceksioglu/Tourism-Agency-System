@@ -1,16 +1,24 @@
 import core.Helper;
+import entity.User;
 import view.AdminView;
 import view.LoginView;
 
 public class App {
     public static void main(String[] args) {
-        // Nimbus temasını ayarla
+        // Set Nimbus theme
         Helper.setNimbusLookAndFeel();
 
-        // LoginView'ı başlat
+        // Start the app
         javax.swing.SwingUtilities.invokeLater(() -> {
             new LoginView();
-            //new AdminView();
+            /*
+            User tempUser = new User();
+            tempUser.setUsername("admintest");
+            tempUser.setRole("ADMIN");
+            tempUser.setId(11);
+            tempUser.setPassword("1234");
+            new AdminView(tempUser);
+            */
         });
     }
 }

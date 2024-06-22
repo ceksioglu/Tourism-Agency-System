@@ -4,11 +4,12 @@ import dao.HotelDAO;
 import entity.Hotel;
 import entity.Hotel.Facility;
 import entity.Hotel.PensionType;
+import entity.Season;
 
 import java.util.List;
 
 public class HotelManager {
-    private HotelDAO hotelDAO;
+    private final HotelDAO hotelDAO;
 
     public HotelManager() {
         this.hotelDAO = new HotelDAO();
@@ -22,12 +23,12 @@ public class HotelManager {
         return this.hotelDAO.getHotelById(id);
     }
 
-    public void addHotel(Hotel hotel) {
-        this.hotelDAO.addHotel(hotel);
+    public Hotel getHotelByName(String hotelName) {
+        return hotelDAO.getHotelByName(hotelName);
     }
 
-    public Hotel getHotelByName(String hotelName) {
-         return hotelDAO.getHotelByName(hotelName);
+    public int addHotel(Hotel hotel) {
+        return this.hotelDAO.addHotel(hotel);
     }
 
     public void updateHotel(Hotel hotel) {
@@ -62,5 +63,10 @@ public class HotelManager {
 
     public void deletePensionTypesByHotelId(int hotelId) {
         this.hotelDAO.deletePensionTypesByHotelId(hotelId);
+    }
+
+    // Methods for managing seasons
+    public List<Season> getSeasonsByHotelId(int hotelId) {
+        return this.hotelDAO.getSeasonsByHotelId(hotelId);
     }
 }

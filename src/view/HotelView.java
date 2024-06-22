@@ -7,8 +7,6 @@ import entity.Hotel.Facility;
 import entity.Hotel.PensionType;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -81,8 +79,11 @@ public class HotelView extends JFrame {
         field_phone.setText(currentHotel.getPhone());
         field_stars.setText(String.valueOf(currentHotel.getStars()));
 
-        list_pension.setSelectedIndices(getSelectedIndices(list_pension, currentHotel.getPensionTypes()));
-        list_facilities.setSelectedIndices(getSelectedIndices(list_facilities, currentHotel.getFacilities()));
+        List<Facility> facilities = hotelManager.getFacilitiesByHotelId(currentHotel.getId());
+        List<PensionType> pensionTypes = hotelManager.getPensionTypesByHotelId(currentHotel.getId());
+
+        list_pension.setSelectedIndices(getSelectedIndices(list_pension, pensionTypes));
+        list_facilities.setSelectedIndices(getSelectedIndices(list_facilities, facilities));
     }
 
     /**
@@ -116,7 +117,9 @@ public class HotelView extends JFrame {
 
         if (currentHotel == null) {
             currentHotel = new Hotel(0, name, city, region, address, email, phone, stars, selectedFacilities, selectedPensionTypes);
-            hotelManager.addHotel(currentHotel);
+            int hotelId = hotelManager.addHotel(currentHotel);
+            hotelManager.addFacilities(hotelId, selectedFacilities);
+            hotelManager.addPensionTypes(hotelId, selectedPensionTypes);
         } else {
             currentHotel.setName(name);
             currentHotel.setCity(city);

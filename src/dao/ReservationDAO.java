@@ -99,11 +99,21 @@ public class ReservationDAO {
             pstmt.setString(10, reservation.getGuestIdentityNumber());
             pstmt.setInt(11, reservation.getHotelId());
             pstmt.setString(12, reservation.getGuestPhone());
-            pstmt.executeUpdate();
+
+            System.out.println("Executing query: " + query);
+            System.out.println("With parameters: " + reservation);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            System.out.println("Rows affected by insert: " + affectedRows);
 
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
-                reservation.setId(rs.getInt(1));
+                int generatedId = rs.getInt(1);
+                reservation.setId(generatedId);
+                System.out.println("Generated Reservation ID: " + generatedId);
+            } else {
+                System.out.println("No generated ID returned after inserting reservation.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,7 +140,12 @@ public class ReservationDAO {
             pstmt.setInt(11, reservation.getHotelId());
             pstmt.setString(12, reservation.getGuestPhone());
             pstmt.setInt(13, reservation.getId());
-            pstmt.executeUpdate();
+
+            System.out.println("Executing update query: " + query);
+            System.out.println("With parameters: " + reservation);
+
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("Rows affected by update: " + rowsAffected);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -143,7 +158,12 @@ public class ReservationDAO {
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+
+            System.out.println("Executing delete query: " + query);
+            System.out.println("With ID: " + id);
+
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("Rows affected by delete: " + rowsAffected);
         } catch (SQLException e) {
             e.printStackTrace();
         }

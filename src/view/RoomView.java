@@ -5,11 +5,13 @@ import business.RoomManager;
 import core.Helper;
 import entity.Hotel;
 import entity.Room;
+import entity.Season;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class RoomView extends Layout {
     private JPanel container;
@@ -25,7 +27,7 @@ public class RoomView extends Layout {
     private JLabel label_pension;
     private JLabel label_room_type;
     private JComboBox<Room.RoomType> combo_room_type;
-    private JComboBox<Hotel.PensionType> combo_pension_type;
+    private JComboBox<String> combo_pension_type;
     private JLabel label_bed;
     private JLabel label_room_size;
     private JTextField field_bed;
@@ -61,12 +63,7 @@ public class RoomView extends Layout {
 
         button_exit.addActionListener(e -> dispose());
 
-        button_save.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveRoom();
-            }
-        });
+        button_save.addActionListener(e -> saveRoom());
 
         initializeComboBoxes();
         populateRoomData();
@@ -74,29 +71,30 @@ public class RoomView extends Layout {
 
     private void initializeComboBoxes() {
         combo_room_type.setModel(new DefaultComboBoxModel<>(Room.RoomType.values()));
-        combo_pension_type.setModel(new DefaultComboBoxModel<>(Hotel.PensionType.values()));
+        combo_pension_type.setModel(new DefaultComboBoxModel<>(getPensionTypes()));
+    }
+
+    private String[] getPensionTypes() {
+        Hotel.PensionType[] pensionTypes = Hotel.PensionType.values();
+        String[] pensionTypeNames = new String[pensionTypes.length];
+        for (int i = 0; i < pensionTypes.length; i++) {
+            pensionTypeNames[i] = pensionTypes[i].name();
+        }
+        return pensionTypeNames;
     }
 
     private void populateRoomData() {
-        if (room.getId() != 0) {
+        if (room.getId() != 0 || room.getHotelId() != 0) {
             field_hotel_name.setText(room.getHotelName());
-            field_city.setText(room.getHotelCity());
-
-            String[] seasonDates = room.getSeason().split(" to ");
-            if (seasonDates.length == 2) {
-                field_start_date.setText(seasonDates[0]);
-                field_end_date.setText(seasonDates[1]);
-            } else {
-                field_start_date.setText("");
-                field_end_date.setText("");
-            }
-
+            field_city.setText(room.getHotelCity()); // Set the city name
+            field_start_date.setText(room.getSeason().split(" to ")[0]);
+            field_end_date.setText(room.getSeason().split(" to ")[1]);
             combo_pension_type.setSelectedItem(room.getPensionType());
             combo_room_type.setSelectedItem(room.getRoomType());
             field_bed.setText(String.valueOf(room.getBedCount()));
             field_room_size.setText(String.valueOf(room.getSize()));
-            textField1.setText(room.getAdultPrice().toString());
-            textField2.setText(room.getChildPrice().toString());
+            textField1.setText(room.getAdultPrice() != null ? room.getAdultPrice().toString() : "");
+            textField2.setText(room.getChildPrice() != null ? room.getChildPrice().toString() : "");
             field_stock.setText(String.valueOf(room.getStock()));
             checkbox_tv.setSelected(room.isTv());
             checkbox_minibar.setSelected(room.isMinibar());
@@ -119,9 +117,19 @@ public class RoomView extends Layout {
             return;
         }
 
-        room.setHotelId(hotel.getId());
-        room.setSeasonId(1); // Set a valid seasonId, e.g., default to 1 or fetch it from the DB
-        room.setPensionTypeId(1); // Set a valid pensionTypeId, e.g., default to 1 or fetch it from the DB
+        String selectedPensionType = (String) combo_pension_type.getSelectedItem();
+        List<Hotel.PensionType> validPensionTypes = hotelManager.getPensionTypesByHotelId(hotel.getId());
+
+        if (!isValidPensionType(selectedPensionType, validPensionTypes)) {
+            Helper.showMessage(this, "Invalid pension type for the selected hotel. Please select a valid pension type.");
+            return;
+        }
+
+        int hotelId = hotel.getId();
+        room.setHotelId(hotelId);
+        room.setSeasonId(getSeasonIdByDate(field_start_date.getText(), field_end_date.getText(), hotelId));
+        room.setPensionType(selectedPensionType);
+        room.setPensionTypeId(getPensionTypeIdByName(hotelId, selectedPensionType));
 
         room.setRoomType((Room.RoomType) combo_room_type.getSelectedItem());
         room.setBedCount(Integer.parseInt(field_bed.getText()));
@@ -141,5 +149,36 @@ public class RoomView extends Layout {
             roomManager.updateRoom(room);
         }
         dispose();
+    }
+
+    private boolean isValidPensionType(String selectedPensionType, List<Hotel.PensionType> validPensionTypes) {
+        for (Hotel.PensionType type : validPensionTypes) {
+            if (type.name().equals(selectedPensionType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int getSeasonIdByDate(String startDate, String endDate, int hotelId) {
+        List<Season> seasons = hotelManager.getSeasonsByHotelId(hotelId);
+
+        for (Season season : seasons) {
+            if (season.getStartDate().toString().equals(startDate) && season.getEndDate().toString().equals(endDate)) {
+                return season.getId();
+            }
+        }
+        return 1; // Default to 1 or handle as appropriate
+    }
+
+    private int getPensionTypeIdByName(int hotelId, String pensionTypeName) {
+        List<Hotel.PensionType> pensionTypes = hotelManager.getPensionTypesByHotelId(hotelId);
+
+        for (Hotel.PensionType type : pensionTypes) {
+            if (type.name().equals(pensionTypeName)) {
+                return type.ordinal() + 1; // Assume ordinal + 1 maps to actual DB ID
+            }
+        }
+        return 1; // Default to 1 or handle as appropriate
     }
 }

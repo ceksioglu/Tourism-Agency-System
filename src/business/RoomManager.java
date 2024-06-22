@@ -3,7 +3,6 @@ package business;
 import dao.RoomDAO;
 import entity.Room;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class RoomManager {
@@ -21,14 +20,13 @@ public class RoomManager {
         return roomDAO.getRoomsByHotelId(hotelId);
     }
 
-    public boolean checkRoomAvailability(int roomId, LocalDate startDate, LocalDate endDate) {
+    public boolean checkBedCount(int roomId, int adultCount, int childCount) {
         Room room = roomDAO.getRoomById(roomId);
         if (room == null) {
             return false;
         }
-
-        int bookedCount = roomDAO.getBookedRoomCount(roomId, startDate, endDate);
-        return room.getStock() > bookedCount;
+        int totalGuests = adultCount + childCount;
+        return room.getBedCount() >= totalGuests;
     }
 
     public void decreaseRoomStock(int roomId, int amount) {

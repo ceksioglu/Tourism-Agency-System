@@ -6,7 +6,7 @@ import entity.Season;
 import java.util.List;
 
 public class SeasonManager {
-    private SeasonDAO seasonDAO;
+    private final SeasonDAO seasonDAO;
 
     public SeasonManager() {
         seasonDAO = new SeasonDAO();

@@ -3,6 +3,7 @@ package dao;
 import entity.Hotel;
 import entity.Hotel.Facility;
 import entity.Hotel.PensionType;
+import entity.Season;
 import core.DatabaseManager;
 
 import java.sql.*;
@@ -106,8 +107,40 @@ public class HotelDAO {
         return pensionTypes;
     }
 
+    // Fetch seasons by hotel ID
+    public List<Season> getSeasonsByHotelId(int hotelId) {
+        List<Season> seasons = new ArrayList<>();
+        String query = "SELECT public.season.id, public.season.hotel_id, public.season.start_date, public.season.end_date, public.hotel.name AS hotel_name " +
+                "FROM public.season " +
+                "JOIN public.hotel ON public.season.hotel_id = public.hotel.id " +
+                "WHERE public.season.hotel_id = ?";
+
+        try (Connection conn = DatabaseManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, hotelId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int fetchedHotelId = rs.getInt("hotel_id");
+                Date startDate = rs.getDate("start_date");
+                Date endDate = rs.getDate("end_date");
+                String hotelName = rs.getString("hotel_name");
+
+                Season season = new Season(id, fetchedHotelId, hotelName, startDate, endDate);
+                seasons.add(season);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seasons;
+    }
+
+
+
+
     // Add a new hotel
-    public void addHotel(Hotel hotel) {
+    public int addHotel(Hotel hotel) {
         String query = "INSERT INTO public.hotel (name, city, region, address, email, phone, stars) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseManager.getInstance().getConnection();
@@ -127,10 +160,12 @@ public class HotelDAO {
                 int hotelId = rs.getInt(1);
                 addFacilities(hotelId, hotel.getFacilities());
                 addPensionTypes(hotelId, hotel.getPensionTypes());
+                return hotelId;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     // Add facilities for a hotel

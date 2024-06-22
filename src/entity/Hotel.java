@@ -2,6 +2,10 @@ package entity;
 
 import java.util.List;
 
+/**
+ * Represents a hotel with various attributes such as name, city, region, address, email, phone, stars, facilities, and pension types.
+ */
+
 public class Hotel {
     private int id;
     private String name;
@@ -34,7 +38,21 @@ public class Hotel {
         NO_ALCOHOL_FULL_CREDIT
     }
 
-    // Constructors
+    /**
+     * Constructs a new Hotel object.
+     *
+     * @param id The unique identifier for the hotel.
+     * @param name The name of the hotel.
+     * @param city The city where the hotel is located.
+     * @param region The region where the hotel is located.
+     * @param address The address of the hotel.
+     * @param email The email contact of the hotel.
+     * @param phone The phone contact of the hotel.
+     * @param stars The star rating of the hotel.
+     * @param facilities The list of facilities offered by the hotel.
+     * @param pensionTypes The list of pension types offered by the hotel.
+     */
+
     public Hotel(int id, String name, String city, String region, String address, String email, String phone, int stars, List<Facility> facilities, List<PensionType> pensionTypes) {
         this.id = id;
         this.name = name;

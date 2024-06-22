@@ -2,6 +2,10 @@ package entity;
 
 import java.math.BigDecimal;
 
+/**
+ * Represents a room in a hotel.
+ */
+
 public class Room {
 
     public enum RoomType {
@@ -31,7 +35,32 @@ public class Room {
     private BigDecimal childPrice;
     private int stock;
 
-    public Room() {}
+    public Room() {
+    }
+
+    /**
+     * Constructs a new Room object with the specified parameters.
+     *
+     * @param id            the unique identifier for the room
+     * @param hotelId       the unique identifier for the hotel
+     * @param seasonId      the unique identifier for the season
+     * @param pensionTypeId the unique identifier for the pension type
+     * @param hotelName     the name of the hotel
+     * @param hotelCity     the city where the hotel is located
+     * @param season        the season for the room
+     * @param pensionType   the type of pension for the room
+     * @param roomType      the type of the room
+     * @param bedCount      the number of beds in the room
+     * @param size          the size of the room
+     * @param tv            whether the room has a TV
+     * @param minibar       whether the room has a minibar
+     * @param gameConsole   whether the room has a game console
+     * @param safe          whether the room has a safe
+     * @param projector     whether the room has a projector
+     * @param adultPrice    the price for adults
+     * @param childPrice    the price for children
+     * @param stock         the stock of available rooms
+     */
 
     public Room(int id, int hotelId, int seasonId, int pensionTypeId, String hotelName, String hotelCity, String season, String pensionType, RoomType roomType, int bedCount, int size, boolean tv, boolean minibar, boolean gameConsole, boolean safe, boolean projector, BigDecimal adultPrice, BigDecimal childPrice, int stock) {
         this.id = id;

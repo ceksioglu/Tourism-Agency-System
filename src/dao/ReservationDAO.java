@@ -7,9 +7,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) class for managing reservation data.
+ */
 public class ReservationDAO {
 
-    // Fetch all reservations with hotel names
+    /**
+     * Fetches all reservations along with their hotel names.
+     *
+     * @return a list of reservations with hotel names
+     */
     public List<Reservation> getAllReservationsWithHotelName() {
         List<Reservation> reservations = new ArrayList<>();
         String query = "SELECT public.reservation.id, public.reservation.room_id, public.reservation.user_id, public.reservation.start_date, public.reservation.end_date, public.reservation.adult_count, public.reservation.child_count, public.reservation.total_price, public.reservation.guest_name, public.reservation.guest_surname, public.reservation.guest_identity_number, public.reservation.hotel_id, public.reservation.guest_phone, public.hotel.name AS hotel_name " +
@@ -45,7 +52,12 @@ public class ReservationDAO {
         return reservations;
     }
 
-    // Fetch a reservation by ID
+    /**
+     * Fetches a reservation by its unique identifier.
+     *
+     * @param id the unique identifier of the reservation
+     * @return the reservation with the specified id, or null if not found
+     */
     public Reservation getReservationById(int id) {
         String query = "SELECT public.reservation.id, public.reservation.room_id, public.reservation.user_id, public.reservation.start_date, public.reservation.end_date, public.reservation.adult_count, public.reservation.child_count, public.reservation.total_price, public.reservation.guest_name, public.reservation.guest_surname, public.reservation.guest_identity_number, public.reservation.hotel_id, public.reservation.guest_phone, public.hotel.name AS hotel_name " +
                 "FROM public.reservation " +
@@ -80,7 +92,11 @@ public class ReservationDAO {
         return null;
     }
 
-    // Add a new reservation
+    /**
+     * Adds a new reservation to the database.
+     *
+     * @param reservation the reservation to add
+     */
     public void addReservation(Reservation reservation) {
         String query = "INSERT INTO public.reservation (room_id, user_id, start_date, end_date, adult_count, child_count, total_price, guest_name, guest_surname, guest_identity_number, hotel_id, guest_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -120,7 +136,11 @@ public class ReservationDAO {
         }
     }
 
-    // Update a reservation
+    /**
+     * Updates an existing reservation in the database.
+     *
+     * @param reservation the reservation to update
+     */
     public void updateReservation(Reservation reservation) {
         String query = "UPDATE public.reservation SET room_id = ?, user_id = ?, start_date = ?, end_date = ?, adult_count = ?, child_count = ?, total_price = ?, guest_name = ?, guest_surname = ?, guest_identity_number = ?, hotel_id = ?, guest_phone = ? WHERE id = ?";
 
@@ -151,7 +171,11 @@ public class ReservationDAO {
         }
     }
 
-    // Delete a reservation
+    /**
+     * Deletes a reservation from the database.
+     *
+     * @param id the unique identifier of the reservation to delete
+     */
     public void deleteReservation(int id) {
         String query = "DELETE FROM public.reservation WHERE id = ?";
 

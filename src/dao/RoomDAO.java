@@ -8,9 +8,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) class for managing room data.
+ */
 public class RoomDAO {
 
-    // Get all rooms
+    /**
+     * Retrieves all rooms from the database.
+     *
+     * @return a list of all rooms
+     */
     public List<Room> getAllRooms() {
         List<Room> rooms = new ArrayList<>();
         String query = "SELECT public.room.id, public.room.hotel_id, public.room.season_id, public.room.pension_type_id, public.room.room_type, " +
@@ -58,7 +65,12 @@ public class RoomDAO {
         return rooms;
     }
 
-    // Get room by ID
+    /**
+     * Retrieves a room by its unique identifier.
+     *
+     * @param id the unique identifier of the room
+     * @return the room with the specified id, or null if not found
+     */
     public Room getRoomById(int id) {
         String query = "SELECT public.room.*, public.hotel.name AS hotel_name, public.hotel.city AS hotel_city, " +
                 "public.season.start_date || ' to ' || public.season.end_date AS season, public.hotel_pension_type.type AS pension_type " +
@@ -100,7 +112,12 @@ public class RoomDAO {
         return null;
     }
 
-    // Get rooms by hotel ID
+    /**
+     * Retrieves all rooms for a specified hotel.
+     *
+     * @param hotelId the unique identifier of the hotel
+     * @return a list of rooms associated with the specified hotel
+     */
     public List<Room> getRoomsByHotelId(int hotelId) {
         List<Room> rooms = new ArrayList<>();
         String query = "SELECT public.room.id, public.room.hotel_id, public.room.season_id, public.room.pension_type_id, public.room.room_type, " +
@@ -149,7 +166,11 @@ public class RoomDAO {
         return rooms;
     }
 
-    // Add a room
+    /**
+     * Adds a new room to the database.
+     *
+     * @param room the room to add
+     */
     public void addRoom(Room room) {
         String query = "INSERT INTO public.room (hotel_id, season_id, pension_type_id, room_type, bed_count, size, tv, minibar, game_console, safe, projector, adult_price, child_price, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
@@ -176,7 +197,11 @@ public class RoomDAO {
         }
     }
 
-    // Update a room
+    /**
+     * Updates an existing room in the database.
+     *
+     * @param room the room to update
+     */
     public void updateRoom(Room room) {
         String query = "UPDATE public.room SET hotel_id = ?, season_id = ?, pension_type_id = ?, room_type = ?, bed_count = ?, size = ?, tv = ?, minibar = ?, game_console = ?, safe = ?, projector = ?, adult_price = ?, child_price = ?, stock = ? WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
@@ -204,7 +229,11 @@ public class RoomDAO {
         }
     }
 
-    // Delete a room
+    /**
+     * Deletes a room from the database.
+     *
+     * @param id the unique identifier of the room to delete
+     */
     public void deleteRoom(int id) {
         String query = "DELETE FROM public.room WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
@@ -216,7 +245,14 @@ public class RoomDAO {
         }
     }
 
-    // Get booked room count
+    /**
+     * Retrieves the count of booked rooms for a specific room and date range.
+     *
+     * @param roomId    the unique identifier of the room
+     * @param startDate the start date of the booking period
+     * @param endDate   the end date of the booking period
+     * @return the count of booked rooms
+     */
     public int getBookedRoomCount(int roomId, LocalDate startDate, LocalDate endDate) {
         String query = "SELECT COUNT(*) AS booked_count FROM public.reservation WHERE room_id = ? AND (start_date <= ? AND end_date >= ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();

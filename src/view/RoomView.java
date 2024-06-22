@@ -11,6 +11,10 @@ import javax.swing.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * The RoomView class provides an interface for managing rooms.
+ * Users can create, update, and view room details.
+ */
 public class RoomView extends Layout {
     private JPanel container;
     private JLabel label_banner;
@@ -45,11 +49,16 @@ public class RoomView extends Layout {
     private JTextField field_stock;
     private JLabel label_stock;
 
-    private RoomManager roomManager;
-    private HotelManager hotelManager;
+    private final RoomManager roomManager;
+    private final HotelManager hotelManager;
 
     private Room room;
 
+    /**
+     * Constructor for creating a RoomView with a specified room.
+     *
+     * @param room The room to be managed
+     */
     public RoomView(Room room) {
         this.room = room != null ? room : new Room();
         this.roomManager = new RoomManager();
@@ -67,11 +76,19 @@ public class RoomView extends Layout {
         populateRoomData();
     }
 
+    /**
+     * Initializes the combo boxes with room types and pension types.
+     */
     private void initializeComboBoxes() {
         combo_room_type.setModel(new DefaultComboBoxModel<>(Room.RoomType.values()));
         combo_pension_type.setModel(new DefaultComboBoxModel<>(getPensionTypes()));
     }
 
+    /**
+     * Retrieves the pension types as an array of strings.
+     *
+     * @return An array of pension type names
+     */
     private String[] getPensionTypes() {
         Hotel.PensionType[] pensionTypes = Hotel.PensionType.values();
         String[] pensionTypeNames = new String[pensionTypes.length];
@@ -81,6 +98,9 @@ public class RoomView extends Layout {
         return pensionTypeNames;
     }
 
+    /**
+     * Populates the room data fields with the information from the given room.
+     */
     private void populateRoomData() {
         if (room.getId() != 0 || room.getHotelId() != 0) {
             field_hotel_name.setText(room.getHotelName());
@@ -102,6 +122,9 @@ public class RoomView extends Layout {
         }
     }
 
+    /**
+     * Saves the room. If it is a new room, it will be created. Otherwise, it will be updated.
+     */
     private void saveRoom() {
         if (Helper.checkAndShowEmptyFields(this, field_hotel_name, field_city, field_start_date, field_end_date, field_bed, field_room_size, textField1, textField2, field_stock)) {
             return;
@@ -149,6 +172,13 @@ public class RoomView extends Layout {
         dispose();
     }
 
+    /**
+     * Checks if the selected pension type is valid for the given hotel.
+     *
+     * @param selectedPensionType The selected pension type
+     * @param validPensionTypes   The list of valid pension types for the hotel
+     * @return True if the selected pension type is valid, otherwise false
+     */
     private boolean isValidPensionType(String selectedPensionType, List<Hotel.PensionType> validPensionTypes) {
         for (Hotel.PensionType type : validPensionTypes) {
             if (type.name().equals(selectedPensionType)) {
@@ -158,6 +188,14 @@ public class RoomView extends Layout {
         return false;
     }
 
+    /**
+     * Retrieves the season ID based on the start and end dates for a given hotel.
+     *
+     * @param startDate The start date of the season
+     * @param endDate   The end date of the season
+     * @param hotelId   The ID of the hotel
+     * @return The season ID
+     */
     private int getSeasonIdByDate(String startDate, String endDate, int hotelId) {
         List<Season> seasons = hotelManager.getSeasonsByHotelId(hotelId);
 
@@ -166,9 +204,16 @@ public class RoomView extends Layout {
                 return season.getId();
             }
         }
-        return 1; // Default to 1 or handle as appropriate
+        return 1; // Default to 1
     }
 
+    /**
+     * Retrieves the pension type ID based on the name for a given hotel.
+     *
+     * @param hotelId         The ID of the hotel
+     * @param pensionTypeName The name of the pension type
+     * @return The pension type ID
+     */
     private int getPensionTypeIdByName(int hotelId, String pensionTypeName) {
         List<Hotel.PensionType> pensionTypes = hotelManager.getPensionTypesByHotelId(hotelId);
 
@@ -177,6 +222,6 @@ public class RoomView extends Layout {
                 return type.ordinal() + 1; // Assume ordinal + 1 maps to actual DB ID
             }
         }
-        return 1; // Default to 1 or handle as appropriate
+        return 1; // Default to 1
     }
 }

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
- * AdminView sınıfı, admin kullanıcıların diğer kullanıcıları görüntülemesi, eklemesi, güncellemesi ve silmesi için bir arayüz sağlar.
+ * The AdminView class provides an interface for admin users to view, add, update, and delete other users.
  */
 public class AdminView extends Layout {
     private JPanel container;
@@ -26,14 +26,14 @@ public class AdminView extends Layout {
     private JLabel label_welcome;
     private JComboBox<String> combo_role;
 
-    private UserManager userManager;
+    private final UserManager userManager;
     private User currentUser;
     private DefaultTableModel tableModel;
 
     /**
-     * AdminView sınıfı, kullanıcı yönetimi arayüzünü başlatır ve gerekli bileşenleri ayarlar.
+     * Initializes the user management interface and sets up necessary components.
      *
-     * @param user Giriş yapan kullanıcının kullanıcı adı
+     * @param user The logged-in user
      */
     public AdminView(User user) {
         userManager = new UserManager();
@@ -93,9 +93,9 @@ public class AdminView extends Layout {
     }
 
     /**
-     * Kullanıcıları yükler ve tabloya ekler.
+     * Loads users and adds them to the table.
      *
-     * @param role Filtrelemek için kullanıcı rolü (null ise tüm kullanıcılar yüklenir)
+     * @param role The role to filter users by (null if all users should be loaded)
      */
     private void loadUsers(String role) {
         List<User> users;
@@ -104,14 +104,14 @@ public class AdminView extends Layout {
         } else {
             users = userManager.getUsersByRole(role);
         }
-        tableModel.setRowCount(0); // Tablodaki mevcut verileri temizle
+        tableModel.setRowCount(0); // Clear existing data in the table
         for (User user : users) {
             tableModel.addRow(new Object[]{user.getId(), user.getUsername(), user.getRole()});
         }
     }
 
     /**
-     * Yeni bir kullanıcı oluşturur.
+     * Creates a new user.
      */
     private void createUser() {
         JTextField usernameField = new JTextField();
@@ -142,7 +142,7 @@ public class AdminView extends Layout {
     }
 
     /**
-     * Seçilen kullanıcıyı günceller.
+     * Updates the selected user.
      */
     private void updateUser() {
         int selectedRow = table_user.getSelectedRow();
@@ -190,7 +190,7 @@ public class AdminView extends Layout {
     }
 
     /**
-     * Seçilen kullanıcıyı siler.
+     * Deletes the selected user.
      */
     private void deleteUser() {
         int selectedRow = table_user.getSelectedRow();
@@ -210,14 +210,15 @@ public class AdminView extends Layout {
     }
 
     /**
-     * Uygulamanın giriş noktası. Nimbus görünümünü ayarlayıp AdminView'i başlatır.
+     * The main entry point of the application. Sets the Nimbus look and feel and starts the AdminView.
      *
-     * @param args Komut satırı argümanları
+     * @param args Command-line arguments
      */
     public static void main(String[] args) {
         Helper.setNimbusLookAndFeel();
         User tempUser = new User();
         tempUser.setUsername("admintest");
+        tempUser.setId(11);
         tempUser.setRole("ADMIN");
         new AdminView(tempUser);
     }

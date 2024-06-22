@@ -14,8 +14,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * UserView class provides an interface for users to manage hotels, rooms, reservations, and seasons.
+ */
 public class UserView extends Layout {
     private JPanel container;
     private JLabel label_welcome;
@@ -71,9 +73,13 @@ public class UserView extends Layout {
     private DefaultTableModel roomTableModel;
     private DefaultTableModel reservationTableModel;
     private DefaultTableModel seasonTableModel;
-    private DefaultTableModel facilityTableModel;
     private User currentUser;
 
+    /**
+     * Constructor for creating the UserView with a specified user.
+     *
+     * @param user The current user
+     */
     public UserView(User user) {
         hotelManager = new HotelManager();
         roomManager = new RoomManager();
@@ -97,6 +103,9 @@ public class UserView extends Layout {
         loadSeasons();
     }
 
+    /**
+     * Initializes the table models and sets the table properties.
+     */
     private void initializeTables() {
         hotelTableModel = new DefaultTableModel(new String[]{"ID", "Name", "City", "Region", "Address", "Email", "Phone", "Stars"}, 0);
         table_hotel.setModel(hotelTableModel);
@@ -119,6 +128,9 @@ public class UserView extends Layout {
         this.table_season.getTableHeader().setReorderingAllowed(false);
     }
 
+    /**
+     * Initializes the listeners for the table context menus and buttons.
+     */
     private void initializeListeners() {
         // Add right-click menu for hotel table
         table_hotel.addMouseListener(new MouseAdapter() {
@@ -166,6 +178,9 @@ public class UserView extends Layout {
         button_refresh_season.addActionListener(e -> loadSeasons());
     }
 
+    /**
+     * Initializes the filters for searching hotels and rooms.
+     */
     private void initializeFilters() {
         combo_type_filter.setModel(new DefaultComboBoxModel<>(getPensionTypesWithNone()));
         combo_facility_filter.setModel(new DefaultComboBoxModel<>(getFacilitiesWithNone()));
@@ -178,6 +193,11 @@ public class UserView extends Layout {
         button_room_clear.addActionListener(e -> clearRoomFilters());
     }
 
+    /**
+     * Gets the pension types with an additional "None" option.
+     *
+     * @return An array of pension type names including "None"
+     */
     private String[] getPensionTypesWithNone() {
         Hotel.PensionType[] pensionTypes = Hotel.PensionType.values();
         List<String> typesWithNone = new ArrayList<>();
@@ -188,6 +208,11 @@ public class UserView extends Layout {
         return typesWithNone.toArray(new String[0]);
     }
 
+    /**
+     * Gets the facilities with an additional "None" option.
+     *
+     * @return An array of facility names including "None"
+     */
     private String[] getFacilitiesWithNone() {
         Hotel.Facility[] facilities = Hotel.Facility.values();
         List<String> facilitiesWithNone = new ArrayList<>();
@@ -198,6 +223,9 @@ public class UserView extends Layout {
         return facilitiesWithNone.toArray(new String[0]);
     }
 
+    /**
+     * Filters hotels based on the specified criteria.
+     */
     private void filterHotels() {
         String city = field_city_filter.getText().trim();
         String hotelName = field_hotel_filter.getText().trim();
@@ -227,18 +255,40 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Filters rooms based on the specified criteria.
+     */
     private void filterRooms() {
         String hotelName = field_hotel_name.getText().trim();
         String city = field_city.getText().trim();
         String startDate = field_start_date.getText().trim();
         String endDate = field_end_date.getText().trim();
 
+        // Get all rooms and filter based on the specified criteria
         List<Room> filteredRooms = roomManager.getAllRooms().stream()
+                // Filter rooms by hotel name. If hotelName is empty, the filter passes all rooms (no filtering).
+                // Otherwise, it filters rooms where the hotel's name matches the provided hotelName (case-insensitive).
                 .filter(room -> hotelName.isEmpty() || room.getHotelName().equalsIgnoreCase(hotelName))
+
+                // Filter rooms by city. If city is empty, the filter passes all rooms (no filtering).
+                // Otherwise, it filters rooms where the hotel's city matches the provided city (case-insensitive).
                 .filter(room -> city.isEmpty() || room.getHotelCity().equalsIgnoreCase(city))
+
+                // Filter rooms by start date. If startDate is empty, the filter passes all rooms (no filtering).
+                // Otherwise, it filters rooms where the season's start date matches the provided startDate.
+                // Note: room.getSeason() returns a string in the format "YYYY-MM-DD to YYYY-MM-DD".
+                // The startsWith method checks if this string starts with the provided startDate.
                 .filter(room -> startDate.isEmpty() || room.getSeason().startsWith(startDate))
+
+                // Filter rooms by end date. If endDate is empty, the filter passes all rooms (no filtering).
+                // Otherwise, it filters rooms where the season's end date matches the provided endDate.
+                // Note: room.getSeason() returns a string in the format "YYYY-MM-DD to YYYY-MM-DD".
+                // The endsWith method checks if this string ends with the provided endDate.
                 .filter(room -> endDate.isEmpty() || room.getSeason().endsWith(endDate))
+
+                // Collect the filtered stream into a list
                 .toList();
+
 
         roomTableModel.setRowCount(0); // Clear existing data
 
@@ -264,6 +314,9 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Clears the hotel filters and reloads the hotels.
+     */
     private void clearHotelFilters() {
         field_city_filter.setText("");
         field_hotel_filter.setText("");
@@ -272,6 +325,9 @@ public class UserView extends Layout {
         loadHotels();
     }
 
+    /**
+     * Clears the room filters and reloads the rooms.
+     */
     private void clearRoomFilters() {
         field_hotel_name.setText("");
         field_city.setText("");
@@ -280,6 +336,11 @@ public class UserView extends Layout {
         loadRooms();
     }
 
+    /**
+     * Shows the context menu for the hotel table.
+     *
+     * @param e The mouse event
+     */
     private void showHotelContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
         JMenuItem createItem = new JMenuItem("Create Hotel");
@@ -297,6 +358,11 @@ public class UserView extends Layout {
         contextMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
+    /**
+     * Shows the context menu for the room table.
+     *
+     * @param e The mouse event
+     */
     private void showRoomContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
         JMenuItem createItem = new JMenuItem("Create Room");
@@ -317,6 +383,11 @@ public class UserView extends Layout {
         contextMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
+    /**
+     * Opens the ReservationView for creating a new reservation from the selected room.
+     *
+     * @param room The selected room
+     */
     private void openReservationViewFromRoom(Room room) {
         if (room != null) {
             Reservation reservation = new Reservation();
@@ -348,7 +419,11 @@ public class UserView extends Layout {
         }
     }
 
-
+    /**
+     * Shows the context menu for the reservation table.
+     *
+     * @param e The mouse event
+     */
     private void showReservationContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
         JMenuItem createItem = new JMenuItem("Create Reservation");
@@ -366,6 +441,11 @@ public class UserView extends Layout {
         contextMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
+    /**
+     * Shows the context menu for the season table.
+     *
+     * @param e The mouse event
+     */
     private void showSeasonContextMenu(MouseEvent e) {
         JPopupMenu contextMenu = new JPopupMenu();
         JMenuItem createItem = new JMenuItem("Create Season");
@@ -383,10 +463,14 @@ public class UserView extends Layout {
         contextMenu.add(updateItem);
         contextMenu.add(deleteItem);
 
-
         contextMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
+    /**
+     * Opens the RoomView for creating a new room from the selected season.
+     *
+     * @param season The selected season
+     */
     private void openRoomViewFromSeason(Season season) {
         if (season != null) {
             Room room = new Room();
@@ -399,11 +483,20 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Gets the city of a hotel by its ID.
+     *
+     * @param hotelId The hotel ID
+     * @return The city of the hotel
+     */
     private String getHotelCityById(int hotelId) {
         Hotel hotel = hotelManager.getHotelById(hotelId);
         return hotel != null ? hotel.getCity() : "";
     }
 
+    /**
+     * Loads the hotels into the hotel table.
+     */
     private void loadHotels() {
         List<Hotel> hotels = hotelManager.getAllHotels();
         hotelTableModel.setRowCount(0); // Clear existing data
@@ -422,6 +515,9 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Loads the rooms into the room table.
+     */
     private void loadRooms() {
         List<Room> rooms = roomManager.getAllRooms();
         roomTableModel.setRowCount(0); // Clear existing data
@@ -448,6 +544,9 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Loads the reservations into the reservation table.
+     */
     private void loadReservations() {
         List<Reservation> reservations = reservationManager.getAllReservationsWithHotelName();
         reservationTableModel.setRowCount(0); // Clear existing data
@@ -471,6 +570,9 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Loads the seasons into the season table.
+     */
     private void loadSeasons() {
         List<Season> seasons = seasonManager.getAllSeasons();
         seasonTableModel.setRowCount(0); // Clear existing data
@@ -485,26 +587,49 @@ public class UserView extends Layout {
         }
     }
 
-    // Methods to open respective views for CRUD operations
+    /**
+     * Opens the HotelView for creating or updating a hotel.
+     *
+     * @param hotel The hotel to be edited, or null to create a new hotel
+     */
     private void openHotelView(Hotel hotel) {
         new HotelView(hotel);
     }
 
+    /**
+     * Opens the RoomView for creating or updating a room.
+     *
+     * @param room The room to be edited, or null to create a new room
+     */
     private void openRoomView(Room room) {
         // Open RoomView for creating/updating a room
         new RoomView(room);
     }
 
+    /**
+     * Opens the ReservationView for creating or updating a reservation.
+     *
+     * @param reservation The reservation to be edited, or null to create a new reservation
+     */
     private void openReservationView(Reservation reservation) {
         new ReservationView(currentUser, reservation);
     }
 
+    /**
+     * Opens the SeasonView for creating or updating a season.
+     *
+     * @param season The season to be edited, or null to create a new season
+     */
     private void openSeasonView(Season season) {
         // Open SeasonView for creating/updating a season
         new SeasonView(season);
     }
 
-    // Methods to get selected entities from tables
+    /**
+     * Gets the selected hotel from the hotel table.
+     *
+     * @return The selected hotel, or null if no hotel is selected
+     */
     private Hotel getSelectedHotel() {
         int selectedRow = table_hotel.getSelectedRow();
         if (selectedRow == -1) return null;
@@ -512,6 +637,11 @@ public class UserView extends Layout {
         return hotelManager.getHotelById(hotelId);
     }
 
+    /**
+     * Gets the selected room from the room table.
+     *
+     * @return The selected room, or null if no room is selected
+     */
     private Room getSelectedRoom() {
         int selectedRow = table_room.getSelectedRow();
         if (selectedRow == -1) return null;
@@ -519,6 +649,11 @@ public class UserView extends Layout {
         return roomManager.getRoomById(roomId);
     }
 
+    /**
+     * Gets the selected reservation from the reservation table.
+     *
+     * @return The selected reservation, or null if no reservation is selected
+     */
     private Reservation getSelectedReservation() {
         int selectedRow = table_reservation.getSelectedRow();
         if (selectedRow == -1) return null;
@@ -526,6 +661,11 @@ public class UserView extends Layout {
         return reservationManager.getReservationById(reservationId);
     }
 
+    /**
+     * Gets the selected season from the season table.
+     *
+     * @return The selected season, or null if no season is selected
+     */
     private Season getSelectedSeason() {
         int selectedRow = table_season.getSelectedRow();
         if (selectedRow == -1) return null;
@@ -533,7 +673,9 @@ public class UserView extends Layout {
         return seasonManager.getSeasonById(seasonId);
     }
 
-    // Methods to delete selected entities
+    /**
+     * Deletes the selected hotel.
+     */
     private void deleteSelectedHotel() {
         Hotel hotel = getSelectedHotel();
         if (hotel != null) {
@@ -545,6 +687,9 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Deletes the selected room.
+     */
     private void deleteSelectedRoom() {
         Room room = getSelectedRoom();
         if (room != null) {
@@ -553,6 +698,9 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Deletes the selected reservation.
+     */
     private void deleteSelectedReservation() {
         Reservation reservation = getSelectedReservation();
         if (reservation != null) {
@@ -565,6 +713,9 @@ public class UserView extends Layout {
         }
     }
 
+    /**
+     * Deletes the selected season.
+     */
     private void deleteSelectedSeason() {
         Season season = getSelectedSeason();
         if (season != null) {
@@ -576,7 +727,11 @@ public class UserView extends Layout {
         }
     }
 
-    // Main method to launch the UserView
+    /**
+     * Main method to launch the UserView.
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         Helper.setNimbusLookAndFeel();
         User tempUser = new User();

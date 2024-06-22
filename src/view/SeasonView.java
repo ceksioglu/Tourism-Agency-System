@@ -9,6 +9,10 @@ import entity.Hotel;
 import javax.swing.*;
 import java.sql.Date;
 
+/**
+ * The SeasonView class provides an interface for managing seasons.
+ * Users can create, update, and view season details.
+ */
 public class SeasonView extends Layout {
     private JPanel container;
     private JLabel label_banner;
@@ -28,6 +32,11 @@ public class SeasonView extends Layout {
     private final HotelManager hotelManager;
     private Season season;
 
+    /**
+     * Constructor for creating a SeasonView with a specified season.
+     *
+     * @param season The season to be managed
+     */
     public SeasonView(Season season) {
         this.season = season != null ? season : new Season(0, 0, "", null, null);
         this.seasonManager = new SeasonManager();
@@ -46,6 +55,9 @@ public class SeasonView extends Layout {
         populateSeasonData();
     }
 
+    /**
+     * Retrieves the hotel name based on the entered hotel ID and displays it.
+     */
     private void getHotelName() {
         String hotelIdText = field_hotel_id.getText();
         if (hotelIdText.isEmpty()) {
@@ -63,6 +75,9 @@ public class SeasonView extends Layout {
         }
     }
 
+    /**
+     * Populates the season data fields with the information from the given season.
+     */
     private void populateSeasonData() {
         if (season.getId() != 0) {
             field_hotel_id.setText(String.valueOf(season.getHotelId()));
@@ -72,6 +87,9 @@ public class SeasonView extends Layout {
         }
     }
 
+    /**
+     * Saves the season. If it is a new season, it will be created. Otherwise, it will be updated.
+     */
     private void saveSeason() {
         if (Helper.checkAndShowEmptyFields(this, field_hotel_id, field_start_date, field_end_date)) {
             return;

@@ -1,29 +1,29 @@
 package view;
 
 import javax.swing.*;
-import java.awt.*;
+
 import core.Helper;
 
+/**
+ * The Layout class serves as a base class for setting up common features and utilities for JFrame-based windows.
+ * It extends JFrame and provides helper methods for setting the Nimbus look and feel, centering the window,
+ * showing messages, and checking if text fields are empty.
+ */
 public class Layout extends JFrame {
 
+    /**
+     * Constructs a Layout object, sets the Nimbus look and feel, centers the window,
+     * and sets the default close operation.
+     */
     public Layout() {
-        // Nimbus temasını ayarla
+        // Set Nimbus look and feel
         Helper.setNimbusLookAndFeel();
 
-        // Pencereyi ortala
+        // Center the window
         Helper.centerWindow(this);
 
-        // Varsayılan pencere kapatma işlemi
+        // Default window close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    // Pencerede mesaj göster
-    public void showMessage(String message) {
-        Helper.showMessage(this, message);
-    }
-
-    // TextField'lerin boş olup olmadığını kontrol et ve mesaj göster
-    protected boolean checkAndShowEmptyFields(JTextField... fields) {
-        return Helper.checkAndShowEmptyFields(this, fields);
-    }
 }

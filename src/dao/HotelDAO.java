@@ -10,9 +10,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) class for managing hotel data.
+ */
 public class HotelDAO {
 
-    // Fetch all hotels
+    /**
+     * Fetches all hotels from the database.
+     *
+     * @return a list of all hotels
+     */
     public List<Hotel> getAllHotels() {
         List<Hotel> hotels = new ArrayList<>();
         String query = "SELECT * FROM public.hotel";
@@ -42,7 +49,12 @@ public class HotelDAO {
         return hotels;
     }
 
-    // Fetch hotel by ID
+    /**
+     * Fetches a hotel by its unique identifier.
+     *
+     * @param id the unique identifier of the hotel
+     * @return the hotel with the specified id, or null if not found
+     */
     public Hotel getHotelById(int id) {
         String query = "SELECT * FROM public.hotel WHERE id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
@@ -69,7 +81,12 @@ public class HotelDAO {
         return null;
     }
 
-    // Fetch facilities by hotel ID
+    /**
+     * Fetches the facilities of a hotel by its unique identifier.
+     *
+     * @param hotelId the unique identifier of the hotel
+     * @return a list of facilities for the specified hotel
+     */
     public List<Facility> getFacilitiesByHotelId(int hotelId) {
         List<Facility> facilities = new ArrayList<>();
         String query = "SELECT facility FROM public.hotel_facility WHERE hotel_id = ?";
@@ -88,7 +105,12 @@ public class HotelDAO {
         return facilities;
     }
 
-    // Fetch pension types by hotel ID
+    /**
+     * Fetches the pension types of a hotel by its unique identifier.
+     *
+     * @param hotelId the unique identifier of the hotel
+     * @return a list of pension types for the specified hotel
+     */
     public List<PensionType> getPensionTypesByHotelId(int hotelId) {
         List<PensionType> pensionTypes = new ArrayList<>();
         String query = "SELECT type FROM public.hotel_pension_type WHERE hotel_id = ?";
@@ -107,7 +129,12 @@ public class HotelDAO {
         return pensionTypes;
     }
 
-    // Fetch seasons by hotel ID
+    /**
+     * Fetches the seasons of a hotel by its unique identifier.
+     *
+     * @param hotelId the unique identifier of the hotel
+     * @return a list of seasons for the specified hotel
+     */
     public List<Season> getSeasonsByHotelId(int hotelId) {
         List<Season> seasons = new ArrayList<>();
         String query = "SELECT public.season.id, public.season.hotel_id, public.season.start_date, public.season.end_date, public.hotel.name AS hotel_name " +
@@ -136,10 +163,12 @@ public class HotelDAO {
         return seasons;
     }
 
-
-
-
-    // Add a new hotel
+    /**
+     * Adds a new hotel to the database.
+     *
+     * @param hotel the hotel to add
+     * @return the unique identifier of the newly added hotel
+     */
     public int addHotel(Hotel hotel) {
         String query = "INSERT INTO public.hotel (name, city, region, address, email, phone, stars) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -168,7 +197,12 @@ public class HotelDAO {
         return 0;
     }
 
-    // Add facilities for a hotel
+    /**
+     * Adds facilities for a hotel.
+     *
+     * @param hotelId    the unique identifier of the hotel
+     * @param facilities the list of facilities to add
+     */
     public void addFacilities(int hotelId, List<Facility> facilities) {
         String query = "INSERT INTO public.hotel_facility (hotel_id, facility) VALUES (?, ?)";
 
@@ -186,7 +220,12 @@ public class HotelDAO {
         }
     }
 
-    // Add pension types for a hotel
+    /**
+     * Adds pension types for a hotel.
+     *
+     * @param hotelId      the unique identifier of the hotel
+     * @param pensionTypes the list of pension types to add
+     */
     public void addPensionTypes(int hotelId, List<PensionType> pensionTypes) {
         String query = "INSERT INTO public.hotel_pension_type (hotel_id, type) VALUES (?, ?)";
 
@@ -204,7 +243,11 @@ public class HotelDAO {
         }
     }
 
-    // Update a hotel
+    /**
+     * Updates a hotel in the database.
+     *
+     * @param hotel the hotel to update
+     */
     public void updateHotel(Hotel hotel) {
         String query = "UPDATE public.hotel SET name = ?, city = ?, region = ?, address = ?, email = ?, phone = ?, stars = ? WHERE id = ?";
 
@@ -232,7 +275,11 @@ public class HotelDAO {
         }
     }
 
-    // Delete a hotel
+    /**
+     * Deletes a hotel from the database.
+     *
+     * @param id the unique identifier of the hotel to delete
+     */
     public void deleteHotel(int id) {
         String query = "DELETE FROM public.hotel WHERE id = ?";
 
@@ -246,7 +293,11 @@ public class HotelDAO {
         }
     }
 
-    // Delete facilities by hotel ID
+    /**
+     * Deletes facilities for a hotel by its unique identifier.
+     *
+     * @param hotelId the unique identifier of the hotel
+     */
     public void deleteFacilitiesByHotelId(int hotelId) {
         String query = "DELETE FROM public.hotel_facility WHERE hotel_id = ?";
 
@@ -260,7 +311,11 @@ public class HotelDAO {
         }
     }
 
-    // Delete pension types by hotel ID
+    /**
+     * Deletes pension types for a hotel by its unique identifier.
+     *
+     * @param hotelId the unique identifier of the hotel
+     */
     public void deletePensionTypesByHotelId(int hotelId) {
         String query = "DELETE FROM public.hotel_pension_type WHERE hotel_id = ?";
 
@@ -274,6 +329,12 @@ public class HotelDAO {
         }
     }
 
+    /**
+     * Fetches a hotel by its name.
+     *
+     * @param hotelName the name of the hotel
+     * @return the hotel with the specified name, or null if not found
+     */
     public Hotel getHotelByName(String hotelName) {
         String query = "SELECT * FROM public.hotel WHERE name = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();

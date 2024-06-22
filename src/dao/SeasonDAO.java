@@ -7,8 +7,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) class for managing season data.
+ */
 public class SeasonDAO {
 
+    /**
+     * Retrieves all seasons from the database.
+     *
+     * @return a list of all seasons
+     */
     public List<Season> getAllSeasons() {
         List<Season> seasons = new ArrayList<>();
         String query = "SELECT public.season.id, public.season.hotel_id, public.hotel.name as hotel_name, public.season.start_date, public.season.end_date " +
@@ -36,6 +44,12 @@ public class SeasonDAO {
         return seasons;
     }
 
+    /**
+     * Retrieves a season by its unique identifier.
+     *
+     * @param id the unique identifier of the season
+     * @return the season with the specified id, or null if not found
+     */
     public Season getSeasonById(int id) {
         String query = "SELECT public.season.id, public.season.hotel_id, public.hotel.name as hotel_name, public.season.start_date, public.season.end_date " +
                 "FROM public.season " +
@@ -62,6 +76,11 @@ public class SeasonDAO {
         return null;
     }
 
+    /**
+     * Adds a new season to the database.
+     *
+     * @param season the season to add
+     */
     public void addSeason(Season season) {
         String query = "INSERT INTO public.season (hotel_id, start_date, end_date) VALUES (?, ?, ?)";
 
@@ -77,6 +96,11 @@ public class SeasonDAO {
         }
     }
 
+    /**
+     * Updates an existing season in the database.
+     *
+     * @param season the season to update
+     */
     public void updateSeason(Season season) {
         String query = "UPDATE public.season SET hotel_id = ?, start_date = ?, end_date = ? WHERE id = ?";
 
@@ -93,6 +117,11 @@ public class SeasonDAO {
         }
     }
 
+    /**
+     * Deletes a season from the database.
+     *
+     * @param id the unique identifier of the season to delete
+     */
     public void deleteSeason(int id) {
         String query = "DELETE FROM public.season WHERE id = ?";
 

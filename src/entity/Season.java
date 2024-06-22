@@ -2,6 +2,10 @@ package entity;
 
 import java.sql.Date;
 
+/**
+ * Represents a season associated with a hotel.
+ */
+
 public class Season {
     private int id;
     private int hotelId;
@@ -9,9 +13,19 @@ public class Season {
     private Date startDate;
     private Date endDate;
 
-    public Season() {}
+    public Season() {
+    }
 
-    // Constructor with hotelName
+    /**
+     * Constructs a new Season object with the specified parameters.
+     *
+     * @param id        the unique identifier for the season
+     * @param hotelId   the unique identifier for the hotel
+     * @param hotelName the name of the hotel
+     * @param startDate the start date of the season
+     * @param endDate   the end date of the season
+     */
+
     public Season(int id, int hotelId, String hotelName, Date startDate, Date endDate) {
         this.id = id;
         this.hotelId = hotelId;

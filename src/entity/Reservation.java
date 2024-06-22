@@ -3,6 +3,11 @@ package entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+
+/**
+ * Represents a reservation made by a guest at a hotel.
+ */
+
 public class Reservation {
     private int id;
     private int roomId;
@@ -19,9 +24,29 @@ public class Reservation {
     private String guestPhone;
     private String hotelName;
 
-    public Reservation() {}
+    public Reservation() {
+    }
 
-    public Reservation(int id, int roomId, int userId, LocalDate startDate, LocalDate endDate, int adultCount, int childCount, BigDecimal totalPrice, String guestName, String guestSurname, String guestIdentityNumber, int hotelId, String guestPhone,String hotelName) {
+    /**
+     * Constructs a new Reservation object with the specified parameters.
+     *
+     * @param id                  the unique identifier for the reservation
+     * @param roomId              the unique identifier for the room
+     * @param userId              the unique identifier for the user making the reservation
+     * @param startDate           the start date of the reservation
+     * @param endDate             the end date of the reservation
+     * @param adultCount          the number of adults in the reservation
+     * @param childCount          the number of children in the reservation
+     * @param totalPrice          the total price of the reservation
+     * @param guestName           the name of the guest
+     * @param guestSurname        the surname of the guest
+     * @param guestIdentityNumber the identity number of the guest
+     * @param hotelId             the unique identifier for the hotel
+     * @param guestPhone          the phone number of the guest
+     * @param hotelName           the name of the hotel
+     */
+
+    public Reservation(int id, int roomId, int userId, LocalDate startDate, LocalDate endDate, int adultCount, int childCount, BigDecimal totalPrice, String guestName, String guestSurname, String guestIdentityNumber, int hotelId, String guestPhone, String hotelName) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;

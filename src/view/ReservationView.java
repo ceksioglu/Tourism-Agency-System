@@ -14,6 +14,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The ReservationView class provides an interface for managing reservations.
+ * Users can create, update, and view reservation details.
+ */
 public class ReservationView extends Layout {
     private User currentUser;
     private Reservation reservation;
@@ -46,13 +50,24 @@ public class ReservationView extends Layout {
     private JTextField field_phone;
     private JComboBox<String> combo_room_id;
 
-    private ReservationManager reservationManager;
-    private RoomManager roomManager;
+    private final ReservationManager reservationManager;
+    private final RoomManager roomManager;
 
+    /**
+     * Constructor for creating a new ReservationView with the current user.
+     *
+     * @param currentUser The current logged-in user
+     */
     public ReservationView(User currentUser) {
         this(currentUser, null);
     }
 
+    /**
+     * Constructor for creating a ReservationView with the current user and an existing reservation.
+     *
+     * @param currentUser The current logged-in user
+     * @param reservation The reservation to be managed
+     */
     public ReservationView(User currentUser, Reservation reservation) {
         this.currentUser = currentUser;
         this.reservation = reservation != null ? reservation : new Reservation();
@@ -71,6 +86,9 @@ public class ReservationView extends Layout {
         }
     }
 
+    /**
+     * Loads the available rooms for the hotel specified by the hotel ID.
+     */
     private void loadRooms() {
         try {
             int hotelId = Integer.parseInt(field_hotel_id.getText());
@@ -84,6 +102,9 @@ public class ReservationView extends Layout {
         }
     }
 
+    /**
+     * Calculates the total price for the reservation based on the room price, number of guests, and duration of stay.
+     */
     private void calculateTotalPrice() {
         try {
             int roomId = Integer.parseInt((String) Objects.requireNonNull(combo_room_id.getSelectedItem()));
@@ -104,6 +125,9 @@ public class ReservationView extends Layout {
         }
     }
 
+    /**
+     * Saves the reservation. If it is a new reservation, it will be created. Otherwise, it will be updated.
+     */
     private void saveReservation() {
         try {
             int roomId = Integer.parseInt((String) Objects.requireNonNull(combo_room_id.getSelectedItem()));
@@ -158,8 +182,9 @@ public class ReservationView extends Layout {
         }
     }
 
-
-
+    /**
+     * Populates the reservation data fields with the information from the given reservation.
+     */
     private void populateReservationData() {
         try {
             field_name.setText(reservation.getGuestName());
@@ -179,6 +204,11 @@ public class ReservationView extends Layout {
         }
     }
 
+    /**
+     * The main entry point of the application. Sets the Nimbus look and feel and starts the ReservationView.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
         Helper.setNimbusLookAndFeel();
         User dummyUser = new User();

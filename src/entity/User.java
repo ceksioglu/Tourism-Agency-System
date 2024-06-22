@@ -1,5 +1,9 @@
 package entity;
 
+/**
+ * Represents a user in the system.
+ */
+
 public class User {
 
     private int id;
@@ -8,6 +12,15 @@ public class User {
     private String role;
 
     public User() {}
+
+    /**
+     * Constructs a new User object with the specified parameters.
+     *
+     * @param id       the unique identifier for the user
+     * @param username the username of the user
+     * @param password the password of the user
+     * @param role     the role of the user (ADMIN, PERSONNEL)
+     */
 
     public User(int id, String username, String password, String role) {
         this.id = id;

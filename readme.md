@@ -54,7 +54,7 @@ The project follows a layered architecture with the following main packages:
 
 ### View Package
 
-- **AdminView**: UI for admin users to manage hotels, rooms, seasons, and reservations.
+- **AdminView**: UI for admin users to manage users table.
 - **RoomView**: UI for managing rooms.
 - **SeasonView**: UI for managing seasons.
 - **ReservationView**: UI for managing reservations.
@@ -70,7 +70,7 @@ The project follows a layered architecture with the following main packages:
 
 ## Usage
 
-- **Admin**: Can manage hotels, rooms, seasons, and reservations.
+- **Admin**: Can manage users.
 - **Personnel**: Can manage their tasks related to reservations.
 
 ## Mock Data
